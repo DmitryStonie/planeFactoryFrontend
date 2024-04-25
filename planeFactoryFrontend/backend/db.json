@@ -58,26 +58,26 @@
       "email": "123",
       "password": "123",
       "name": "Mark"
+    },
+    {
+      "id": "b3c3",
+      "email": "123123",
+      "password": "123123",
+      "name": "Mark"
     }
   ],
   "companies": [
     {
-      "id": 1,
-      "name": "some name",
-      "contact": 111111,
-      "address": "abobaland"
+      "id": "3ff8",
+      "name": "KFC",
+      "address": "ADADS",
+      "contact": "123sfds"
     },
     {
-      "id": 2,
-      "name": "some bibe",
-      "contact": 1243432,
-      "address": "ahhahaha"
-    },
-    {
-      "id": 3,
-      "name": "KKKFFFCCC",
-      "contact": 333333,
-      "address": "Novosibirsk"
+      "id": "eeee",
+      "name": "Aboba company",
+      "address": "2134342",
+      "contact": "4yfgdhg"
     }
   ]
 }

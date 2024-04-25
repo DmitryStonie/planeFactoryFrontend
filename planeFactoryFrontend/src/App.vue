@@ -37,7 +37,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.register input, .login input {
+.register input, .login input, .add-form input {
   width: 300px;
   height: 40px;
   padding-left: 20px;
@@ -47,7 +47,7 @@ a:hover {
   margin-left: auto;
   border: 1px solid skyblue;
 }
-.register button, .login button {
+.register button, .login button, .add-form button {
   width: 300px;
   height: 40px;
   border: 1px solid skyblue;

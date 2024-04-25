@@ -29,7 +29,7 @@ const routes = [
     {
         name: 'UpdateCompany',
         component: UpdateCompanyPage,
-        path: '/update-company'
+        path: '/update-company/:id'
     },
 ];
 
