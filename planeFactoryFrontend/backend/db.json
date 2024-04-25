@@ -5,6 +5,79 @@
       "email": "linafggfl@test.com",
       "name": "Mark Yurin",
       "password": "anil@123"
+    },
+    {
+      "id": "e90d",
+      "email": "Tony@mail.ru",
+      "password": "123123"
+    },
+    {
+      "id": "e1cf",
+      "email": "aboba@test",
+      "password": "123123123",
+      "name": "Aboba"
+    },
+    {
+      "id": "fa6d",
+      "email": "asdsaa@test",
+      "password": "fsddfnsjj3wre",
+      "name": "Bruce"
+    },
+    {
+      "id": "eb73",
+      "email": "",
+      "password": "",
+      "name": ""
+    },
+    {
+      "id": "28f3",
+      "email": "wqe",
+      "password": "wqe",
+      "name": "e"
+    },
+    {
+      "id": "017c",
+      "email": "qewweq",
+      "password": "eqwqewweq",
+      "name": "qweewq"
+    },
+    {
+      "id": "fe38",
+      "email": "",
+      "password": "",
+      "name": ""
+    },
+    {
+      "id": "0428",
+      "email": "123",
+      "password": "123",
+      "name": "123"
+    },
+    {
+      "id": "8b48",
+      "email": "123",
+      "password": "123",
+      "name": "Mark"
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "some name",
+      "contact": 111111,
+      "address": "abobaland"
+    },
+    {
+      "id": 2,
+      "name": "some bibe",
+      "contact": 1243432,
+      "address": "ahhahaha"
+    },
+    {
+      "id": 3,
+      "name": "KKKFFFCCC",
+      "contact": 333333,
+      "address": "Novosibirsk"
     }
   ]
 }
