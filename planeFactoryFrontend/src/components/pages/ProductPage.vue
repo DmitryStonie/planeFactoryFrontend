@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <AntiHailRocketInfo v-if="antiHail" />
-    <CivilPlaneInfo v-if="civilPlane" />
-    <CivilRocketInfo v-if="civilRocket" />
-    <GliderInfo v-if="glider" />
-    <HangGliderInfo v-if="hangGlider" />
-    <HelicopterInfo v-if="helicopter" />
-    <MilitaryPlaneInfo v-if="militaryPlane" />
-    <MilitaryRocketInfo v-if="militaryRocket" />
-    <PlaneInfo v-if="plane" />
-    <ProductInfo v-if="product" />
-    <RocketInfo v-if="rocket" />
-    <TransportPlaneInfo v-if="transportPlane" />
+    <AntiHailRocketInfo :Reagent=items.AntiHailRockets[0].Reagent v-if="antiHail" />
+    <CivilPlaneInfo :Capacity=items.CivilPlanes[0].Capacity v-if="civilPlane" />
+    <CivilRocketInfo :Guidance=items.CivilRockets[0].Guidance v-if="civilRocket" />
+    <GliderInfo :Capacity=items.Gliders[0].Capacity v-if="glider" />
+    <HangGliderInfo :SailclothMaterial=items.HangGliders[0].SailclothMaterial v-if="hangGlider" />
+    <HelicopterInfo :Propellers=items.Helicopters[0].Propellers v-if="helicopter" />
+    <MilitaryPlaneInfo :Type=items.MilitaryPlanes[0].Type v-if="militaryPlane" />
+    <MilitaryRocketInfo :Type=items.MilitaryRockets[0].Type :Guidance=items.MilitaryRockets[0].Guidance :WarheadWeight=items.MilitaryRockets[0].WarheadWeight v-if="militaryRocket" />
+    <PlaneInfo :Engines=items.Planes[0].Engines v-if="plane" />
+    <ProductInfo :ID=items.Products[0].ID :Name=items.Products[0].Name :Workshop=items.Products[0].Workshop :ProductionDate=items.Products[0].ProductionDate :Description=items.Products[0].Description v-if="product" />
+    <RocketInfo :Engines=items.Rockets[0].Engines  :Propellant=items.Rockets[0].Propellant :Range=items.Rockets[0].Range :Weight=items.Rockets[0].Weight v-if="rocket" />
+    <TransportPlaneInfo :Reagent=items.TransportPlanes[0].Reagent v-if="transportPlane" />
   </div>
 </template>
 

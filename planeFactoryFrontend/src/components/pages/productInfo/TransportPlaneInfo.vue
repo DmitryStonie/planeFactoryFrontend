@@ -3,4 +3,9 @@
 </template>
 
 <script>
+export default {
+  props: {
+    Reagent: String
+  }
+}
 </script>

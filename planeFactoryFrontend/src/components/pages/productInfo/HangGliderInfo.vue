@@ -3,4 +3,9 @@
 </template>
 
 <script>
+export default {
+  props: {
+    SailclothMaterial : String
+  }
+}
 </script>
