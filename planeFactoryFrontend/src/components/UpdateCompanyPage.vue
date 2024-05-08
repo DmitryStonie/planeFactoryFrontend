@@ -10,7 +10,7 @@
 </template>
 <script>
 import axios from 'axios'
-import HomePageHeader from './HomePageHeader.vue'
+import HomePageHeader from './components/HomePageHeader.vue'
 export default {
   name: 'AddCompanyPage',
   components: {

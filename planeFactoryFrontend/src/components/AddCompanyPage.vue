@@ -9,8 +9,8 @@
   </form>
 </template>
 <script>
-import axios from 'axios';
-import HomePageHeader from './HomePageHeader.vue'
+import axios from 'axios'
+import HomePageHeader from './components/HomePageHeader.vue'
 export default {
   name: 'AddCompanyPage',
   components: {
@@ -27,13 +27,13 @@ export default {
   },
   methods: {
     async addCompany() {
-      const result = await axios.post("http://localhost:3000/companies", {
+      const result = await axios.post('http://localhost:3000/companies', {
         name: this.company.name,
         address: this.company.address,
         contact: this.company.contact
-      });
-      if(result.status==201){
-        this.$router.push({name: 'HomePage'});
+      })
+      if (result.status == 201) {
+        this.$router.push({ name: 'HomePage' })
       }
     }
   },
