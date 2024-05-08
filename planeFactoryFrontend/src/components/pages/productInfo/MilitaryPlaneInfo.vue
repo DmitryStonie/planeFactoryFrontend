@@ -1,5 +1,5 @@
 <template>
-    <h1>Hello</h1>
+    <h1>Hello military</h1>
 </template>
 
 <script>

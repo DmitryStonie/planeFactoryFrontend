@@ -7,7 +7,7 @@ export default {
   props: {
     Engines: Number,
     Propellant: String,
-    Range: Int,
+    Range: Number,
     Weight: Number
   }
 }
