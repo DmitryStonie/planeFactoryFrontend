@@ -1,17 +1,35 @@
 <template>
-      <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
-    <AntiHailRocketInfo :Reagent=items.antiHailRockets.Reagent v-if="antiHail" />
-    <CivilPlaneInfo :Capacity=items.civilPlanes.Capacity v-if="civilPlane" />
-    <CivilRocketInfo :Guidance=items.civilRockets.Guidance v-if="civilRocket" />
-    <GliderInfo :Capacity=items.gliders.Capacity v-if="glider" />
-    <HangGliderInfo :SailclothMaterial=items.hangGliders.SailclothMaterial v-if="hangGlider" />
-    <HelicopterInfo :Propellers=items.helicopters.Propellers v-if="helicopter" />
-    <MilitaryPlaneInfo :Type=items.militaryPlanes.Type v-if="militaryPlane" />
-    <MilitaryRocketInfo :Type=items.militaryRockets.Type :Guidance=items.militaryRockets.Guidance :WarheadWeight=items.militaryRockets.WarheadWeight v-if="militaryRocket" />
-    <PlaneInfo :Engines=items.planes.Engines v-if="plane" />
-    <ProductInfo :ID="this.items.products[0].ID" :Name="this.items.products[0].Name" :Workshop="this.items.products[0].Workshop" :ProductionDate="this.items.products[0].ProductionDate" :Description="this.items.products[0].Description" v-if="product" />
-    <RocketInfo :Engines=items.rockets.Engines  :Propellant=items.rockets.Propellant :Range=items.rockets.Range :Weight=items.rockets.Weight v-if="rocket" />
-    <TransportPlaneInfo :Reagent=items.transportPlanes.Reagent v-if="transportPlane" />
+  <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
+    <AntiHailRocketInfo :Reagent="items.antiHailRockets.Reagent" v-if="antiHail" />
+    <CivilPlaneInfo :Capacity="items.civilPlanes.Capacity" v-if="civilPlane" />
+    <CivilRocketInfo :Guidance="items.civilRockets.Guidance" v-if="civilRocket" />
+    <GliderInfo :Capacity="items.gliders.Capacity" v-if="glider" />
+    <HangGliderInfo :SailclothMaterial="items.hangGliders.SailclothMaterial" v-if="hangGlider" />
+    <HelicopterInfo :Propellers="items.helicopters.Propellers" v-if="helicopter" />
+    <MilitaryPlaneInfo :Type="items.militaryPlanes.Type" v-if="militaryPlane" />
+    <MilitaryRocketInfo
+      :Type="items.militaryRockets.Type"
+      :Guidance="items.militaryRockets.Guidance"
+      :WarheadWeight="items.militaryRockets.WarheadWeight"
+      v-if="militaryRocket"
+    />
+    <PlaneInfo :Engines="items.planes.Engines" v-if="plane" />
+    <ProductInfo
+      :ID="this.items.products[0].ID"
+      :Name="this.items.products[0].Name"
+      :Workshop="this.items.products[0].Workshop"
+      :ProductionDate="this.items.products[0].ProductionDate"
+      :Description="this.items.products[0].Description"
+      v-if="product"
+    />
+    <RocketInfo
+      :Engines="items.rockets.Engines"
+      :Propellant="items.rockets.Propellant"
+      :Range="items.rockets.Range"
+      :Weight="items.rockets.Weight"
+      v-if="rocket"
+    />
+    <TransportPlaneInfo :Reagent="items.transportPlanes.Reagent" v-if="transportPlane" />
   </div>
 </template>
 
@@ -28,7 +46,7 @@ import PlaneInfo from './productInfo/PlaneInfo.vue'
 import ProductInfo from './productInfo/ProductInfo.vue'
 import RocketInfo from './productInfo/RocketInfo.vue'
 import TransportPlaneInfo from './productInfo/TransportPlaneInfo.vue'
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   components: {
@@ -64,7 +82,7 @@ export default {
   },
   methods: {
     async loadData() {
-      console.warn("aboba1")
+      console.warn('aboba1')
       let result = await axios.get('http://localhost:8082/products/' + this.$route.params.id)
       console.warn('http://localhost:8082/products/' + this.$route.params.id)
       this.items = result.data
@@ -111,4 +129,5 @@ export default {
     this.loadData()
   }
 }
+
 </script>
