@@ -12,6 +12,24 @@
     <AntiHailRocketInfo v-if="$store.getters.antiHailP" />
     <HelicopterInfo v-if="$store.getters.helicopterP" />
     <GliderInfo v-if="$store.getters.gliderP" />
+    <div class="flex">
+      <button
+      @click="saveData"
+        id="button"
+        type="button"
+        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-cyan-300 hover:bg-cyan-500 hover:shadow-lg focus:outline-none"
+      >
+        Save
+      </button>
+      <button
+      @click="deleteData"
+        id="button"
+        type="button"
+        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-cyan-300 hover:bg-cyan-500 hover:shadow-lg focus:outline-none"
+      >
+        Delete
+      </button>
+    </div>
   </div>
 </template>
 
@@ -50,6 +68,15 @@ export default {
   },
   unmounted() {
     this.$store.commit('cleanProps')
+  },
+  methods: {
+    async saveData(){
+      console.warn("button works")
+      this.$store.dispatch('putProduct', this.$route.params.id)
+    },
+    async deleteData(){
+
+    }
   }
 }
 </script>

@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import createPersistedState from "vuex-persistedstate"
 
 const store = createStore({
     state () {
@@ -47,7 +48,7 @@ const store = createStore({
             Weight: Number
           }],
           transportPlanes: [{
-            Reagent: String
+            CarryingWeight: String
           }],
           productProps: {
             antiHail: false,
@@ -323,6 +324,45 @@ const store = createStore({
                 context.commit('setTransportPlanes', items.transportPlanes)
             }
           },
+          async putProduct (context, payload) {
+            if (store.getters.antiHailRockets) {
+                await axios.put('http://localhost:8082/antiHailRockets/' + payload, store.getters.antiHailRockets[0])
+            }
+            if (store.getters.civilPlanes) {
+                await axios.put('http://localhost:8082/civil-planes/' + payload, store.getters.civilPlanes[0])
+            }
+            if (store.getters.civilRockets) {
+                await axios.put('http://localhost:8082/civil-rockets/' + payload, store.getters.civilRockets[0])
+            }
+            if (store.getters.gliders) {
+                await axios.put('http://localhost:8082/gliders/' + payload, store.getters.gliders[0])
+            }
+            if (store.getters.hangGliders) {
+                await axios.put('http://localhost:8082/hang-gliders/' + payload,store.getters.hangGliders[0])
+            }
+            if (store.getters.helicopters) {
+                await axios.put('http://localhost:8082/helicopters/' + payload, store.getters.helicopters[0])
+            }
+            if (store.getters.militaryPlanes) {
+                await axios.put('http://localhost:8082/military-planes/' + payload, store.getters.militaryPlanes[0])
+            }
+            if (store.getters.militaryRockets) {
+                await axios.put('http://localhost:8082/military-rockets/' + payload, store.getters.militaryRockets[0])
+            }
+            if (store.getters.planes) {
+                await axios.put('http://localhost:8082/planes/' + payload, store.getters.planes[0])
+            }
+            if (store.getters.products) {
+                console.warn(store.getters.products)
+                await axios.put('http://localhost:8082/products/' + payload, store.getters.products[0])
+            }
+            if (store.getters.rockets) {
+                await axios.put('http://localhost:8082/rockets/' + payload, store.getters.rockets[0])
+            }
+            if (store.getters.transportPlanes) {
+                await axios.put('http://localhost:8082/transport-planes/' + payload, store.getters.transportPlanes[0])
+            }
+          },
           async getRockets (context) {
             let result = await axios.get('http://localhost:8082/rockets/')
             context.commit('setRockets', result.data.rockets)
@@ -331,7 +371,8 @@ const store = createStore({
             let result = await axios.get('http://localhost:8082/transport-planes/')
             context.commit('setTransportPlanes', result.data.transportPlanes)
           },
-      }
+      },
+      plugins: [createPersistedState()]
     })
     
 
