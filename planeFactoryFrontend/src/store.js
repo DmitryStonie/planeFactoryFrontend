@@ -138,6 +138,22 @@ const store = createStore({
           settransportPlaneP (state, payload) {
             state.productProps.transportPlane = payload
           },
+          cleanProps(state) {
+            state.productProps = {
+                antiHail: false,
+                civilPlane: false,
+                civilRocket: false,
+                glider: false,
+                hangGlider: false,
+                helicopter: false,
+                militaryPlane: false,
+                militaryRocket: false,
+                plane: false,
+                product: false,
+                rocket: false,
+                transportPlane: false
+            }
+          }
       },
       getters: {
         antiHailRockets (state){
