@@ -1,8 +1,8 @@
 <template>
         <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.rockets[0].Engines"
-      type="text"
+    v-model.number="$store.getters.rockets[0].Engines"
+      type="number"
       name="name"
       placeholder=" "
       required
@@ -14,7 +14,7 @@
   </div>
   <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.rockets[0].Propellant"
+    v-model="$store.getters.rockets[0].Propellant"
       type="text"
       name="name"
       placeholder=" "
@@ -27,8 +27,8 @@
   </div>
   <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.rockets[0].Range"
-      type="text"
+    v-model.number="$store.getters.rockets[0].Range"
+      type="number"
       name="name"
       placeholder=" "
       required
@@ -40,8 +40,8 @@
   </div>
   <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.rockets[0].Weight"
-      type="text"
+    v-model.number="$store.getters.rockets[0].Weight"
+      type="number"
       name="name"
       placeholder=" "
       required

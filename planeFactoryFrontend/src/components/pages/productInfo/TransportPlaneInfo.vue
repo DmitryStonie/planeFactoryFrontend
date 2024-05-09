@@ -1,8 +1,8 @@
 <template>
       <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.transportPlanes[0].CarryingWeight"
-      type="text"
+    v-model.number="$store.getters.transportPlanes[0].CarryingWeight"
+      type="number"
       name="name"
       placeholder=" "
       required

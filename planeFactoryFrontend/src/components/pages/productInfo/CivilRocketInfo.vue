@@ -1,7 +1,7 @@
 <template>
       <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.civilRockets[0].Guidance"
+    v-model="$store.getters.civilRockets[0].Guidance"
       type="text"
       name="name"
       placeholder=" "

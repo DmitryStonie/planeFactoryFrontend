@@ -1,8 +1,8 @@
 <template>
-      <div class="relative z-0 w-full mb-6">
+  <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.planes[0].Engines"
-      type="text"
+      type="number"
+      v-model.number="$store.getters.planes[0].Engines"
       name="name"
       placeholder=" "
       required
@@ -14,6 +14,4 @@
   </div>
 </template>
 
-<script>
-
-</script>
+<script></script>

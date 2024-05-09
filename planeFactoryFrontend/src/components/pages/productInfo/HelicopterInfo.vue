@@ -1,8 +1,8 @@
 <template>
                   <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.helicopters[0].Propellers"
-      type="text"
+    v-model.number="$store.getters.helicopters[0].Propellers"
+      type="number"
       name="name"
       placeholder=" "
       required

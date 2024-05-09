@@ -1,7 +1,7 @@
 <template>
   <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.antiHailRockets[0].Reagent"
+      v-model="$store.getters.antiHailRockets[0].Reagent"
       type="text"
       name="name"
       placeholder=" "

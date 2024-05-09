@@ -1,7 +1,7 @@
 <template>
   <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.militaryPlanes[0].Type"
+    v-model="$store.getters.militaryPlanes[0].Type"
       type="text"
       name="name"
       placeholder=" "

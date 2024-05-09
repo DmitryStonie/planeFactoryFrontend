@@ -1,7 +1,7 @@
 <template>
               <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.hangGliders[0].SailclothMaterial"
+    v-model="$store.getters.hangGliders[0].SailclothMaterial"
       type="text"
       name="name"
       placeholder=" "

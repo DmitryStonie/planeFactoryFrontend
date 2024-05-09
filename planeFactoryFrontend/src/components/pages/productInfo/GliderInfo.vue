@@ -1,8 +1,8 @@
 <template>
           <div class="relative z-0 w-full mb-6">
     <input
-      :value="$store.getters.gliders[0].Capacity"
-      type="text"
+    v-model.number="$store.getters.gliders[0].Capacity"
+      type="number"
       name="name"
       placeholder=" "
       required
