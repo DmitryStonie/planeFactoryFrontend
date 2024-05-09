@@ -75,7 +75,130 @@ const store = createStore({
             rocket: false,
             transportPlane: false
           },
-          
+          areas :  [{
+            ID : Number,
+            Workshop  : Number,
+            Boss        : Number,
+            Name : String
+          }],
+          assemblers :  [{
+            ID : Number,
+            StartOfWork : String,
+            EndOfWork   : String
+          }],
+          brigades :  [{
+            ID : Number,
+            WorkshopArea   : Number,
+            Foreman              : Number,
+            Name          : String
+          }],
+          companies :  [{
+            ID : Number,
+            Name : String
+          }],
+          conductedTesting   :  [{
+            Test : Number,
+            Tester : String
+          }],
+          employees :  [{
+            ID : Number,
+            Name : String,
+            Birthdate        : String,
+            WorkExperience   : String,
+            Salary           : Number
+          }],
+          engineeringStaff :  [{
+            ID : Number,
+          }],
+          engineers :  [{
+            ID : Number,
+            StartOfWork  : String,
+            EndOfWork    : String,
+          }],
+          jobs :  [{
+            ID : Number,
+            Product  : String,
+            Brigade  : String,
+            Status   : String,
+            Order    : Number
+          }],
+          labEquipment :  [{
+            ID : Number,
+            Lab : Number,
+            Name : String
+          }],
+          labs :  [{
+            ID : Number,
+            Company : Number,
+            Name : String
+          }],
+          locksmiths :  [{
+            ID : Number,
+            Category : Number,
+            StartOfWork : String,
+            EndOfWork : String,
+          }],
+          otherProducts :  [{
+            ID : Number,
+          }],
+          technicians :  [{
+            ID : Number,
+            StartOfWork : String,
+            EndOfWork : String,
+          }],
+          technologists :  [{
+            ID : Number,
+            StartOfWork : String,
+            EndOfWork : String,
+          }],
+          testers :  [{
+            ID : Number,
+            Lab : Number
+          }],
+          tests :  [{
+            ID : Number,
+            Product : Number,
+            Lab : Number,
+            TimeStart : String,
+            TimeEnd : String,
+            Name : String,
+            Description : String
+          }],
+          turners :  [{
+            ID : Number,
+            Category : Number,
+            StartOfWork : String,
+            EndOfWork : String,
+          }],
+          usedInTest :  [{
+            Equipment : Number,
+            Test : Number
+          }],
+          usesOfServices :  [{
+            TestingLaboratory : Number,
+            Workshop          : Number
+          }],
+          welders :  [{
+            ID : Number,
+            Category : Number,
+            StartOfWork : String,
+            EndOfWork : String,
+          }],
+          workers  :  [{
+            ID : Number,
+            Brigade : Number,
+            Name : String
+          }],
+          worksAsMaster  :  [{
+            EngineeringStaff: Number,
+            WorkshopArea: Number
+          }],
+          workshops  :  [{
+            ID : Number,
+            Company : Number,
+            Boss : Number,
+            Name : String
+          }],
         }
       },
       mutations: {
@@ -169,7 +292,80 @@ const store = createStore({
                 rocket: false,
                 transportPlane: false
             }
-          }
+          },
+          setAreas (state, payload) {
+            state.areas = payload
+          },
+          setAssemblers (state, payload) {
+            state.assemblers = payload
+          },
+          setBrigades (state, payload) {
+            state.brigades = payload
+          },
+          setCompanies (state, payload) {
+            state.companies = payload
+          },
+          setConductedTesting (state, payload) {
+            state.conductedTesting = payload
+          },
+          setEmployees (state, payload) {
+            state.employees = payload
+          },
+          setEngineeringStaff (state, payload) {
+            state.engineeringStaff = payload
+          },
+          setEngineers (state, payload) {
+            state.engineers = payload
+          },
+          setJobs (state, payload) {
+            state.jobs = payload
+          },
+          setLabEquipment (state, payload) {
+            state.labEquipment = payload
+          },
+          setLabs (state, payload) {
+            state.labs = payload
+          },
+          setLocksmiths (state, payload) {
+            state.locksmiths = payload
+          },
+          setOtherProducts (state, payload) {
+            state.otherProducts = payload
+          },
+          setTechnicians (state, payload) {
+            state.technicians = payload
+          },
+          setTechnologists (state, payload) {
+            state.technologists = payload
+          },
+          setTesters (state, payload) {
+            state.testers = payload
+          },
+          setTests (state, payload) {
+            state.tests = payload
+          },
+          setTurners (state, payload) {
+            state.turners = payload
+          },
+          setUsedInTest (state, payload) {
+            state.usedInTest = payload
+          },
+          setUsesOfServices (state, payload) {
+            state.usesOfServices = payload
+          },
+          setWelders (state, payload) {
+            state.welders = payload
+          },
+          setWorkers (state, payload) {
+            state.workers = payload
+          },
+          setWorksAsMaster (state, payload) {
+            state.worksAsMaster = payload
+          },
+          setWorkshops (state, payload) {
+            state.workshops = payload
+          },
+
       },
       getters: {
         antiHailRockets (state){
@@ -243,6 +439,78 @@ const store = createStore({
         },
         transportPlaneP (state){
             return state.productProps.transportPlane
+        },
+        areas (state){
+          return state.Areas
+        },
+        assemblers(state){
+          return state.Assemblers
+        },
+        brigades(state){
+          return state.Brigades
+        },
+        companies(state){
+          return state.Companies
+        },
+        conductedTesting(state){
+          return state.ConductedTesting
+        },
+        employees(state){
+          return state.Employees
+        },
+        engineeringStaff(state){
+          return state.EngineeringStaff
+        },
+        engineers(state){
+          return state.Engineers
+        },
+        jobs(state){
+          return state.Jobs
+        },
+        labEquipment(state){
+          return state.LabEquipment
+        },
+        labs(state){
+          return state.Labs
+        },
+        locksmiths(state){
+          return state.Locksmiths
+        },
+        otherProducts(state){
+          return state.OtherProducts
+        },
+        technicians(state){
+          return state.Technicians
+        },
+        technologists(state){
+          return state.Technologists
+        },
+        testers(state){
+          return state.Testers
+        },
+        tests(state){
+          return state.Tests
+        },
+        turners(state){
+          return state.Turners
+        },
+        usedInTest(state){
+          return state.UsedInTest
+        },
+        usesOfServices(state){
+          return state.UsesOfServices
+        },
+        welders(state){
+          return state.Welders
+        },
+        workers(state){
+          return state.Workers
+        },
+        worksAsMaster(state){
+          return state.WorksAsMaster
+        },
+        workshops(state){
+          return state.Workshops
         },
       },
       actions:{
@@ -378,12 +646,108 @@ const store = createStore({
             }
           },
           async getRockets (context) {
-            let result = await axios.get('http://localhost:8082/rockets/')
+            let result = await axios.get('http://localhost:8082/rockets')
             context.commit('setRockets', result.data.rockets)
           },
           async getTransportPlanes (context) {
-            let result = await axios.get('http://localhost:8082/transport-planes/')
+            let result = await axios.get('http://localhost:8082/transport-planes')
             context.commit('setTransportPlanes', result.data.transportPlanes)
+          },
+          async getAreas (context) {
+            let result = await axios.get('http://localhost:8082/areas')
+            context.commit('setAreas', result.data.areas)
+          },
+          async getAssemblers (context) {
+            let result = await axios.get('http://localhost:8082/assemblers')
+            context.commit('setAssemblers', result.data.assemblers)
+          },
+          async getBrigades (context) {
+            let result = await axios.get('http://localhost:8082/brigades')
+            context.commit('setBrigades', result.data.brigades)
+          },
+          async getCompanies (context) {
+            let result = await axios.get('http://localhost:8082/companies')
+            context.commit('setCompanies', result.data.companies)
+          },
+          async getConductedTesting (context) {
+            let result = await axios.get('http://localhost:8082/conducted-testing')
+            context.commit('setConductedTesting', result.data.conductedTesting)
+          },
+          async getEmployees (context) {
+            let result = await axios.get('http://localhost:8082/employees')
+            context.commit('setEmployees', result.data.employees)
+          },
+          async getEngineeringStaff (context) {
+            let result = await axios.get('http://localhost:8082/engineering-staff')
+            context.commit('setEngineeringStaff', result.data.engineeringStaff)
+          },
+          async getEngineers (context) {
+            let result = await axios.get('http://localhost:8082/engineers')
+            context.commit('setEngineers', result.data.engineers)
+          },
+          async getJobs (context) {
+            let result = await axios.get('http://localhost:8082/jobs')
+            context.commit('setJobs', result.data.jobs)
+          },
+          async getLabEquipment (context) {
+            let result = await axios.get('http://localhost:8082/lab-equipment')
+            context.commit('setLabEquipment', result.data.labEquipment)
+          },
+          async getLabs (context) {
+            let result = await axios.get('http://localhost:8082/labs')
+            context.commit('setLabs', result.data.labs)
+          },
+          async getLocksmiths (context) {
+            let result = await axios.get('http://localhost:8082/locksmiths')
+            context.commit('setLocksmiths', result.data.locksmiths)
+          },
+          async getOtherProducts (context) {
+            let result = await axios.get('http://localhost:8082/other-products')
+            context.commit('setOtherProducts', result.data.otherProducts)
+          },
+          async getTechnicians (context) {
+            let result = await axios.get('http://localhost:8082/technicians')
+            context.commit('setTechnicians', result.data.technicians)
+          },
+          async getTechnologists (context) {
+            let result = await axios.get('http://localhost:8082/technologists')
+            context.commit('setTechnologists', result.data.technologists)
+          },
+          async getTesters (context) {
+            let result = await axios.get('http://localhost:8082/tests')
+            context.commit('setTesters', result.data.testers)
+          },
+          async getTests (context) {
+            let result = await axios.get('http://localhost:8082/testers')
+            context.commit('setTests', result.data.tests)
+          },
+          async getTurners (context) {
+            let result = await axios.get('http://localhost:8082/turners')
+            context.commit('setTurners', result.data.turners)
+          },
+          async getUsedInTest (context) {
+            let result = await axios.get('http://localhost:8082/used-in-test')
+            context.commit('setUsedInTest', result.data.usedInTest)
+          },
+          async getUsesOfServices (context) {
+            let result = await axios.get('http://localhost:8082/uses-of-services')
+            context.commit('setUsesOfServices', result.data.usesOfServices)
+          },
+          async getWelders (context) {
+            let result = await axios.get('http://localhost:8082/welders')
+            context.commit('setWelders', result.data.welders)
+          },
+          async getWorkers (context) {
+            let result = await axios.get('http://localhost:8082/workers')
+            context.commit('setWorkers', result.data.workers)
+          },
+          async getWorksAsMaster (context) {
+            let result = await axios.get('http://localhost:8082/works-as-master')
+            context.commit('setWorksAsMaster', result.data.worksAsMaster)
+          },
+          async getWorkshops (context) {
+            let result = await axios.get('http://localhost:8082/workshops')
+            context.commit('setWorkshops', result.data.workshops)
           },
       },
       plugins: [createPersistedState()]
