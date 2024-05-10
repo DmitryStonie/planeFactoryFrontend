@@ -13,41 +13,73 @@
         >
           <li class="mb-6 hidden max-lg:block"></li>
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/products" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Products</router-link>
+            <router-link
+              to="/products"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Products</router-link
+            >
           </li>
 
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/companies" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Companies</router-link>
+            <router-link
+              to="/companies"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Companies</router-link
+            >
           </li>
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/workshops" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Workshops</router-link>
+            <router-link
+              to="/workshops"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Workshops</router-link
+            >
           </li>
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/areas" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Areas</router-link>
+            <router-link
+              to="/areas"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Areas</router-link
+            >
           </li>
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/labs" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Labs</router-link>
+            <router-link
+              to="/labs"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Labs</router-link
+            >
           </li>
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/employees" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Employees</router-link>
+            <router-link
+              to="/employees"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Employees</router-link
+            >
           </li>
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/brigades" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Brigades</router-link>
+            <router-link
+              to="/brigades"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Brigades</router-link
+            >
           </li>
           <li class="max-lg:border-b border-gray-300 max-lg:py-3 px-3">
-            <router-link to="/tests" class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]">Tests</router-link>
+            <router-link
+              to="/tests"
+              class="hover:text-[#007bff] text-gray-500 block font-semibold text-[15px]"
+              >Tests</router-link
+            >
           </li>
         </ul>
       </div>
 
       <div class="flex max-lg:ml-auto space-x-3">
-        <button
+        <router-link
           class="px-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
           v-if="$store.getters.addP"
-          :to="$store.getters.addLink"
+          :to=$store.getters.addLink
         >
           {{ $store.getters.addText }}
-        </button>
+      </router-link>
       </div>
     </div>
   </header>

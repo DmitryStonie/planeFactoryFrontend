@@ -696,7 +696,9 @@ const store = createStore({
     },
     async getAreas(context) {
       let result = await axios.get('http://localhost:8082/areas')
+      console.warn(result.data)
       context.commit('setAreas', result.data.areas)
+      context.commit('setEmployees', result.data.bosses)
     },
     async getAssemblers(context) {
       let result = await axios.get('http://localhost:8082/assemblers')
@@ -716,6 +718,14 @@ const store = createStore({
     },
     async getEmployees(context) {
       let result = await axios.get('http://localhost:8082/employees')
+      result.data.employees.forEach(item => {
+        if (item.Birthdate) {
+          item.Birthdate = date(item.Birthdate)
+        }
+        if (item.WorkExperience) {
+          item.WorkExperience = date(item.WorkExperience)
+        }
+      });
       context.commit('setEmployees', result.data.employees)
     },
     async getEngineeringStaff(context) {

@@ -17,7 +17,7 @@
       @click="saveData"
         id="button"
         type="button"
-        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-cyan-300 hover:bg-cyan-500 hover:shadow-lg focus:outline-none"
+        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] hover:shadow-lg focus:outline-none"
       >
         Save
       </button>
@@ -25,7 +25,7 @@
       @click="deleteData"
         id="button"
         type="button"
-        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-cyan-300 hover:bg-cyan-500 hover:shadow-lg focus:outline-none"
+        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] focus:outline-none"
       >
         Delete
       </button>
@@ -64,6 +64,7 @@ export default {
   },
 
   async mounted() {
+    this.$store.commit('setProductP', true)
     this.$store.dispatch('getProduct', this.$route.params.id)
   },
   unmounted() {
@@ -71,7 +72,6 @@ export default {
   },
   methods: {
     async saveData(){
-      console.warn("button works")
       this.$store.dispatch('putProduct', this.$route.params.id)
     },
     async deleteData(){
