@@ -1,21 +1,16 @@
 <template>
   <div class="nav">
-    <router-link  to="/">Products</router-link>
-    <router-link  to="/employees">Employees</router-link>
+    <router-link  to="/products">Products</router-link>
     <router-link  to="/companies">Companies</router-link>
-    <a v-on:click="logout" href="#">Logout</a>
+    <router-link  to="/workshops">Workshops</router-link>
+    <router-link  to="/areas">Areas</router-link>
+    <router-link  to="/labs">Labs</router-link>
+    <router-link  to="/employees">Employees</router-link>
+    <router-link  to="/brigades">Brigades</router-link>
+    <router-link  to="/tests">Tests</router-link>
   </div>
 </template>
 <script>
-export default {
-  name: 'HomePageHeader',
-  methods: {
-    logout() {
-        localStorage.clear();
-        this.$router.push({name:'LogIn'})
-    }
-  }
-}
 </script>
 <style>
 .nav {

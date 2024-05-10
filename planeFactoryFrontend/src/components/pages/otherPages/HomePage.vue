@@ -5,12 +5,12 @@
     <h2 class="text-3xl font-bold mb-8">Все компании</h2>
     <CardList :items="items" />
   </div> -->
-  <TableComp />
+  <!-- <TableComp /> -->
 </template>
 <script setup>
-import HomePageHeader from '../components/HomePageHeader.vue'
+import HomePageHeader from '../../components/HomePageHeader.vue'
 // import CardList from '../components/CardList.vue'
-import TableComp from '../components/TableComp.vue'
+import TableComp from '../../components/TableComp.vue'
 
 const items = [
   {

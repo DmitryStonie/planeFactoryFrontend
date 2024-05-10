@@ -1,33 +1,66 @@
-import HomePage from './components/pages/HomePage.vue'
-import CompaniesPage from './components/pages/CompaniesPage.vue'
-import ProductsPage from './components/pages/ProductsPage.vue'
-import EmployeesPage from './components/pages/EmployeesPage.vue'
-import ProductsTablePage from './components/pages/products/ProductsTablePage.vue'
-import PlanesTablePage from './components/pages/products/PlanesTablePage.vue'
-import TransportPlanesTablePage from './components/pages/products/TransportPlanesTablePage.vue'
-import MilitaryPlanesTablePage from './components/pages/products/MilitaryPlanesTablePage.vue'
-import CivilPlanesTablePage from './components/pages/products/CivilPlanesTablePage.vue'
-import HangGlidersTablePage from './components/pages/products/HangGlidersTablePage.vue'
-import RocketsTablePage from './components/pages/products/RocketsTablePage.vue'
-import MilitaryRocketsTablePage from './components/pages/products/MilitaryRocketsTablePage.vue'
-import CivilRocketsTablePage from './components/pages/products/CivilRocketsTablePage.vue'
-import AntiHailRocketsTablePage from './components/pages/products/AntiHailRocketsTablePage.vue'
-import HelicoptersTablePage from './components/pages/products/HelicoptersTablePage.vue'
-import GlidersTablePage from './components/pages/products/GlidersTablePage.vue'
-import OtherProductsTablePage from './components/pages/products/OtherProductsTablePage.vue'
-import ProductPage from './components/pages/ProductPage.vue'
+//otherPages
+import HomePage from './components/pages/otherPages/HomePage.vue'
+//tablePages
+import AreasPage from './components/pages/tablePages/AreasPage.vue'
+import BrigadesPage from './components/pages/tablePages/BrigadesPage.vue'
+import EmployeesPage from './components/pages/tablePages/EmployeesPage.vue'
+import EquipmentsPage from './components/pages/tablePages/EquipmentsPage.vue'
+import LabsPage from './components/pages/tablePages/LabsPage.vue'
+import ProductsPage from './components/pages/tablePages/ProductsPage.vue'
+import TestsPage from './components/pages/tablePages/TestsPage.vue'
+import WorkshopsPage from './components/pages/tablePages/WorkshopsPage.vue'
+//cardPages
+import AreaPage from './components/pages/cardPages/AreaPage.vue'
+import BrigadePage from './components/pages/cardPages/BrigadePage.vue'
+import CompanyPage from './components/pages/cardPages/CompanyPage.vue'
+import EmployeePage from './components/pages/cardPages/EmployeePage.vue'
+import LabPage from './components/pages/cardPages/LabPage.vue'
+import EquipmentPage from './components/pages/cardPages/EquipmentPage.vue'
+import ProductPage from './components/pages/cardPages/ProductPage.vue'
+import TestPage from './components/pages/cardPages/TestPage.vue'
+import WorkshopPage from './components/pages/cardPages/WorkshopPage.vue'
+//test
+import TestingPage from './components/pages/TestingPage.vue'
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+    //otherPages
     {
-        name: 'HomePage',
-        component: HomePage,
+        name: 'TestingPage',
+        component: TestingPage,
         path: '/'
     },
     {
-        name: 'CompaniesPage',
-        component: CompaniesPage,
+        name: 'HomePage',
+        component: HomePage,
         path: '/companies'
+    },
+    //tablePages
+    {
+        name: 'AreasPage',
+        component: AreasPage,
+        path: '/areas'
+    },
+    {
+        name: 'BrigadesPage',
+        component: BrigadesPage,
+        path: '/brigades'
+    },
+    {
+        name: 'EmployeesPage',
+        component: EmployeesPage,
+        path: '/employees'
+    },
+    {
+        name: 'EquipmentsPage',
+        component: EquipmentsPage,
+        path: '/equipment'
+    },
+    {
+        name: 'LabsPage',
+        component: LabsPage,
+        path: '/labs'
     },
     {
         name: 'ProductsPage',
@@ -35,81 +68,62 @@ const routes = [
         path: '/products'
     },
     {
-        name: 'Employees',
-        component: EmployeesPage,
-        path: '/employees'
+        name: 'TestsPage',
+        component: TestsPage,
+        path: '/tests'
     },
-    //Tables for products
+    {
+        name: 'WorkshopsPage',
+        component: WorkshopsPage,
+        path: '/workshops'
+    },
+    //cardPages
+    {
+        name: 'AreaPage',
+        component: AreaPage,
+        path: '/areas/:id'
+    },
+    {
+        name: 'BrigadePage',
+        component: BrigadePage,
+        path: '/brigades/:id'
+    },
+    {
+        name: 'CompanyPage',
+        component: CompanyPage,
+        path: '/companies/:id'
+    },
+    {
+        name: 'EmployeePage',
+        component: EmployeePage,
+        path: '/employees/:id'
+    },
+    {
+        name: 'EquipmentPage',
+        component: EquipmentPage,
+        path: '/equipment/:id'
+    },
+    {
+        name: 'LabPage',
+        component: LabPage,
+        path: '/labs/:id'
+    },
     {
         name: 'ProductPage',
         component: ProductPage,
         path: '/products/:id'
     },
     {
-        name: 'ProductsTable',
-        component: ProductsTablePage,
-        path: '/products/all'
+        name: 'TestPage',
+        component: TestPage,
+        path: '/tests/:id'
     },
     {
-        name: 'PlanesTable',
-        component: PlanesTablePage,
-        path: '/products/planes'
+        name: 'WorkshopPage',
+        component: WorkshopPage,
+        path: '/workshops/:id'
     },
-    {
-        name: 'TransportPlanesTable',
-        component: TransportPlanesTablePage,
-        path: '/products/transport-planes'
-    },
-    {
-        name: 'MilitaryPlanesTable',
-        component: MilitaryPlanesTablePage,
-        path: '/products/military-planes'
-    },
-    {
-        name: 'CivilPlanesTable',
-        component: CivilPlanesTablePage,
-        path: '/products/civil-planes'
-    },
-    {
-        name: 'HangGlidersTable',
-        component: HangGlidersTablePage,
-        path: '/products/hang-gliders'
-    },
-    {
-        name: 'RocketsTable',
-        component: RocketsTablePage,
-        path: '/products/rockets'
-    },
-    {
-        name: 'MilitaryRocketsTable',
-        component: MilitaryRocketsTablePage,
-        path: '/products/military-rockets'
-    },
-    {
-        name: 'CivilRocketsTable',
-        component: CivilRocketsTablePage,
-        path: '/products/civil-rockets'
-    },
-    {
-        name: 'AntiHailRocketsTable',
-        component: AntiHailRocketsTablePage,
-        path: '/products/anti-hail-rockets'
-    },
-    {
-        name: 'HelicoptersTable',
-        component: HelicoptersTablePage,
-        path: '/products/helicopters'
-    },
-    {
-        name: 'GlidersTable',
-        component: GlidersTablePage,
-        path: '/products/gliders'
-    },
-    {
-        name: 'OtherProductsTable',
-        component: OtherProductsTablePage,
-        path: '/products/other'
-    },
+    
 ];
 
 const router = createRouter({

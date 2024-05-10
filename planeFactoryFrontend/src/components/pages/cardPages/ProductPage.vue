@@ -34,18 +34,18 @@
 </template>
 
 <script>
-import AntiHailRocketInfo from './productInfo/AntiHailRocketInfo.vue'
-import CivilPlaneInfo from './productInfo/CivilPlaneInfo.vue'
-import CivilRocketInfo from './productInfo/CivilRocketInfo.vue'
-import GliderInfo from './productInfo/GliderInfo.vue'
-import HangGliderInfo from './productInfo/HangGliderInfo.vue'
-import HelicopterInfo from './productInfo/HelicopterInfo.vue'
-import MilitaryPlaneInfo from './productInfo/MilitaryPlaneInfo.vue'
-import MilitaryRocketInfo from './productInfo/MilitaryRocketInfo.vue'
-import PlaneInfo from './productInfo/PlaneInfo.vue'
-import ProductInfo from './productInfo/ProductInfo.vue'
-import RocketInfo from './productInfo/RocketInfo.vue'
-import TransportPlaneInfo from './productInfo/TransportPlaneInfo.vue'
+import AntiHailRocketInfo from '../productInfo/AntiHailRocketInfo.vue'
+import CivilPlaneInfo from '../productInfo/CivilPlaneInfo.vue'
+import CivilRocketInfo from '../productInfo/CivilRocketInfo.vue'
+import GliderInfo from '../productInfo/GliderInfo.vue'
+import HangGliderInfo from '../productInfo/HangGliderInfo.vue'
+import HelicopterInfo from '../productInfo/HelicopterInfo.vue'
+import MilitaryPlaneInfo from '../productInfo/MilitaryPlaneInfo.vue'
+import MilitaryRocketInfo from '../productInfo/MilitaryRocketInfo.vue'
+import PlaneInfo from '../productInfo/PlaneInfo.vue'
+import ProductInfo from '../productInfo/ProductInfo.vue'
+import RocketInfo from '../productInfo/RocketInfo.vue'
+import TransportPlaneInfo from '../productInfo/TransportPlaneInfo.vue'
 
 export default {
   components: {
