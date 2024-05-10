@@ -1,4 +1,5 @@
 <template>
+  <HomePageHeader />
     <div class="flex min-h-screen items-center justify-center">
     <div class="overflow-x-auto">
       <table class="min-w-full bg-white shadow-md rounded-xl">
@@ -27,8 +28,13 @@
 </template>
 
 <script>
+import HomePageHeader from '../../components/HomePageHeader.vue'
 import axios from 'axios'
+
 export default {
+  components: {
+    HomePageHeader 
+  },
   methods: {
     async loadData() {
       let result = await axios.get('http://localhost:8082/products')
@@ -41,7 +47,13 @@ export default {
     }
   },
   async mounted() {
+    this.$store.commit('setAddP', true)
+    this.$store.commit('setAddLink', "/products/new")
+    this.$store.commit('setAddText', "Add new")
     this.loadData()
+  },
+  unmounted(){
+    this.$store.commit('cleanAddProps')
   }
 }
 </script>

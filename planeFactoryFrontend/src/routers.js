@@ -1,5 +1,5 @@
 //otherPages
-import HomePage from './components/pages/otherPages/HomePage.vue'
+import HomePage from './components/pages/tablePages/CompaniesPage.vue'
 //tablePages
 import AreasPage from './components/pages/tablePages/AreasPage.vue'
 import BrigadesPage from './components/pages/tablePages/BrigadesPage.vue'
@@ -19,6 +19,16 @@ import EquipmentPage from './components/pages/cardPages/EquipmentPage.vue'
 import ProductPage from './components/pages/cardPages/ProductPage.vue'
 import TestPage from './components/pages/cardPages/TestPage.vue'
 import WorkshopPage from './components/pages/cardPages/WorkshopPage.vue'
+//cardPages
+import NewAreaPage from './components/pages/newCardPages/NewAreaPage.vue'
+import NewBrigadePage from './components/pages/newCardPages/NewBrigadePage.vue'
+import NewCompanyPage from './components/pages/newCardPages/NewCompanyPage.vue'
+import NewEmployeePage from './components/pages/newCardPages/NewEmployeePage.vue'
+import NewLabPage from './components/pages/newCardPages/NewLabPage.vue'
+import NewEquipmentPage from './components/pages/newCardPages/NewEquipmentPage.vue'
+import NewProductPage from './components/pages/newCardPages/NewProductPage.vue'
+import NewTestPage from './components/pages/newCardPages/NewTestPage.vue'
+import NewWorkshopPage from './components/pages/newCardPages/NewWorkshopPage.vue'
 //test
 import TestingPage from './components/pages/TestingPage.vue'
 
@@ -123,7 +133,52 @@ const routes = [
         component: WorkshopPage,
         path: '/workshops/:id'
     },
-    
+    //newCardPages
+    {
+        name: 'NewAreaPage',
+        component: NewAreaPage,
+        path: '/areas/new'
+    },
+    {
+        name: 'NewBrigadePage',
+        component: NewBrigadePage,
+        path: '/brigades/new'
+    },
+    {
+        name: 'NewCompanyPage',
+        component: NewCompanyPage,
+        path: '/companies/new'
+    },
+    {
+        name: 'NewEmployeePage',
+        component: NewEmployeePage,
+        path: '/employees/new'
+    },
+    {
+        name: 'NewEquipmentPage',
+        component: NewEquipmentPage,
+        path: '/equipment/new'
+    },
+    {
+        name: 'NewLabPage',
+        component: NewLabPage,
+        path: '/labs/new'
+    },
+    {
+        name: 'NewProductPage',
+        component: NewProductPage,
+        path: '/products/new'
+    },
+    {
+        name: 'NewTestPage',
+        component: NewTestPage,
+        path: '/tests/new'
+    },
+    {
+        name: 'NewWorkshopPage',
+        component: NewWorkshopPage,
+        path: '/workshops/new'
+    },
 ];
 
 const router = createRouter({

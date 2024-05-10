@@ -199,6 +199,11 @@ const store = createStore({
             Boss : Number,
             Name : String
           }],
+          addProperties : [{
+            addP : Boolean,
+            addLink : String,
+            addText : String
+          }]
         }
       },
       mutations: {
@@ -365,7 +370,22 @@ const store = createStore({
           setWorkshops (state, payload) {
             state.workshops = payload
           },
-
+          setAddP (state, payload) {
+            state.addProperties.addP = payload
+          },
+          setAddLink (state, payload) {
+            state.addProperties.addLink = payload
+          },
+          setAddText (state, payload) {
+            state.addProperties.addText = payload
+          },
+          cleanAddProps(state) {
+            state.addProperties = {
+              addP : false,
+              addLink : "",
+              addText : ""
+            }
+          },
       },
       getters: {
         antiHailRockets (state){
@@ -511,6 +531,15 @@ const store = createStore({
         },
         workshops(state){
           return state.Workshops
+        },
+        addP(state){
+          return state.addProperties.addP
+        },
+        addLink(state){
+          return state.addProperties.addLink
+        },
+        addText(state){
+          return state.addProperties.addText
         },
       },
       actions:{
