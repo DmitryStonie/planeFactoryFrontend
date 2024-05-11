@@ -37,10 +37,4 @@
 
 <script>
 
-export default {
-  mounted() {
-
-    this.$store.dispatch('getTests')
-  },
-}
 </script>

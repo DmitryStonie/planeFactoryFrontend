@@ -33,9 +33,6 @@
 
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch('getWorkshops')
-  },
   methods: {
     getBoss(id) {
       const found = this.$store.getters.employees.find((element) => element.ID == id)

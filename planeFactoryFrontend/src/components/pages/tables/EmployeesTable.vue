@@ -34,9 +34,4 @@
 </template>
 
 <script>
-export default {
-  mounted() {
-    this.$store.dispatch('getEmployees')
-  }
-}
 </script>

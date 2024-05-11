@@ -81,7 +81,16 @@ export default {
     LabsTable
   },
   mounted() {
+    this.$store.commit('cleanWorkshops')
+    this.$store.commit('cleanAreas')
+    this.$store.commit('cleanLabs')
+    this.$store.commit('cleanCompanies')
     this.$store.dispatch('getCompany', this.$route.params.id)
+  },
+  unmounted(){
+    this.$store.commit('cleanWorkshops')
+    this.$store.commit('cleanAreas')
+    this.$store.commit('cleanLabs')
   },
   methods: {
     async saveData() {

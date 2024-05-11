@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-import createPersistedState from "vuex-persistedstate"
+// import createPersistedState from "vuex-persistedstate"
 import moment from 'moment'
 
 const store = createStore({
@@ -220,24 +220,20 @@ const store = createStore({
         boss: false,
         master: false
       },
-      companiesPageProps4:[
-        {
-          id: '1',
-          title: 'Новосибирское производственное объединение им. В. П. Чкалова',
-          img: '/src/assets/chkalov.png', 
-        },
-        {
-          id: '2',
-          title: 'Новосибирское производственное объединение им. В. П. Чкалова',
-          img: '/src/assets/chkalov.png', 
-        },
-        {
-          id: '3',
-          title: 'Новосибирское производственное объединение им. В. П. Чкалова',
-          img: '/src/assets/chkalov.png', 
-        }
-      ],
-
+      bosses: [{
+        ID: Number,
+        Name: String,
+        Birthdate: String,
+        WorkExperience: String,
+        Salary: Number
+      }],
+      foremen: [{
+        ID: Number,
+        Name: String,
+        Birthdate: String,
+        WorkExperience: String,
+        Salary: Number
+      }],
     }
   },
   mutations: {
@@ -415,6 +411,12 @@ const store = createStore({
     setAddText(state, payload) {
       state.addProperties.addText = payload
     },
+    setBosses(state, payload) {
+      state.bosses = payload
+    },
+    setForemen(state, payload) {
+      state.foremen = payload
+    },
     cleanAddProps(state) {
       state.addProperties = {
         addP: false,
@@ -474,6 +476,18 @@ const store = createStore({
         boss: false,
         master: false
       }
+    },
+    cleanWorkshops(state){
+      state.workshops = [{}]
+    },
+    cleanAreas(state){
+      state.areas = [{}]
+    },
+    cleanLabs(state){
+      state.labs = [{}]
+    },
+    cleanCompanies(state){
+      state.companies = [{}]
     },
     setEmployeeP(state, payload){
       state.employeeProps.employee = payload
@@ -706,7 +720,13 @@ const store = createStore({
     //CompaniesPage
     companiesPageProps(state){
       return state.companiesPageProps4
-    }
+    },
+    bosses(state){
+      return state.bosses
+    },
+    foremen(state){
+      return state.foremen
+    },
   },
   actions: {
     async getAntiHailRockets(context) {
@@ -1281,6 +1301,12 @@ const store = createStore({
       if (items.labs) {
         context.commit('setLabs', items.labs)
       }
+      if (items.bosses) {
+        context.commit('setBosses', items.bosses)
+      }
+      if (items.foremen) {
+        context.commit('setForemen', items.foremen)
+      }
       
     },
     async putCompany(state, payload){
@@ -1387,7 +1413,7 @@ const store = createStore({
       context.commit('cleantransportPlanes')
     }
   },
-  plugins: [createPersistedState()]
+  // plugins: [createPersistedState()]
 })
 
 

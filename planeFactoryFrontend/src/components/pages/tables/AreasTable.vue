@@ -34,9 +34,6 @@
   <script>
   
   export default {
-    mounted() {
-      this.$store.dispatch('getAreas')
-    },
     methods: {
       getBoss(id) {
         const found = this.$store.getters.employees.find((element) => element.ID == id)

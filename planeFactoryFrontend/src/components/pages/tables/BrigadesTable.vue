@@ -31,9 +31,4 @@
 
 <script>
 
-export default {
-  mounted() {
-    this.$store.dispatch('getBrigades')
-  }
-}
 </script>
