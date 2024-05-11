@@ -1,21 +1,16 @@
 <template>
   <HomePageHeader />
-  <h1>HELLO!</h1>
-  <!-- <CardList />
-  <div>
-    <h2 class="text-3xl font-bold mb-8">Все компании</h2>
-    <CardList :items="items" />
-  </div> -->
-  <!-- <TableComp /> -->
+  <h2 class=" text-3xl font-bold mb-8 mt-4 text-center">Все компании</h2>
+  <CardList />
 </template>
 <script>
 import HomePageHeader from '../../components/HomePageHeader.vue'
-// import CardList from '../components/CardList.vue'
-import TableComp from '../../components/TableComp.vue'
+import CardList from '../../components/CardList.vue'
 
 export default {
   components: {
-    HomePageHeader 
+    HomePageHeader,
+    CardList
   },
   mounted() {
     this.$store.commit('setAddP', true)
@@ -24,21 +19,8 @@ export default {
   },
   unmounted() {
     this.$store.commit('cleanAddProps')
-  }
+  },
 }
-
-const items = [
-  {
-    id: 1,
-    title: 'Новосибирское авиационное производственное объединение им. В. П. Чкалова',
-    img: '/src/assets/chkalov.png'
-  }
-]
-
 </script>
 <style>
-td {
-  width: 160px;
-  height: 40px;
-}
 </style>

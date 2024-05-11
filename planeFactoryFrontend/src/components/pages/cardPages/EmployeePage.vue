@@ -64,7 +64,6 @@ export default {
 
   async mounted() {
     this.$store.dispatch('getEmployee', this.$route.params.id)
-    //this.$store.dispatch('getWorkshops')
   },
   unmounted() {
     this.$store.commit('cleanEmployeeProps')

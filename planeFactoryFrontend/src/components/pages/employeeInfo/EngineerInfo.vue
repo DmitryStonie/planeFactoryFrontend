@@ -1,5 +1,5 @@
 <template>
-          <h2 class="text-xl mb-2">Engineering staff category: Engineer</h2>
+          <h2 class="text-xl mb-6">Engineering staff category: Engineer</h2>
   <div class="flex flex-row space-x-4">
     <div class="relative z-0 w-full mb-5">
       <input

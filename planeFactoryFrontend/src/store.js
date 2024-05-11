@@ -220,6 +220,24 @@ const store = createStore({
         boss: false,
         master: false
       },
+      companiesPageProps4:[
+        {
+          id: '1',
+          title: 'Новосибирское производственное объединение им. В. П. Чкалова',
+          img: '/src/assets/chkalov.png', 
+        },
+        {
+          id: '2',
+          title: 'Новосибирское производственное объединение им. В. П. Чкалова',
+          img: '/src/assets/chkalov.png', 
+        },
+        {
+          id: '3',
+          title: 'Новосибирское производственное объединение им. В. П. Чкалова',
+          img: '/src/assets/chkalov.png', 
+        }
+      ],
+
     }
   },
   mutations: {
@@ -685,6 +703,10 @@ const store = createStore({
     technicianP(state){
       return state.employeeProps.technician
     },
+    //CompaniesPage
+    companiesPageProps(state){
+      return state.companiesPageProps4
+    }
   },
   actions: {
     async getAntiHailRockets(context) {
@@ -1060,17 +1082,18 @@ const store = createStore({
     async getEmployee(context, payload){
       let result = await axios.get('http://localhost:8082/employees/' + payload)
       let items = result.data
+      console.warn(items)
       items.employees.forEach(item => {
         if (item.WorkExperience) {
           item.WorkExperience = date(item.WorkExperience)
         }
-        if (item.WorkExperience) {
-          item.WorkExperience = date(item.WorkExperience)
+        if (item.Birthdate) {
+          item.Birthdate = date(item.Birthdate)
         }
       });
       if (items.employees) {
-        context.commit('setWorkerP', true)
-        context.commit('setWorkers', items.workers)
+        context.commit('setEmployeeP', true)
+        context.commit('setEmployees', items.employees)
       }
       if (items.engineeringStaff) {
         context.commit('setEngineeringStaffP', true)
@@ -1085,30 +1108,86 @@ const store = createStore({
         context.commit('setTesters', items.testers)
       }
       if (items.assemblers) {
+        items.assemblers.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
         context.commit('setAssemblerP', true)
         context.commit('setAssemblers', items.assemblers)
       }
       if (items.turners) {
+        items.turners.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
         context.commit('setTurnerP', true)
         context.commit('setTurners', items.turners)
       }
       if (items.locksmiths) {
+        items.locksmiths.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
         context.commit('setLocksmithP', true)
         context.commit('setLocksmiths', items.locksmiths)
       }
       if (items.welders) {
+        items.welders.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
         context.commit('setWelderP', true)
         context.commit('setWelders', items.welders)
       }
       if (items.engineers) {
+        items.engineers.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
         context.commit('setEngineerP', true)
         context.commit('setEngineers', items.engineers)
       }
       if (items.technologists) {
+        items.technologists.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
         context.commit('setTechnologistP', true)
         context.commit('setTechnologists', items.technologists)
       }
       if (items.technicians) {
+        items.technicians.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
         context.commit('setTechnicianP', true)
         context.commit('setTechnicians', items.technicians)
       }
@@ -1152,18 +1231,6 @@ const store = createStore({
       
     // },
     async deleteEmployee(state, payload){
-      if (state.getters.employeeP) {
-        axios.delete('http://localhost:8082/employees/' + payload, state.getters.employees[0])
-      }
-      if (state.getters.engineeringStaffP) {
-        axios.delete('http://localhost:8082/engineering-staff/' + payload, state.getters.engineeringStaff[0])
-      }
-      if (state.getters.workerP) {
-        axios.delete('http://localhost:8082/workers/' + payload, state.getters.workers[0])
-      }
-      if (state.getters.testerP) {
-        axios.delete('http://localhost:8082/testers/' + payload, state.getters.testers[0])
-      }
       if (state.getters.assemblerP) {
         axios.delete('http://localhost:8082/assemblers/' + payload, state.getters.assemblers[0])
       }
@@ -1184,6 +1251,18 @@ const store = createStore({
       }
       if (state.getters.technicianP) {
         axios.delete('http://localhost:8082/technicians/' + payload, state.getters.technicians[0])
+      }
+      if (state.getters.engineeringStaffP) {
+        axios.delete('http://localhost:8082/engineering-staff/' + payload, state.getters.engineeringStaff[0])
+      }
+      if (state.getters.workerP) {
+        axios.delete('http://localhost:8082/workers/' + payload, state.getters.workers[0])
+      }
+      if (state.getters.testerP) {
+        axios.delete('http://localhost:8082/testers/' + payload, state.getters.testers[0])
+      }
+      if (state.getters.employeeP) {
+        axios.delete('http://localhost:8082/employees/' + payload, state.getters.employees[0])
       }
     },
     // //CompanyCard
