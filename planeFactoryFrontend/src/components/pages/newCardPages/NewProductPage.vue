@@ -1,6 +1,8 @@
 <template>
+    <CardPageHeader />
   <div class="mx-auto max-w-3xl px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
-    <ProductInfo v-if="$store.getters.productP" />
+    <ProductNew v-if="$store.getters.productP" />
+    <SelectCategory />
     <PlaneInfo v-if="$store.getters.planeP" />
     <TransportPlaneInfo v-if="$store.getters.transportPlaneP" />
     <MilitaryPlaneInfo v-if="$store.getters.militaryPlaneP" />
@@ -17,17 +19,9 @@
       @click="saveData"
         id="button"
         type="button"
-        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] hover:shadow-lg focus:outline-none"
+        class="w-full ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] hover:shadow-lg focus:outline-none"
       >
         Save
-      </button>
-      <button
-      @click="deleteData"
-        id="button"
-        type="button"
-        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] focus:outline-none"
-      >
-        Delete
       </button>
     </div>
   </div>
@@ -43,9 +37,11 @@ import HelicopterInfo from '../productInfo/HelicopterInfo.vue'
 import MilitaryPlaneInfo from '../productInfo/MilitaryPlaneInfo.vue'
 import MilitaryRocketInfo from '../productInfo/MilitaryRocketInfo.vue'
 import PlaneInfo from '../productInfo/PlaneInfo.vue'
-import ProductInfo from '../productInfo/ProductInfo.vue'
+import ProductNew from '../newEntityComponents/ProductNew.vue'
 import RocketInfo from '../productInfo/RocketInfo.vue'
 import TransportPlaneInfo from '../productInfo/TransportPlaneInfo.vue'
+import SelectCategory from '../newEntityComponents/SelectCategory.vue'
+import CardPageHeader from '../../components/CardPageHeader.vue'
 
 export default {
   components: {
@@ -58,24 +54,61 @@ export default {
     MilitaryPlaneInfo,
     MilitaryRocketInfo,
     PlaneInfo,
-    ProductInfo,
+    ProductNew,
     RocketInfo,
-    TransportPlaneInfo
+    TransportPlaneInfo,
+    SelectCategory,
+    CardPageHeader
   },
 
   async mounted() {
-    this.$store.commit('setProductP', true)
-    this.$store.dispatch('getProduct', this.$route.params.id)
+    this.$store.dispatch('cleanAllProductsState')
+    this.$store.commit('cleanProps')
+    this.$store.commit('setproductP', true)
   },
   unmounted() {
     this.$store.commit('cleanProps')
   },
   methods: {
     async saveData(){
-      this.$store.dispatch('putProduct', this.$route.params.id)
-    },
-    async deleteData(){
-
+      if(!this.$store.getters.antiHailP){
+        this.$store.commit('cleanantiHailRockets')
+      }
+      if(!this.$store.getters.civilPlaneP){
+        this.$store.commit('cleancivilPlanes')
+      }
+      if(!this.$store.getters.civilRocketP){
+        this.$store.commit('cleancivilRockets')
+      }
+      if(!this.$store.getters.gliderP){
+        this.$store.commit('cleangliders')
+      }
+      if(!this.$store.getters.hangGliderP){
+        this.$store.commit('cleanhangGliders')
+      }
+      if(!this.$store.getters.helicopterP){
+        this.$store.commit('cleanhelicopters')
+      }
+      if(!this.$store.getters.militaryPlaneP){
+        this.$store.commit('cleanmilitaryPlanes')
+      }
+      if(!this.$store.getters.militaryRocketP){
+        this.$store.commit('cleanmilitaryRockets')
+      }
+      if(!this.$store.getters.planeP){
+        this.$store.commit('cleanplanes')
+      }
+      if(!this.$store.getters.productP){
+        this.$store.commit('cleanproducts')
+      }
+      if(!this.$store.getters.rocketP){
+        this.$store.commit('cleanrockets')
+      }
+      if(!this.$store.getters.transportPlaneP){
+        this.$store.commit('cleantransportPlanes')
+      }
+      this.$store.dispatch('postProduct')
+      this.$router.go(-1)
     }
   }
 }

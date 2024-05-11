@@ -85,7 +85,13 @@
   </header>
 </template>
 
-<script></script>
+<script>
+export default {
+  unmounted() {
+    this.$store.commit('cleanProps')
+  }
+  }
+</script>
 <style>
 .nav {
   background-color: #333;

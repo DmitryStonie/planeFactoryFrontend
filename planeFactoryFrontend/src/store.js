@@ -389,6 +389,42 @@ const store = createStore({
         addText: ""
       }
     },
+    cleanproducts(state) {
+      state.products = [{}]
+    },
+    cleanantiHailRockets(state) {
+      state.antiHailRockets = [{}]
+    },
+    cleancivilPlanes(state) {
+      state.civilPlanes = [{}]
+    },
+    cleancivilRockets(state) {
+      state.civilRockets = [{}]
+    },
+    cleangliders(state) {
+      state.gliders = [{}]
+    },
+    cleanhangGliders(state) {
+      state.hangGliders = [{}]
+    },
+    cleanhelicopters(state) {
+      state.helicopters = [{}]
+    },
+    cleanmilitaryPlanes(state) {
+      state.militaryPlanes = [{}]
+    },
+    cleanmilitaryRockets(state) {
+      state.militaryRockets = [{}]
+    },
+    cleanplanes(state) {
+      state.planes = [{}]
+    },
+    cleanrockets(state) {
+      state.rockets = [{}]
+    },
+    cleantransportPlanes(state) {
+      state.transportPlanes = [{}]
+    },
   },
   getters: {
     antiHailRockets(state) {
@@ -839,6 +875,96 @@ const store = createStore({
       if (state.getters.productP) {
         axios.delete('http://localhost:8082/products/' + payload, state.getters.products[0])
       }
+    },
+    async postProduct(context) {
+      if (context.getters.productP) {
+        //console.log(context.getters.products)
+        let result = await axios.post('http://localhost:8082/products/', context.getters.products[0])
+        console.log(result.data)
+        context.commit('setProducts', result.data.products[0])
+      } else{
+        return
+      }
+      if (context.getters.planeP) {
+        let obj = context.getters.planes
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/planes/', context.getters.planes[0])
+      }
+      if (context.getters.rocketP) {
+        let obj = context.getters.rockets
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/rockets/', context.getters.rockets[0])
+      }
+      if (context.getters.gliderP) {
+        let obj = context.getters.gliders
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/gliders/', context.getters.gliders[0])
+      }
+      if (context.getters.hangGliderP) {
+        let obj = context.getters.hangGliders
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/hang-gliders/', context.getters.hangGliders[0])
+      }
+      if (context.getters.helicopterP) {
+        let obj = context.getters.helicopters
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/helicopters/', context.getters.helicopters[0])
+      }
+      if (context.getters.civilPlaneP) {
+        let obj = context.getters.civilPlanes
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/civil-planes/', context.getters.civilPlanes[0])
+      }
+      if (context.getters.civilRocketP) {
+        let obj = context.getters.civilRockets
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/civil-rockets/', context.getters.civilRockets[0])
+      }
+      if (context.getters.militaryPlaneP) {
+        let obj = context.getters.militaryPlanes
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/military-planes/', context.getters.militaryPlanes[0])
+      }
+      if (context.getters.militaryRocketP) {
+        let obj = context.getters.militaryRockets
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/military-rockets/', context.getters.militaryRockets[0])
+      }
+      if (context.getters.transportPlaneP) {
+        let obj = context.getters.transportPlanes
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/transport-planes/', context.getters.transportPlanes[0])
+      }
+      if (context.getters.antiHailP) {
+        let obj = context.getters.antiHailRockets
+        obj[0].ID = context.getters.products[0]
+        context.commit('setPlanes', obj)
+        axios.post('http://localhost:8082/antiHailRockets/', context.getters.antiHailRockets[0])
+      }
+    },
+    cleanAllProductsState(context){
+      context.commit('cleanproducts')
+      context.commit('cleanantiHailRockets')
+      context.commit('cleancivilPlanes')
+      context.commit('cleancivilRockets')
+      context.commit('cleangliders')
+      context.commit('cleanhangGliders')
+      context.commit('cleanhelicopters')
+      context.commit('cleanmilitaryPlanes')
+      context.commit('cleanmilitaryRockets')
+      context.commit('cleanplanes')
+      context.commit('cleanrockets')
+      context.commit('cleantransportPlanes')
     }
   },
   plugins: [createPersistedState()]
