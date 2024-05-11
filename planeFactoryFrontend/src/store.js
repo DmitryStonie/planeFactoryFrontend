@@ -204,7 +204,22 @@ const store = createStore({
         addP: Boolean,
         addLink: String,
         addText: String
-      }]
+      }],
+      employeeProps: {
+        employee: false,
+        engineeringStaff: false,
+        worker: false,
+        tester: false,
+        assembler: false,
+        turner: false,
+        locksmith: false,
+        welder: false,
+        engineer: false,
+        technologist: false,
+        technician: false,
+        boss: false,
+        master: false
+      },
     }
   },
   mutations: {
@@ -425,6 +440,62 @@ const store = createStore({
     cleantransportPlanes(state) {
       state.transportPlanes = [{}]
     },
+    cleanEmployeeProps(state){
+      state.employeeProps = {
+        employee: false,
+        engineeringStaff: false,
+        worker: false,
+        tester: false,
+        assembler: false,
+        turner: false,
+        locksmith: false,
+        welder: false,
+        engineer: false,
+        technologist: false,
+        technician: false,
+        boss: false,
+        master: false
+      }
+    },
+    setEmployeeP(state, payload){
+      state.employeeProps.employee = payload
+    },
+    setEngineeringStaffP(state, payload){
+      state.employeeProps.engineeringStaff = payload
+    },
+    setWorkerP(state, payload){
+      state.employeeProps.worker = payload
+    },
+    setTesterP(state, payload){
+      state.employeeProps.tester = payload
+    },
+    setAssemblerP(state, payload){
+      state.employeeProps.assembler = payload
+    },
+    setTurnerP(state, payload){
+      state.employeeProps.turner = payload
+    },
+    setLocksmithP(state, payload){
+      state.employeeProps.locksmith = payload
+    },
+    setWelderP(state, payload){
+      state.employeeProps.welder = payload
+    },
+    setEngineerP(state, payload){
+      state.employeeProps.engineer = payload
+    },
+    setTechnologistP(state, payload){
+      state.employeeProps.technologist = payload
+    },
+    setTechnicianP(state, payload){
+      state.employeeProps.technician = payload
+    },
+    setBossP(state, payload){
+      state.employeeProps.boss = payload
+    },
+    setMasterP(state, payload){
+      state.employeeProps.master = payload
+    },
   },
   getters: {
     antiHailRockets(state) {
@@ -579,6 +650,45 @@ const store = createStore({
     },
     addText(state) {
       return state.addProperties.addText
+    },
+    employeeP(state){
+      return state.employeeProps.employee
+    },
+    engineeringStaffP(state){
+      return state.employeeProps.engineeringStaff
+    },
+    workerP(state){
+      return state.employeeProps.worker
+    },
+    testerP(state){
+      return state.employeeProps.tester
+    },
+    assemblerP(state){
+      return state.employeeProps.assembler
+    },
+    turnerP(state){
+      return state.employeeProps.turner
+    },
+    locksmithP(state){
+      return state.employeeProps.locksmith
+    },
+    welderP(state){
+      return state.employeeProps.welder
+    },
+    engineerP(state){
+      return state.employeeProps.engineer
+    },
+    technologistP(state){
+      return state.employeeProps.technologist
+    },
+    technicianP(state){
+      return state.employeeProps.technician
+    },
+    bossP(state){
+      return state.employeeProps.boss
+    },
+    masterP(state){
+      return state.employeeProps.master
     },
   },
   actions: {
@@ -878,9 +988,7 @@ const store = createStore({
     },
     async postProduct(context) {
       if (context.getters.productP) {
-        //console.log(context.getters.products)
         let result = await axios.post('http://localhost:8082/products/', context.getters.products[0])
-        console.log(result.data)
         context.commit('setProducts', result.data.products[0])
       } else{
         return
