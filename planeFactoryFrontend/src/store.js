@@ -1266,18 +1266,33 @@ const store = createStore({
       }
     },
     // //CompanyCard
-    // async getCompany(context, payload){
+    async getCompany(context, payload){
+      let result = await axios.get('http://localhost:8082/companies/' + payload)
+      let items = result.data
+      if (items.companies) {
+        context.commit('setCompanies', items.companies)
+      }
+      if (items.workshops) {
+        context.commit('setWorkshops', items.workshops)
+      }
+      if (items.areas) {
+        context.commit('setAreas', items.areas)
+      }
+      if (items.labs) {
+        context.commit('setLabs', items.labs)
+      }
+      
+    },
+    async putCompany(state, payload){
+      axios.put('http://localhost:8082/companies/' + payload, state.getters.companies[0])
+    },
+    async postCompany(context){
 
-    // },
-    // async putCompany(state, payload){
-      
-    // },
-    // async postCompany(context){
-      
-    // },
-    // async deleteCompany(state, payload){
-      
-    // },
+    },
+    async deleteCompany(state, payload){
+            //not works
+            axios.delete('http://localhost:8082/companies/' + payload, state.getters.companies[0])
+    },
     // //WorkshopCard
     // async getWorkshop(context, payload){
 

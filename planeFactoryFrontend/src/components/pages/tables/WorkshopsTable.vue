@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen items-top justify-center">
-    <div class="overflow-x-auto">
-      <table class="table-aut bg-white shadow-md rounded-xl">
+    <div class="overflow-x-auto ">
+      <table class="table-aut bg-white shadow-md rounded-xl ">
         <thead>
           <tr class="bg-blue-gray-100 text-gray-700">
             <th class="py-3 px-4 text-left">Id</th>
@@ -11,7 +11,7 @@
             <th class="py-3 px-3 text-left">Action</th>
           </tr>
         </thead>
-        <tbody class="text-blue-gray-900">
+        <tbody class="text-blue-gray-900 ">
           <tr
             v-for="item in $store.getters.workshops"
             :key="item.ID"
