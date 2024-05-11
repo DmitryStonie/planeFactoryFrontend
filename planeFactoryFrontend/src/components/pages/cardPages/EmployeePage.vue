@@ -1,21 +1,17 @@
 <template>
   <CardPageHeader />
   <div class="mx-auto max-w-3xl px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
-    <EmployeeInfo />
-    <EngineeringStaffInfo />
-    <WorkerInfo />
-    <TesterInfo />
-    <AssemblerInfo />
-    <TurnerInfo />
-    <LocksmithInfo />
-    <WelderInfo />
-    <EngineerInfo />
-    <TechnologistInfo />
-    <TechnicianInfo />
-
-    <BossInfo />
-    <MasterInfo />
-
+    <EmployeeInfo v-if="$store.getters.employeeP"/>
+    <EngineeringStaffInfo v-if="$store.getters.engineeringStaffP"/>
+    <WorkerInfo v-if="$store.getters.workerP"/>
+    <TesterInfo v-if="$store.getters.testerP"/>
+    <AssemblerInfo v-if="$store.getters.assemblerP"/>
+    <TurnerInfo v-if="$store.getters.turnerP"/>
+    <LocksmithInfo v-if="$store.getters.locksmithP"/>
+    <WelderInfo v-if="$store.getters.welderP"/>
+    <EngineerInfo v-if="$store.getters.engineerP"/>
+    <TechnologistInfo v-if="$store.getters.technologistP"/>
+    <TechnicianInfo v-if="$store.getters.technicianP"/>
     <div class="flex">
       <button
       @click="saveData"
@@ -40,12 +36,10 @@
 <script>
 import CardPageHeader from '../../components/CardPageHeader.vue'
 import AssemblerInfo from '../employeeInfo/AssemblerInfo.vue'
-import BossInfo from '../employeeInfo/BossInfo.vue'
 import EmployeeInfo from '../employeeInfo/EmployeeInfo.vue'
 import EngineerInfo from '../employeeInfo/EngineerInfo.vue'
 import EngineeringStaffInfo from '../employeeInfo/EngineeringStaffInfo.vue'
 import LocksmithInfo from '../employeeInfo/LocksmithInfo.vue'
-import MasterInfo from '../employeeInfo/MasterInfo.vue'
 import TechnicianInfo from '../employeeInfo/TechnicianInfo.vue'
 import TechnologistInfo from '../employeeInfo/TechnologistInfo.vue'
 import TesterInfo from '../employeeInfo/TesterInfo.vue'
@@ -56,18 +50,33 @@ export default {
   components: {
     CardPageHeader,
     AssemblerInfo,
-    BossInfo,
     EmployeeInfo,
     EngineerInfo,
     EngineeringStaffInfo,
     LocksmithInfo,
-    MasterInfo,
     TechnicianInfo,
     TechnologistInfo,
     TesterInfo,
     TurnerInfo,
     WelderInfo,
     WorkerInfo
+  },
+
+  async mounted() {
+    this.$store.dispatch('getEmployee', this.$route.params.id)
+    //this.$store.dispatch('getWorkshops')
+  },
+  unmounted() {
+    this.$store.commit('cleanEmployeeProps')
+  },
+  methods: {
+    async saveData(){
+      this.$store.dispatch('putEmployee', this.$route.params.id)
+    },
+    async deleteData(){
+      this.$store.dispatch('deleteEmployee', this.$route.params.id)
+      this.$router.go(-1)
+    }
   }
 }
 </script>

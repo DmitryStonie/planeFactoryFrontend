@@ -651,6 +651,7 @@ const store = createStore({
     addText(state) {
       return state.addProperties.addText
     },
+    //EmployeeCard
     employeeP(state){
       return state.employeeProps.employee
     },
@@ -683,12 +684,6 @@ const store = createStore({
     },
     technicianP(state){
       return state.employeeProps.technician
-    },
-    bossP(state){
-      return state.employeeProps.boss
-    },
-    masterP(state){
-      return state.employeeProps.master
     },
   },
   actions: {
@@ -736,101 +731,6 @@ const store = createStore({
         }
       });
       context.commit('setProducts', result.data.products)
-    },
-    async getProduct(context, payload) {
-      let result = await axios.get('http://localhost:8082/products/' + payload)
-      let items = result.data
-      items.products.forEach(item => {
-        if (item.ProductionDate) {
-          item.ProductionDate = date(item.ProductionDate)
-        }
-      });
-      if (items.antiHailRockets) {
-        context.commit('setantiHailP', true)
-        context.commit('setAntiHailRockets', items.antiHailRockets)
-      }
-      if (items.civilPlanes) {
-        context.commit('setcivilPlaneP', true)
-        context.commit('setCivilPlanes', items.civilPlanes)
-      }
-      if (items.civilRockets) {
-        context.commit('setcivilRocketP', true)
-        context.commit('setCivilRockets', items.civilRockets)
-      }
-      if (items.gliders) {
-        context.commit('setgliderP', true)
-        context.commit('setGliders', items.gliders)
-      }
-      if (items.hangGliders) {
-        context.commit('sethangGliderP', true)
-        context.commit('setHangGliders', items.hangGliders)
-      }
-      if (items.helicopters) {
-        context.commit('sethelicopterP', true)
-        context.commit('setHelicopters', items.helicopters)
-      }
-      if (items.militaryPlanes) {
-        context.commit('setmilitaryPlaneP', true)
-        context.commit('setMilitaryPlanes', items.militaryPlanes)
-      }
-      if (items.militaryRockets) {
-        context.commit('setmilitaryRocketP', true)
-        context.commit('setMilitaryRockets', items.militaryRockets)
-      }
-      if (items.planes) {
-        context.commit('setplaneP', true)
-        context.commit('setPlanes', items.planes)
-      }
-      if (items.products) {
-        context.commit('setproductP', true)
-        context.commit('setProducts', items.products)
-      }
-      if (items.rockets) {
-        context.commit('setrocketP', true)
-        context.commit('setRockets', items.rockets)
-      }
-      if (items.transportPlanes) {
-        context.commit('settransportPlaneP', true)
-        context.commit('setTransportPlanes', items.transportPlanes)
-      }
-    },
-    async putProduct(state, payload) {
-      if (state.getters.antiHailP) {
-        axios.put('http://localhost:8082/antiHailRockets/' + payload, state.getters.antiHailRockets[0])
-      }
-      if (state.getters.civilPlaneP) {
-        axios.put('http://localhost:8082/civil-planes/' + payload, state.getters.civilPlanes[0])
-      }
-      if (state.getters.civilRocketP) {
-        axios.put('http://localhost:8082/civil-rockets/' + payload, state.getters.civilRockets[0])
-      }
-      if (state.getters.gliderP) {
-        axios.put('http://localhost:8082/gliders/' + payload, state.getters.gliders[0])
-      }
-      if (state.getters.hangGliderP) {
-        axios.put('http://localhost:8082/hang-gliders/' + payload, state.getters.hangGliders[0])
-      }
-      if (state.getters.helicopterP) {
-        axios.put('http://localhost:8082/helicopters/' + payload, state.getters.helicopters[0])
-      }
-      if (state.getters.militaryPlaneP) {
-        axios.put('http://localhost:8082/military-planes/' + payload, state.getters.militaryPlanes[0])
-      }
-      if (state.getters.militaryRocketP) {
-        axios.put('http://localhost:8082/military-rockets/' + payload, state.getters.militaryRockets[0])
-      }
-      if (state.getters.planeP) {
-        axios.put('http://localhost:8082/planes/' + payload, state.getters.planes[0])
-      }
-      if (state.getters.productP) {
-        axios.put('http://localhost:8082/products/' + payload, state.getters.products[0])
-      }
-      if (state.getters.rocketP) {
-        axios.put('http://localhost:8082/rockets/' + payload, state.getters.rockets[0])
-      }
-      if (state.getters.transportPlaneP) {
-        axios.put('http://localhost:8082/transport-planes/' + payload, state.getters.transportPlanes[0])
-      }
     },
     async getRockets(context) {
       let result = await axios.get('http://localhost:8082/rockets')
@@ -948,42 +848,100 @@ const store = createStore({
       console.warn("get workshops")
       console.warn(result.data.workshops)
     },
-    async deleteProduct(state, payload) {
+    //ProductCard
+    async getProduct(context, payload) {
+      let result = await axios.get('http://localhost:8082/products/' + payload)
+      let items = result.data
+      items.products.forEach(item => {
+        if (item.ProductionDate) {
+          item.ProductionDate = date(item.ProductionDate)
+        }
+      });
+      if (items.antiHailRockets) {
+        context.commit('setantiHailP', true)
+        context.commit('setAntiHailRockets', items.antiHailRockets)
+      }
+      if (items.civilPlanes) {
+        context.commit('setcivilPlaneP', true)
+        context.commit('setCivilPlanes', items.civilPlanes)
+      }
+      if (items.civilRockets) {
+        context.commit('setcivilRocketP', true)
+        context.commit('setCivilRockets', items.civilRockets)
+      }
+      if (items.gliders) {
+        context.commit('setgliderP', true)
+        context.commit('setGliders', items.gliders)
+      }
+      if (items.hangGliders) {
+        context.commit('sethangGliderP', true)
+        context.commit('setHangGliders', items.hangGliders)
+      }
+      if (items.helicopters) {
+        context.commit('sethelicopterP', true)
+        context.commit('setHelicopters', items.helicopters)
+      }
+      if (items.militaryPlanes) {
+        context.commit('setmilitaryPlaneP', true)
+        context.commit('setMilitaryPlanes', items.militaryPlanes)
+      }
+      if (items.militaryRockets) {
+        context.commit('setmilitaryRocketP', true)
+        context.commit('setMilitaryRockets', items.militaryRockets)
+      }
+      if (items.planes) {
+        context.commit('setplaneP', true)
+        context.commit('setPlanes', items.planes)
+      }
+      if (items.products) {
+        context.commit('setproductP', true)
+        context.commit('setProducts', items.products)
+      }
+      if (items.rockets) {
+        context.commit('setrocketP', true)
+        context.commit('setRockets', items.rockets)
+      }
+      if (items.transportPlanes) {
+        context.commit('settransportPlaneP', true)
+        context.commit('setTransportPlanes', items.transportPlanes)
+      }
+    },
+    async putProduct(state, payload) {
       if (state.getters.antiHailP) {
-        axios.delete('http://localhost:8082/antiHailRockets/' + payload, state.getters.antiHailRockets[0])
-      }
-      if (state.getters.civilRocketP) {
-        axios.delete('http://localhost:8082/civil-rockets/' + payload, state.getters.civilRockets[0])
-      }
-      if (state.getters.militaryPlaneP) {
-        axios.delete('http://localhost:8082/military-planes/' + payload, state.getters.militaryPlanes[0])
-      }
-      if (state.getters.militaryRocketP) {
-        axios.delete('http://localhost:8082/military-rockets/' + payload, state.getters.militaryRockets[0])
-      }
-      if (state.getters.transportPlaneP) {
-        axios.delete('http://localhost:8082/transport-planes/' + payload, state.getters.transportPlanes[0])
+        axios.put('http://localhost:8082/antiHailRockets/' + payload, state.getters.antiHailRockets[0])
       }
       if (state.getters.civilPlaneP) {
-        axios.delete('http://localhost:8082/civil-planes/' + payload, state.getters.civilPlanes[0])
+        axios.put('http://localhost:8082/civil-planes/' + payload, state.getters.civilPlanes[0])
       }
-      if (state.getters.planeP) {
-        axios.delete('http://localhost:8082/planes/' + payload, state.getters.planes[0])
-      }
-      if (state.getters.hangGliderP) {
-        axios.delete('http://localhost:8082/hang-gliders/' + payload, state.getters.hangGliders[0])
-      }
-      if (state.getters.helicopterP) {
-        axios.delete('http://localhost:8082/helicopters/' + payload, state.getters.helicopters[0])
-      }
-      if (state.getters.rocketP) {
-        axios.delete('http://localhost:8082/rockets/' + payload, state.getters.rockets[0])
+      if (state.getters.civilRocketP) {
+        axios.put('http://localhost:8082/civil-rockets/' + payload, state.getters.civilRockets[0])
       }
       if (state.getters.gliderP) {
-        axios.delete('http://localhost:8082/gliders/' + payload, state.getters.gliders[0])
+        axios.put('http://localhost:8082/gliders/' + payload, state.getters.gliders[0])
+      }
+      if (state.getters.hangGliderP) {
+        axios.put('http://localhost:8082/hang-gliders/' + payload, state.getters.hangGliders[0])
+      }
+      if (state.getters.helicopterP) {
+        axios.put('http://localhost:8082/helicopters/' + payload, state.getters.helicopters[0])
+      }
+      if (state.getters.militaryPlaneP) {
+        axios.put('http://localhost:8082/military-planes/' + payload, state.getters.militaryPlanes[0])
+      }
+      if (state.getters.militaryRocketP) {
+        axios.put('http://localhost:8082/military-rockets/' + payload, state.getters.militaryRockets[0])
+      }
+      if (state.getters.planeP) {
+        axios.put('http://localhost:8082/planes/' + payload, state.getters.planes[0])
       }
       if (state.getters.productP) {
-        axios.delete('http://localhost:8082/products/' + payload, state.getters.products[0])
+        axios.put('http://localhost:8082/products/' + payload, state.getters.products[0])
+      }
+      if (state.getters.rocketP) {
+        axios.put('http://localhost:8082/rockets/' + payload, state.getters.rockets[0])
+      }
+      if (state.getters.transportPlaneP) {
+        axios.put('http://localhost:8082/transport-planes/' + payload, state.getters.transportPlanes[0])
       }
     },
     async postProduct(context) {
@@ -1060,6 +1018,266 @@ const store = createStore({
         axios.post('http://localhost:8082/antiHailRockets/', context.getters.antiHailRockets[0])
       }
     },
+    async deleteProduct(state, payload) {
+      if (state.getters.antiHailP) {
+        axios.delete('http://localhost:8082/antiHailRockets/' + payload, state.getters.antiHailRockets[0])
+      }
+      if (state.getters.civilRocketP) {
+        axios.delete('http://localhost:8082/civil-rockets/' + payload, state.getters.civilRockets[0])
+      }
+      if (state.getters.militaryPlaneP) {
+        axios.delete('http://localhost:8082/military-planes/' + payload, state.getters.militaryPlanes[0])
+      }
+      if (state.getters.militaryRocketP) {
+        axios.delete('http://localhost:8082/military-rockets/' + payload, state.getters.militaryRockets[0])
+      }
+      if (state.getters.transportPlaneP) {
+        axios.delete('http://localhost:8082/transport-planes/' + payload, state.getters.transportPlanes[0])
+      }
+      if (state.getters.civilPlaneP) {
+        axios.delete('http://localhost:8082/civil-planes/' + payload, state.getters.civilPlanes[0])
+      }
+      if (state.getters.planeP) {
+        axios.delete('http://localhost:8082/planes/' + payload, state.getters.planes[0])
+      }
+      if (state.getters.hangGliderP) {
+        axios.delete('http://localhost:8082/hang-gliders/' + payload, state.getters.hangGliders[0])
+      }
+      if (state.getters.helicopterP) {
+        axios.delete('http://localhost:8082/helicopters/' + payload, state.getters.helicopters[0])
+      }
+      if (state.getters.rocketP) {
+        axios.delete('http://localhost:8082/rockets/' + payload, state.getters.rockets[0])
+      }
+      if (state.getters.gliderP) {
+        axios.delete('http://localhost:8082/gliders/' + payload, state.getters.gliders[0])
+      }
+      if (state.getters.productP) {
+        axios.delete('http://localhost:8082/products/' + payload, state.getters.products[0])
+      }
+    },
+    //CompanyCard
+    async getEmployee(context, payload){
+      let result = await axios.get('http://localhost:8082/employees/' + payload)
+      let items = result.data
+      items.employees.forEach(item => {
+        if (item.WorkExperience) {
+          item.WorkExperience = date(item.WorkExperience)
+        }
+        if (item.WorkExperience) {
+          item.WorkExperience = date(item.WorkExperience)
+        }
+      });
+      if (items.employees) {
+        context.commit('setWorkerP', true)
+        context.commit('setWorkers', items.workers)
+      }
+      if (items.engineeringStaff) {
+        context.commit('setEngineeringStaffP', true)
+        context.commit('setEngineeringStaff', items.engineeringStaff)
+      }
+      if (items.workers) {
+        context.commit('setWorkerP', true)
+        context.commit('setWorkers', items.workers)
+      }
+      if (items.testers) {
+        context.commit('setTesterP', true)
+        context.commit('setTesters', items.testers)
+      }
+      if (items.assemblers) {
+        context.commit('setAssemblerP', true)
+        context.commit('setAssemblers', items.assemblers)
+      }
+      if (items.turners) {
+        context.commit('setTurnerP', true)
+        context.commit('setTurners', items.turners)
+      }
+      if (items.locksmiths) {
+        context.commit('setLocksmithP', true)
+        context.commit('setLocksmiths', items.locksmiths)
+      }
+      if (items.welders) {
+        context.commit('setWelderP', true)
+        context.commit('setWelders', items.welders)
+      }
+      if (items.engineers) {
+        context.commit('setEngineerP', true)
+        context.commit('setEngineers', items.engineers)
+      }
+      if (items.technologists) {
+        context.commit('setTechnologistP', true)
+        context.commit('setTechnologists', items.technologists)
+      }
+      if (items.technicians) {
+        context.commit('setTechnicianP', true)
+        context.commit('setTechnicians', items.technicians)
+      }
+    },
+    async putEmployee(state, payload){
+      if (state.getters.employeeP) {
+        axios.put('http://localhost:8082/employees/' + payload, state.getters.employees[0])
+      }
+      if (state.getters.engineeringStaffP) {
+        axios.put('http://localhost:8082/engineering-staff/' + payload, state.getters.engineeringStaff[0])
+      }
+      if (state.getters.workerP) {
+        axios.put('http://localhost:8082/workers/' + payload, state.getters.workers[0])
+      }
+      if (state.getters.testerP) {
+        axios.put('http://localhost:8082/testers/' + payload, state.getters.testers[0])
+      }
+      if (state.getters.assemblerP) {
+        axios.put('http://localhost:8082/assemblers/' + payload, state.getters.assemblers[0])
+      }
+      if (state.getters.turnerP) {
+        axios.put('http://localhost:8082/turners/' + payload, state.getters.turners[0])
+      }
+      if (state.getters.locksmithP) {
+        axios.put('http://localhost:8082/locksmiths/' + payload, state.getters.locksmiths[0])
+      }
+      if (state.getters.welderP) {
+        axios.put('http://localhost:8082/welders/' + payload, state.getters.welders[0])
+      }
+      if (state.getters.engineerP) {
+        axios.put('http://localhost:8082/engineers/' + payload, state.getters.engineers[0])
+      }
+      if (state.getters.technologistP) {
+        axios.put('http://localhost:8082/technologists/' + payload, state.getters.technologists[0])
+      }
+      if (state.getters.technicianP) {
+        axios.put('http://localhost:8082/technicians/' + payload, state.getters.technicians[0])
+      }
+    },
+    // async postEmployee(context){
+      
+    // },
+    async deleteEmployee(state, payload){
+      if (state.getters.employeeP) {
+        axios.delete('http://localhost:8082/employees/' + payload, state.getters.employees[0])
+      }
+      if (state.getters.engineeringStaffP) {
+        axios.delete('http://localhost:8082/engineering-staff/' + payload, state.getters.engineeringStaff[0])
+      }
+      if (state.getters.workerP) {
+        axios.delete('http://localhost:8082/workers/' + payload, state.getters.workers[0])
+      }
+      if (state.getters.testerP) {
+        axios.delete('http://localhost:8082/testers/' + payload, state.getters.testers[0])
+      }
+      if (state.getters.assemblerP) {
+        axios.delete('http://localhost:8082/assemblers/' + payload, state.getters.assemblers[0])
+      }
+      if (state.getters.turnerP) {
+        axios.delete('http://localhost:8082/turners/' + payload, state.getters.turners[0])
+      }
+      if (state.getters.locksmithP) {
+        axios.delete('http://localhost:8082/locksmiths/' + payload, state.getters.locksmiths[0])
+      }
+      if (state.getters.welderP) {
+        axios.delete('http://localhost:8082/welders/' + payload, state.getters.welders[0])
+      }
+      if (state.getters.engineerP) {
+        axios.delete('http://localhost:8082/engineers/' + payload, state.getters.engineers[0])
+      }
+      if (state.getters.technologistP) {
+        axios.delete('http://localhost:8082/technologists/' + payload, state.getters.technologists[0])
+      }
+      if (state.getters.technicianP) {
+        axios.delete('http://localhost:8082/technicians/' + payload, state.getters.technicians[0])
+      }
+    },
+    // //CompanyCard
+    // async getCompany(context, payload){
+
+    // },
+    // async putCompany(state, payload){
+      
+    // },
+    // async postCompany(context){
+      
+    // },
+    // async deleteCompany(state, payload){
+      
+    // },
+    // //WorkshopCard
+    // async getWorkshop(context, payload){
+
+    // },
+    // async putWorkshop(state, payload){
+      
+    // },
+    // async postWorkshop(context){
+      
+    // },
+    // async deleteWorkshop(state, payload){
+      
+    // },
+    // //AreaCard
+    // async getArea(context, payload){
+
+    // },
+    // async putArea(state, payload){
+      
+    // },
+    // async postArea(context){
+      
+    // },
+    // async deleteArea(state, payload){
+      
+    // },
+    // //LabCard
+    // async getLab(context, payload){
+
+    // },
+    // async putLab(state, payload){
+      
+    // },
+    // async postLab(context){
+      
+    // },
+    // async deleteLab(state, payload){
+      
+    // },
+    // //EmployeeCard
+    // async getEmployee(context, payload){
+
+    // },
+    // async putEmployee(state, payload){
+      
+    // },
+    // async postEmployee(context){
+      
+    // },
+    // async deleteEmployee(state, payload){
+      
+    // },
+    // //BrigadeCard
+    // async getBrigade(context, payload){
+
+    // },
+    // async putBrigade(state, payload){
+      
+    // },
+    // async postBrigade(context){
+      
+    // },
+    // async deleteBrigade(state, payload){
+      
+    // },
+    // //TestCard
+    // async getTest(context, payload){
+
+    // },
+    // async putTest(state, payload){
+      
+    // },
+    // async postTest(context){
+      
+    // },
+    // async deleteTest(state, payload){
+      
+    // },
+    //cleanProps
     cleanAllProductsState(context){
       context.commit('cleanproducts')
       context.commit('cleanantiHailRockets')
