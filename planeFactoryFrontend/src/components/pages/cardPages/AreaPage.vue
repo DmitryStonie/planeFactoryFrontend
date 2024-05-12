@@ -13,6 +13,7 @@
       />
       <label for="name" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Name</label>
     </div>
+    <p class="text-xl mb-6">Id: {{ $store.getters.areas[0].ID }}</p>
     <div class="relative z-0 w-full mb-5">
       <select
         name="select"

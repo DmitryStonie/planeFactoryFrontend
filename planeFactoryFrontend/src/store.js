@@ -6,6 +6,7 @@ import moment from 'moment'
 const store = createStore({
   state() {
     return {
+      //products
       antiHailRockets: [{
         ID: Number,
         Reagent: String
@@ -44,13 +45,6 @@ const store = createStore({
         ID: Number,
         Engines: Number
       }],
-      products: [{
-        ID: Number,
-        Name: String,
-        Workshop: Number,
-        ProductionDate: String,
-        Description: String
-      }],
       rockets: [{
         ID: Number,
         Engines: Number,
@@ -62,20 +56,14 @@ const store = createStore({
         ID: Number,
         CarryingWeight: String
       }],
-      productProps: {
-        antiHail: false,
-        civilPlane: false,
-        civilRocket: false,
-        glider: false,
-        hangGlider: false,
-        helicopter: false,
-        militaryPlane: false,
-        militaryRocket: false,
-        plane: false,
-        product: false,
-        rocket: false,
-        transportPlane: false
-      },
+      products: [{
+        ID: Number,
+        Name: String,
+        Workshop: Number,
+        ProductionDate: String,
+        Description: String
+      }],
+      //other 23 entities
       areas: [{
         ID: Number,
         Workshop: Number,
@@ -139,9 +127,6 @@ const store = createStore({
         StartOfWork: String,
         EndOfWork: String,
       }],
-      otherProducts: [{
-        ID: Number,
-      }],
       technicians: [{
         ID: Number,
         StartOfWork: String,
@@ -200,26 +185,7 @@ const store = createStore({
         Boss: Number,
         Name: String
       }],
-      addProperties: [{
-        addP: Boolean,
-        addLink: String,
-        addText: String
-      }],
-      employeeProps: {
-        employee: false,
-        engineeringStaff: false,
-        worker: false,
-        tester: false,
-        assembler: false,
-        turner: false,
-        locksmith: false,
-        welder: false,
-        engineer: false,
-        technologist: false,
-        technician: false,
-        boss: false,
-        master: false
-      },
+      //extra entities
       bosses: [{
         ID: Number,
         Name: String,
@@ -239,10 +205,67 @@ const store = createStore({
         Company: Number,
         Boss: Number,
         Name: String
-      }]
+      }],
+      company: [{
+        ID: Number,
+        Name: String
+      }],
+      //UI elements state
+      //Add new button
+      addProperties: [{
+        addP: Boolean,
+        addLink: String,
+        addText: String
+      }],
+      //
+      Props: {
+        //products
+        antiHailRockets: false,
+        civilPlanes: false,
+        civilRockets: false,
+        gliders: false,
+        hangGliders: false,
+        helicopters: false,
+        militaryPlanes: false,
+        militaryRockets: false,
+        planes: false,
+        rockets: false,
+        transportPlanes: false,
+        products: false,
+        //other 23
+        areas: false,
+        assemblers: false,
+        brigades: false,
+        companies: false,
+        conductedTesting: false,
+        employees: false,
+        engineeringStaff: false,
+        engineers: false,
+        jobs: false,
+        labEquipment: false,
+        labs: false,
+        locksmiths: false,
+        technicians: false,
+        technologists: false,
+        testers: false,
+        tests: false,
+        turners: false,
+        usedInTest: false,
+        usesOfServices: false,
+        welders: false,
+        workers: false,
+        worksAsMaster: false,
+        workshops: false,
+        //extra entities
+        bosses: false,
+        foremen: false,
+        workshop: false,
+        company: false,
+      },
     }
   },
   mutations: {
+    //products
     setAntiHailRockets(state, payload) {
       state.antiHailRockets = payload
     },
@@ -270,70 +293,16 @@ const store = createStore({
     setPlanes(state, payload) {
       state.planes = payload
     },
-    setProducts(state, payload) {
-      state.products = payload
-    },
     setRockets(state, payload) {
       state.rockets = payload
     },
     setTransportPlanes(state, payload) {
       state.transportPlanes = payload
     },
-    setantiHailP(state, payload) {
-      state.productProps.antiHail = payload
+    setProducts(state, payload) {
+      state.products = payload
     },
-    setcivilPlaneP(state, payload) {
-      state.productProps.civilPlane = payload
-    },
-    setcivilRocketP(state, payload) {
-      state.productProps.civilRocket = payload
-    },
-    setgliderP(state, payload) {
-      state.productProps.glider = payload
-    },
-    sethangGliderP(state, payload) {
-      state.productProps.hangGlider = payload
-    },
-    sethelicopterP(state, payload) {
-      state.productProps.helicopter = payload
-    },
-    setmilitaryPlaneP(state, payload) {
-      state.productProps.militaryPlane = payload
-    },
-    setmilitaryRocketP(state, payload) {
-      state.productProps.militaryRocket = payload
-    },
-    setplaneP(state, payload) {
-      state.productProps.plane = payload
-    },
-    setproductP(state, payload) {
-      state.productProps.product = payload
-    },
-    setrocketP(state, payload) {
-      state.productProps.rocket = payload
-    },
-    settransportPlaneP(state, payload) {
-      state.productProps.transportPlane = payload
-    },
-    setPlane(state, payload) {
-      state.planes[0].Engines = payload
-    },
-    cleanProps(state) {
-      state.productProps = {
-        antiHail: false,
-        civilPlane: false,
-        civilRocket: false,
-        glider: false,
-        hangGlider: false,
-        helicopter: false,
-        militaryPlane: false,
-        militaryRocket: false,
-        plane: false,
-        product: false,
-        rocket: false,
-        transportPlane: false
-      }
-    },
+    //other 23
     setAreas(state, payload) {
       state.areas = payload
     },
@@ -370,9 +339,6 @@ const store = createStore({
     setLocksmiths(state, payload) {
       state.locksmiths = payload
     },
-    setOtherProducts(state, payload) {
-      state.otherProducts = payload
-    },
     setTechnicians(state, payload) {
       state.technicians = payload
     },
@@ -405,18 +371,8 @@ const store = createStore({
     },
     setWorkshops(state, payload) {
       state.workshops = payload
-      console.warn("Setted workshops")
-      console.log(state.workshops)
     },
-    setAddP(state, payload) {
-      state.addProperties.addP = payload
-    },
-    setAddLink(state, payload) {
-      state.addProperties.addLink = payload
-    },
-    setAddText(state, payload) {
-      state.addProperties.addText = payload
-    },
+    //extra entities
     setBosses(state, payload) {
       state.bosses = payload
     },
@@ -426,11 +382,185 @@ const store = createStore({
     setWorkshop(state, payload){
       state.workshop = payload
     },
+    setCompany(state, payload){
+      state.company = payload
+    },
+    //set Props
+    //products
+    setantiHailP(state, payload) {
+      state.Props.antiHail = payload
+    },
+    setcivilPlaneP(state, payload) {
+      state.Props.civilPlane = payload
+    },
+    setcivilRocketP(state, payload) {
+      state.Props.civilRocket = payload
+    },
+    setgliderP(state, payload) {
+      state.Props.glider = payload
+    },
+    sethangGliderP(state, payload) {
+      state.Props.hangGlider = payload
+    },
+    sethelicopterP(state, payload) {
+      state.Props.helicopter = payload
+    },
+    setmilitaryPlaneP(state, payload) {
+      state.Props.militaryPlane = payload
+    },
+    setmilitaryRocketP(state, payload) {
+      state.Props.militaryRocket = payload
+    },
+    setplaneP(state, payload) {
+      state.Props.plane = payload
+    },
+    setrocketP(state, payload) {
+      state.Props.rocket = payload
+    },
+    settransportPlaneP(state, payload) {
+      state.Props.transportPlane = payload
+    },
+    setproductP(state, payload) {
+      state.Props.product = payload
+    },
+    //other 23
+    setAreasP(state, payload){
+      state.Props.areas = payload
+    },
+    setAssemblerP(state, payload){
+      state.Props.assembler = payload
+    },
+    setBrigadesP(state, payload){
+      state.Props.brigades = payload
+    },
+    setCompaniesP(state, payload){
+      state.Props.companies = payload
+    },
+    setConductedTestingP(state, payload){
+      state.Props.conductedTesting = payload
+    },
+    setEmployeeP(state, payload){
+      state.Props.employee = payload
+    },
+    setEngineeringStaffP(state, payload){
+      state.Props.engineeringStaff = payload
+    },
+    setEngineerP(state, payload){
+      state.Props.engineer = payload
+    },
+    setJobsP(state, payload){
+      state.Props.jobs = payload
+    },
+    setLabEquipmentP(state, payload){
+      state.Props.labEquipment = payload
+    },
+    setLabsP(state, payload){
+      state.Props.labs = payload
+    },
+    setLocksmithP(state, payload){
+      state.Props.locksmith = payload
+    },
+    setTechnicianP(state, payload){
+      state.Props.technician = payload
+    },
+    setTechnologistP(state, payload){
+      state.Props.technologist = payload
+    },
+    setTesterP(state, payload){
+      state.Props.tester = payload
+    },
+    setTestsP(state, payload){
+      state.Props.tests = payload
+    },
+    setTurnerP(state, payload){
+      state.Props.turner = payload
+    },
+    setUsedInTestP(state, payload){
+      state.Props.usedInTest = payload
+    },
+    setUsesOfServicesP(state, payload){
+      state.Props.usesOfServices = payload
+    },
+    setWelderP(state, payload){
+      state.Props.welder = payload
+    },
+    setWorkerP(state, payload){
+      state.Props.worker = payload
+    },
+    //extra entities
+    setBossP(state, payload){
+      state.Props.bosses = payload
+    },
+    setForemenP(state, payload){
+      state.Props.foremen = payload
+    },
+    setWorkshopP(state, payload){
+      state.Props.workshop = payload
+    },
+    setCompanyP(state, payload){
+      state.Props.company = payload
+    },
+    //add new button
+    setAddP(state, payload) {
+      state.addProperties.addP = payload
+    },
+    setAddLink(state, payload) {
+      state.addProperties.addLink = payload
+    },
+    setAddText(state, payload) {
+      state.addProperties.addText = payload
+    },
+    //cleaners
     cleanAddProps(state) {
       state.addProperties = {
         addP: false,
         addLink: "",
         addText: ""
+      }
+    },
+    cleanProps(state) {
+      state.productProps = {
+        antiHailRockets: false,
+        civilPlanes: false,
+        civilRockets: false,
+        gliders: false,
+        hangGliders: false,
+        helicopters: false,
+        militaryPlanes: false,
+        militaryRockets: false,
+        planes: false,
+        rockets: false,
+        transportPlanes: false,
+        products: false,
+        //other 23
+        areas: false,
+        assemblers: false,
+        brigades: false,
+        companies: false,
+        conductedTesting: false,
+        employees: false,
+        engineeringStaff: false,
+        engineers: false,
+        jobs: false,
+        labEquipment: false,
+        labs: false,
+        locksmiths: false,
+        technicians: false,
+        technologists: false,
+        testers: false,
+        tests: false,
+        turners: false,
+        usedInTest: false,
+        usesOfServices: false,
+        welders: false,
+        workers: false,
+        worksAsMaster: false,
+        workshops: false,
+        //extra entities
+        bosses: false,
+        foremen: false,
+        workshop: false,
+        company: false,
       }
     },
     cleanproducts(state) {
@@ -469,23 +599,6 @@ const store = createStore({
     cleantransportPlanes(state) {
       state.transportPlanes = [{}]
     },
-    cleanEmployeeProps(state){
-      state.employeeProps = {
-        employee: false,
-        engineeringStaff: false,
-        worker: false,
-        tester: false,
-        assembler: false,
-        turner: false,
-        locksmith: false,
-        welder: false,
-        engineer: false,
-        technologist: false,
-        technician: false,
-        boss: false,
-        master: false
-      }
-    },
     cleanWorkshops(state){
       state.workshops = [{}]
     },
@@ -513,47 +626,13 @@ const store = createStore({
     cleanBrigades(state){
       state.workshop = [{}]
     },
-    setEmployeeP(state, payload){
-      state.employeeProps.employee = payload
+    cleanCompany(state){
+      state.company = [{}]
     },
-    setEngineeringStaffP(state, payload){
-      state.employeeProps.engineeringStaff = payload
-    },
-    setWorkerP(state, payload){
-      state.employeeProps.worker = payload
-    },
-    setTesterP(state, payload){
-      state.employeeProps.tester = payload
-    },
-    setAssemblerP(state, payload){
-      state.employeeProps.assembler = payload
-    },
-    setTurnerP(state, payload){
-      state.employeeProps.turner = payload
-    },
-    setLocksmithP(state, payload){
-      state.employeeProps.locksmith = payload
-    },
-    setWelderP(state, payload){
-      state.employeeProps.welder = payload
-    },
-    setEngineerP(state, payload){
-      state.employeeProps.engineer = payload
-    },
-    setTechnologistP(state, payload){
-      state.employeeProps.technologist = payload
-    },
-    setTechnicianP(state, payload){
-      state.employeeProps.technician = payload
-    },
-    setBossP(state, payload){
-      state.employeeProps.boss = payload
-    },
-    setMasterP(state, payload){
-      state.employeeProps.master = payload
-    },
+   
   },
   getters: {
+    //products
     antiHailRockets(state) {
       return state.antiHailRockets
     },
@@ -581,15 +660,18 @@ const store = createStore({
     planes(state) {
       return state.planes
     },
-    products(state) {
-      return state.products
-    },
     rockets(state) {
       return state.rockets
     },
     transportPlanes(state) {
       return state.transportPlanes
     },
+    products(state) {
+      return state.products
+    },
+    //other 23
+
+    //props
     antiHailP(state) {
       return state.productProps.antiHail
     },
@@ -754,7 +836,10 @@ const store = createStore({
     //AreaPage
     workshop(state){
       return state.workshop
-    }
+    },
+    company(state){
+      return state.company
+    },
   },
   actions: {
     async getAntiHailRockets(context) {
@@ -1424,18 +1509,39 @@ const store = createStore({
       axios.delete('http://localhost:8082/areas/' + payload, state.getters.areas[0])
     },
     // //LabCard
-    // async getLab(context, payload){
-
-    // },
-    // async putLab(state, payload){
+    async getLab(context, payload){
+      let result = await axios.get('http://localhost:8082/labs/' + payload)
+      parseResponse(result)
+      let items = result.data
       
-    // },
+      if (items.labs) {
+        context.commit('setLabs', items.labs)
+      }
+      if (items.company) {
+        context.commit('setCompany', items.company)
+      }
+      if (items.companies) {
+        context.commit('setCompanies', items.companies)
+      }
+      if (items.employees) {
+        context.commit('setEmployees', items.employees)
+      }
+      if (items.labEquipment) {
+        context.commit('setBosses', items.bosses)
+      }
+      if (items.products) {
+        context.commit('setProducts', items.products)
+      }
+    },
+    async putLab(state, payload){
+      
+    },
     // async postLab(context){
       
     // },
-    // async deleteLab(state, payload){
+    async deleteLab(state, payload){
       
-    // },
+    },
     // //EmployeeCard
     // async getEmployee(context, payload){
 
@@ -1500,5 +1606,237 @@ export default store;
 function date(value) {
   if (value) {
     return moment(String(value)).format('YYYY-MM-DD')
+  }
+}
+
+function parseResponse(context, result){
+  let items = result.data
+  if(items.antiHailRockets){
+    context.commit('setAntiHailRockets', items.antiHailRockets)
+  }
+  if(items.civilPlanes){
+    context.commit('setCivilPlanes', items.civilPlanes)
+  }
+  if(items.civilRockets){
+    context.commit('setCivilRockets', items.civilRockets)
+  }
+  if(items.gliders){
+    context.commit('setGliders', items.gliders)
+  }
+  if(items.hangGliders){
+    context.commit('setHangGliders', items.hangGliders)
+  }
+  if(items.helicopters){
+    context.commit('setHelicopters', items.helicopters)
+  }
+  if(items.militaryPlanes){
+    context.commit('setMilitaryPlanes', items.militaryPlanes)
+  }
+  if(items.militaryRockets){
+    context.commit('setMilitaryRockets', items.militaryRockets)
+  }
+  if(items.planes){
+    context.commit('setPlanes', items.planes)
+  }
+  if(items.rockets){
+    context.commit('setRockets', items.rockets)
+  }
+  if(items.transportPlanes){
+    context.commit('setTransportPlanes', items.transportPlanes)
+  }
+  if(items.products){
+    items.products.forEach(item => {
+      if (item.ProductionDate) {
+        item.ProductionDate = date(item.ProductionDate)
+      }
+    });
+    context.commit('setProducts', items.products)
+  }
+  if(items.areas){
+    context.commit('setAreas', items.areas)
+  }
+  if(items.assemblers){
+    items.assemblers.forEach(item => {
+      if (item.StartOfWork) {
+        item.StartOfWork = date(item.StartOfWork)
+      }
+      if (item.EndOfWork) {
+        item.EndOfWork = date(item.EndOfWork)
+      }
+    });
+    context.commit('setAssemblers', items.assemblers)
+  }
+  if(items.brigades){
+    context.commit('setBrigades', items.brigades)
+  }
+  if(items.companies){
+    context.commit('setCompanies', items.companies)
+  }
+  if(items.conductedTesting){
+    context.commit('setConductedTesting', items.conductedTesting)
+  }
+  if(items.employees){
+    items.employees.forEach(item => {
+      if (item.Birthdate) {
+        item.Birthdate = date(item.Birthdate)
+      }
+      if (item.WorkExperience) {
+        item.WorkExperience = date(item.WorkExperience)
+      }
+    });
+    context.commit('setEmployees', items.employees)
+  }
+  if(items.engineeringStaff){
+    context.commit('setEngineeringStaff', items.engineeringStaff)
+  }
+  if(items.engineers){
+    items.engineers.forEach(item => {
+      if (item.StartOfWork) {
+        item.StartOfWork = date(item.StartOfWork)
+      }
+      if (item.EndOfWork) {
+        item.EndOfWork = date(item.EndOfWork)
+      }
+    });
+    context.commit('setEngineers', items.engineers)
+  }
+  if(items.jobs){
+    context.commit('setJobs', items.jobs)
+  }
+  if(items.labEquipment){
+    context.commit('setLabEquipment', items.labEquipment)
+  }
+  if(items.labs){
+    context.commit('setLabs', items.labs)
+  }
+  if(items.locksmiths){
+    items.locksmiths.forEach(item => {
+      if (item.StartOfWork) {
+        item.StartOfWork = date(item.StartOfWork)
+      }
+      if (item.EndOfWork) {
+        item.EndOfWork = date(item.EndOfWork)
+      }
+    });
+    context.commit('setLocksmiths', items.locksmiths)
+  }
+  if(items.setTechnicians){
+    items.technicians.forEach(item => {
+      if (item.StartOfWork) {
+        item.StartOfWork = date(item.StartOfWork)
+      }
+      if (item.EndOfWork) {
+        item.EndOfWork = date(item.EndOfWork)
+      }
+    });
+    context.commit('setTechnicians', items.technicians)
+  }
+  if(items.technologists){
+    items.technologists.forEach(item => {
+      if (item.StartOfWork) {
+        item.StartOfWork = date(item.StartOfWork)
+      }
+      if (item.EndOfWork) {
+        item.EndOfWork = date(item.EndOfWork)
+      }
+    });
+    context.commit('setTechnologists', items.technologists)
+  }
+  if(items.testers){
+    context.commit('setTesters', items.testers)
+  }
+  if(items.tests){
+    items.tests.forEach(item => {
+      if (item.TimeStart) {
+        item.TimeStart = date(item.TimeStart)
+      }
+      if (item.TimeEnd) {
+        item.TimeEnd = date(item.TimeEnd)
+      }
+    });
+    context.commit('setTests', items.tests)
+  }
+  if(items.turners){
+    items.locksmiths.forEach(item => {
+      if (item.StartOfWork) {
+        item.StartOfWork = date(item.StartOfWork)
+      }
+      if (item.EndOfWork) {
+        item.EndOfWork = date(item.EndOfWork)
+      }
+    });
+    context.commit('setTurners', items.turners)
+  }
+  if(items.usedInTest){
+    context.commit('setUsedInTest', items.usedInTest)
+  }
+  if(items.usesOfServices){
+    context.commit('setUsesOfServices', items.usesOfServices)
+  }
+  if(items.welders){
+    items.welders.forEach(item => {
+      if (item.StartOfWork) {
+        item.StartOfWork = date(item.StartOfWork)
+      }
+      if (item.EndOfWork) {
+        item.EndOfWork = date(item.EndOfWork)
+      }
+    });
+    context.commit('setWelders', items.welders)
+  }
+  if(items.workers){
+    context.commit('setWorkers', items.workers)
+  }
+  if(items.worksAsMaster){
+    context.commit('setWorksAsMaster', items.worksAsMaster)
+  }
+  if(items.workshops){
+    context.commit('setWorkshops', items.workshops)
+  }
+  //extra stores
+  if(items.bosses){
+    context.commit('setBosses', items.bosses)
+  }
+  if(items.){
+    context.commit('', items.)
+  }
+  if(items.){
+    context.commit('', items.)
+  }
+  if(items.){
+    context.commit('', items.)
+  }
+  if(items.){
+    context.commit('', items.)
+  }
+  if(items.){
+    context.commit('', items.)
+  }
+  if(items.){
+    context.commit('', items.)
+  }
+
+
+
+
+
+
+  if (items.labs) {
+    context.commit('setLabs', items.labs)
+  }
+  if (items.company) {
+    context.commit('setCompany', items.company)
+  }
+  if (items.companies) {
+    context.commit('setCompanies', items.companies)
+  }
+  if (items.employees) {
+    context.commit('setEmployees', items.employees)
+  }
+  if (items.labEquipment) {
+    context.commit('setBosses', items.bosses)
+  }
+  if (items.products) {
+    context.commit('setProducts', items.products)
   }
 }
