@@ -234,6 +234,12 @@ const store = createStore({
         WorkExperience: String,
         Salary: Number
       }],
+      workshop: [{
+        ID: Number,
+        Company: Number,
+        Boss: Number,
+        Name: String
+      }]
     }
   },
   mutations: {
@@ -417,6 +423,9 @@ const store = createStore({
     setForemen(state, payload) {
       state.foremen = payload
     },
+    setWorkshop(state, payload){
+      state.workshop = payload
+    },
     cleanAddProps(state) {
       state.addProperties = {
         addP: false,
@@ -488,6 +497,12 @@ const store = createStore({
     },
     cleanCompanies(state){
       state.companies = [{}]
+    },
+    cleanBosses(state){
+      state.bosses = [{}]
+    },
+    cleanEmployees(state){
+      state.employees = [{}]
     },
     setEmployeeP(state, payload){
       state.employeeProps.employee = payload
@@ -727,6 +742,10 @@ const store = createStore({
     foremen(state){
       return state.foremen
     },
+    //AreaPage
+    workshop(state){
+      return state.workshop
+    }
   },
   actions: {
     async getAntiHailRockets(context) {
@@ -1319,39 +1338,83 @@ const store = createStore({
     async putCompany(state, payload){
       axios.put('http://localhost:8082/companies/' + payload, state.getters.companies[0])
     },
-    async postCompany(context){
+    // async postCompany(context){
 
-    },
-    async deleteCompany(state, payload){
-            //not works
-            axios.delete('http://localhost:8082/companies/' + payload, state.getters.companies[0])
-    },
+    // },
+    // async deleteCompany(state, payload){
+    //         //not works
+    //         axios.delete('http://localhost:8082/companies/' + payload, state.getters.companies[0])
+    // },
     // //WorkshopCard
-    // async getWorkshop(context, payload){
-
-    // },
-    // async putWorkshop(state, payload){
-      
-    // },
+    async getWorkshop(context, payload){
+      let result = await axios.get('http://localhost:8082/workshops/' + payload)
+      let items = result.data
+      if (items.workshops) {
+        context.commit('setWorkshops', items.workshops)
+      }
+      if (items.bosses) {
+        console.warn("balls")
+        context.commit('setBosses', items.bosses)
+        console.warn(items.bosses)
+      }
+      if (items.areas) {
+        context.commit('setAreas', items.areas)
+      }
+      if (items.labs) {
+        context.commit('setLabs', items.labs)
+      }
+      if (items.employees) {
+        context.commit('setEmployees', items.employees)
+      }
+      if (items.foremen) {
+        context.commit('setForemen', items.foremen)
+      }
+    },
+    async putWorkshop(state, payload){
+      axios.put('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
+    },
     // async postWorkshop(context){
       
     // },
-    // async deleteWorkshop(state, payload){
-      
-    // },
-    // //AreaCard
-    // async getArea(context, payload){
-
-    // },
-    // async putArea(state, payload){
-      
-    // },
+    async deleteWorkshop(state, payload){
+      axios.delete('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
+    },
+    //AreaCard
+    async getArea(context, payload){
+      let result = await axios.get('http://localhost:8082/areas/' + payload)
+      let items = result.data
+      if (items.areas) {
+        context.commit('setAreas', items.areas)
+      }
+      if (items.workshop) {
+        context.commit('setWorkshop', items.workshop)
+      }
+      if (items.workshops) {
+        context.commit('setWorkshops', items.workshops)
+      }
+      if (items.employees) {
+        context.commit('setEmployees', items.employees)
+      }
+      if (items.bosses) {
+        context.commit('setBosses', items.bosses)
+      }
+      if (items.foremen) {
+        context.commit('setForemen', items.foremen)
+      }
+      if (items.brigades) {
+        context.commit('setBrigades', items.brigades)
+      }
+    },
+    async putArea(state, payload){
+      axios.put('http://localhost:8082/areas/' + payload, state.getters.areas[0])
+    },
     // async postArea(context){
       
     // },
-    // async deleteArea(state, payload){
-      
-    // },
+    async deleteArea(state, payload){
+      axios.delete('http://localhost:8082/areas/' + payload, state.getters.areas[0])
+
+    },
     // //LabCard
     // async getLab(context, payload){
 

@@ -41,7 +41,7 @@
         </router-link>
       </div>
     </div>
-    <div class="h-65 overflow-auto">
+    <div class="h-64 overflow-auto">
       <LabsTable />
     </div>
     <div class="flex py-8">
@@ -79,7 +79,7 @@ export default {
     this.$store.commit('cleanCompanies')
     this.$store.dispatch('getCompany', this.$route.params.id)
   },
-  unmounted(){
+  unmounted() {
     this.$store.commit('cleanWorkshops')
     this.$store.commit('cleanAreas')
     this.$store.commit('cleanLabs')

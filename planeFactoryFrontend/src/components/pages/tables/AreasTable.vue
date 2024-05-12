@@ -1,5 +1,5 @@
 <template>
-    <div class="flex min-h-screen items-top justify-center">
+    <div class="flex items-top justify-center">
       <div class="overflow-x-auto">
         <table class="table-aut bg-white shadow-md rounded-xl">
           <thead>

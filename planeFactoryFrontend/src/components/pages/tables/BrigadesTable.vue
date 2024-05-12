@@ -1,5 +1,5 @@
 <template>
-    <div class="flex min-h-screen items-top justify-center">
+    <div class="flex items-top justify-center">
     <div class="overflow-x-auto">
       <table class="table-aut bg-white shadow-md rounded-xl">
         <thead>
@@ -17,8 +17,8 @@
             class="border-b border-blue-gray-200"
           >
             <td class="py-3 px-4">{{ item.ID }}</td>
-            <td class="py-3 px-4">{{ item.Foreman }}</td>
-            <td class="py-3 px-4">{{ item.Workshop }}</td>
+            <td class="py-3 px-4">{{ getBoss(item.Foreman) }}</td>
+            <td class="py-3 px-4">{{ getWorkshopName(item.Workshop) }}</td>
             <td class="py-3 px-4">
               <router-link :to="'/brigades/' + item.ID">Edit</router-link>
             </td>
@@ -30,5 +30,22 @@
 </template>
 
 <script>
-
+  export default {
+    methods: {
+      getBoss(id) {
+        const found = this.$store.getters.foremen.find((element) => element.ID == id)
+        if (found) {
+          return found.Name
+        }
+        return ''
+      },
+      getWorkshopName(id) {
+        const found = this.$store.getters.workshops.find((element) => element.ID == id)
+        if (found) {
+          return found.Name
+        }
+        return ''
+      }
+    }
+  }
 </script>
