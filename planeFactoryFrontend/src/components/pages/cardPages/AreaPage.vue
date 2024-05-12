@@ -36,13 +36,13 @@
         onclick="this.setAttribute('value', this.value);"
         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
       >
-        <option>{{ $store.getters.foremen[0].Name }}</option>
+        <option>{{ $store.getters.bosses[0].Name }}</option>
         <option v-for="option in $store.getters.employees" :value="option.ID" :key="option.ID">
           {{ option.Name }}
         </option>
       </select>
       <label for="select" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
-        >Foreman</label
+        >Boss</label
       >
     </div>
     <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8 mb-4">
@@ -89,6 +89,25 @@ export default {
   components: {
     CardPageHeader,
     BrigadesTable
+  },
+  mounted() {
+    this.$store.commit('cleanAreas')
+    this.$store.commit('cleanWorkshop')
+    this.$store.commit('cleanWorkshops')
+    this.$store.commit('cleanEmployees')
+    this.$store.commit('cleanBosses')
+    this.$store.commit('cleanForemen')
+    this.$store.commit('cleanBrigades')
+    this.$store.dispatch('getArea', this.$route.params.id)
+  },
+  unmounted(){
+    this.$store.commit('cleanAreas')
+    this.$store.commit('cleanWorkshop')
+    this.$store.commit('cleanWorkshops')
+    this.$store.commit('cleanEmployees')
+    this.$store.commit('cleanBosses')
+    this.$store.commit('cleanForemen')
+    this.$store.commit('cleanBrigades')
   }
 }
 </script>

@@ -66,13 +66,6 @@ export default {
     CardPageHeader
   },
 
-  async mounted() {
-    this.$store.dispatch('getProduct', this.$route.params.id)
-    this.$store.dispatch('getWorkshops')
-  },
-  unmounted() {
-    this.$store.commit('cleanProps')
-  },
   methods: {
     async saveData(){
       this.$store.dispatch('putProduct', this.$route.params.id)
@@ -81,6 +74,15 @@ export default {
       this.$store.dispatch('deleteProduct', this.$route.params.id)
       this.$router.go(-1)
     }
-  }
+  },
+  async mounted() {
+    this.$store.commit('cleanProducts')
+    this.$store.commit('cleanWorkshops')
+    this.$store.dispatch('getProduct', this.$route.params.id)
+    this.$store.dispatch('getWorkshops')
+  },
+  unmounted() {
+    this.$store.commit('cleanProps')
+  },
 }
 </script>

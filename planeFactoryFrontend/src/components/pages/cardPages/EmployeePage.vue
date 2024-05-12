@@ -61,13 +61,6 @@ export default {
     WelderInfo,
     WorkerInfo
   },
-
-  async mounted() {
-    this.$store.dispatch('getEmployee', this.$route.params.id)
-  },
-  unmounted() {
-    this.$store.commit('cleanEmployeeProps')
-  },
   methods: {
     async saveData(){
       this.$store.dispatch('putEmployee', this.$route.params.id)
@@ -76,6 +69,13 @@ export default {
       this.$store.dispatch('deleteEmployee', this.$route.params.id)
       this.$router.go(-1)
     }
-  }
+  },
+  mounted() {
+    this.$store.commit('cleanEmployees')
+    this.$store.dispatch('getEmployee', this.$route.params.id)
+  },
+  unmounted() {
+    this.$store.commit('cleanEmployeeProps')
+  },
 }
 </script>

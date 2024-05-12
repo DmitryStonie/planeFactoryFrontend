@@ -12,6 +12,15 @@ export default {
     HomePageHeader,
     AreasTable
   },
+  methods: {
+    getBoss(id) {
+      const found = this.$store.getters.foremen.find((element) => element.ID == id)
+      if (found) {
+        return found.Name
+      }
+      return ''
+    }
+  },
   mounted() {
     this.$store.commit('setAddP', true)
     this.$store.commit('setAddLink', '/areas/new')
@@ -21,14 +30,5 @@ export default {
   unmounted() {
     this.$store.commit('cleanAddProps')
   },
-  methods: {
-    getBoss(id) {
-      const found = this.$store.getters.foremen.find((element) => element.ID == id)
-      if (found) {
-        return found.Name
-      }
-      return ''
-    }
-  }
 }
 </script>

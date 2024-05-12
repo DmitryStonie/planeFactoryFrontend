@@ -83,6 +83,8 @@ export default {
     this.$store.commit('cleanWorkshops')
     this.$store.commit('cleanAreas')
     this.$store.commit('cleanLabs')
+    this.$store.commit('cleanCompanies')
+
   },
   methods: {
     async saveData() {

@@ -504,6 +504,15 @@ const store = createStore({
     cleanEmployees(state){
       state.employees = [{}]
     },
+    cleanWorkshop(state){
+      state.workshop = [{}]
+    },
+    cleanForemen(state){
+      state.workshop = [{}]
+    },
+    cleanBrigades(state){
+      state.workshop = [{}]
+    },
     setEmployeeP(state, payload){
       state.employeeProps.employee = payload
     },
@@ -1413,7 +1422,6 @@ const store = createStore({
     // },
     async deleteArea(state, payload){
       axios.delete('http://localhost:8082/areas/' + payload, state.getters.areas[0])
-
     },
     // //LabCard
     // async getLab(context, payload){
