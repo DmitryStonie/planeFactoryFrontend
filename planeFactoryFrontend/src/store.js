@@ -784,9 +784,12 @@ const store = createStore({
     },
     async getAreas(context) {
       let result = await axios.get('http://localhost:8082/areas')
-      console.warn(result.data)
-      context.commit('setAreas', result.data.areas)
-      context.commit('setEmployees', result.data.bosses)
+      if(result.data.areas){
+        context.commit('setAreas', result.data.areas)
+      }
+      if(result.data.foremen){
+        context.commit('setForemen', result.data.foremen)
+      }
     },
     async getAssemblers(context) {
       let result = await axios.get('http://localhost:8082/assemblers')
@@ -886,9 +889,12 @@ const store = createStore({
     },
     async getWorkshops(context) {
       let result = await axios.get('http://localhost:8082/workshops')
-      context.commit('setWorkshops', result.data.workshops)
-      console.warn("get workshops")
-      console.warn(result.data.workshops)
+      if(result.data.workshops){
+        context.commit('setWorkshops', result.data.workshops)
+      }
+      if(result.data.bosses){
+        context.commit('setBosses', result.data.bosses)
+      }
     },
     //ProductCard
     async getProduct(context, payload) {
@@ -1303,6 +1309,7 @@ const store = createStore({
       }
       if (items.bosses) {
         context.commit('setBosses', items.bosses)
+        console.warn("balls")
       }
       if (items.foremen) {
         context.commit('setForemen', items.foremen)

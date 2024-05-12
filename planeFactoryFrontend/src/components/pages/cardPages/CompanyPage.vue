@@ -53,14 +53,6 @@
       >
         Save
       </button>
-      <button
-        @click="deleteData"
-        id="button"
-        type="button"
-        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] focus:outline-none"
-      >
-        Delete
-      </button>
     </div>
   </div>
 </template>
@@ -95,10 +87,6 @@ export default {
   methods: {
     async saveData() {
       this.$store.dispatch('putCompany', this.$route.params.id)
-    },
-    async deleteData() {
-      this.$store.dispatch('deleteCompany', this.$route.params.id)
-      this.$router.go(-1)
     }
   }
 }

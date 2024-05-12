@@ -16,6 +16,7 @@ export default {
     this.$store.commit('setAddP', true)
     this.$store.commit('setAddLink', '/tests/new')
     this.$store.commit('setAddText', 'Add new')
+    this.$store.dispatch('getTests')
   },
   unmounted() {
     this.$store.commit('cleanAddProps')
