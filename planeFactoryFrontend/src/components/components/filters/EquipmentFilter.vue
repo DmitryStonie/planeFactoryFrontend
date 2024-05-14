@@ -6,7 +6,7 @@
           <div class="grid grid-rows-1 gap-6 md:grid-rows-2 lg:grid-rows-3">
             <div class="flex flex-col">
               <label for="manufacturer" class="text-sm font-medium text-stone-600"
-                >Category222</label
+                >Category</label
               >
               
               <select
@@ -29,7 +29,7 @@
                 type="date"
                 id="date"
                 class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                v-model="$store.getters.FilterProps.selected.dateFrom2F"
+                v-model="$store.getters.FilterProps.selected.dateFrom2"
                 />
             </div>
 
@@ -39,7 +39,7 @@
                 type="date"
                 id="date"
                 class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                v-model="$store.getters.FilterProps.selected.dateTo2F"
+                v-model="$store.getters.FilterProps.selected.dateTo2"
                 />
             </div>
           </div>

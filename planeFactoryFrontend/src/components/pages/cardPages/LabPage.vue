@@ -1,6 +1,6 @@
 <template>
   <CardPageHeader />
-  <div class="mx-auto max-w-3xl px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
+  <div class="mx-auto max-w-3xl px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl mb-6">
     <div class="relative z-0 w-full mb-4">
       <input
         type="text"
@@ -30,21 +30,61 @@
         >Company</label
       >
     </div>
-    <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8 mb-4">
-      <h1 class="text-2xl font-bold mb-4 ml-4">Lab testers</h1>
-      <div class="flex max-lg:ml-auto space-x-3">
-        <router-link
-          class="px-4 mr-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
-          to="/employees/new"
-        >
-          Add new
-        </router-link>
+  </div>
+
+  
+  <div class="flex">
+    <div class="basis-1/4">
+      <TestedProductsFilter />
+    </div>
+    <div class="basis-1/2 bg-white border-0 shadow-lg sm:rounded-3xl mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8 mb-4 ">
+        <h1 class="text-2xl font-bold mb-4 ml-4">Tested products</h1>
+        <div class="flex max-lg:ml-auto space-x-3">
+          <router-link
+            class="px-4 mr-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+            to="/products/new"
+          >
+            Add new
+          </router-link>
+        </div>
+      </div>
+      <div class="h-64 overflow-auto">
+        <ProductsTable />
       </div>
     </div>
-    <div class="h-64 overflow-auto">
-      <EmployeesTable />
+    <div class="basis-1/4"></div>
+  </div>
+
+  <div class="flex">
+    <div class="basis-1/4">
+      <TestersFilter />
     </div>
-    <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8 mb-4">
+    <div class="basis-1/2 bg-white border-0 shadow-lg sm:rounded-3xl mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8 mb-4">
+        <h1 class="text-2xl font-bold mb-4 ml-4">Lab testers</h1>
+        <div class="flex max-lg:ml-auto space-x-3">
+          <router-link
+            class="px-4 mr-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+            to="/employees/new"
+          >
+            Add new
+          </router-link>
+        </div>
+      </div>
+      <div class="h-64 overflow-auto">
+        <EmployeesTable />
+      </div>
+    </div>
+    <div class="basis-1/4"></div>
+  </div>
+
+  <div class="flex">
+    <div class="basis-1/4">
+      <EquipmentFilter/>
+    </div>
+    <div class="basis-1/2 bg-white border-0 shadow-lg sm:rounded-3xl mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8 mb-4">
       <h1 class="text-2xl font-bold mb-4 ml-4">Lab equipment</h1>
       <div class="flex max-lg:ml-auto space-x-3">
         <router-link
@@ -58,21 +98,11 @@
     <div class="h-64 overflow-auto">
       <EquipmentsTable />
     </div>
-    <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8 mb-4">
-      <h1 class="text-2xl font-bold mb-4 ml-4">Tested products</h1>
-      <div class="flex max-lg:ml-auto space-x-3">
-        <router-link
-          class="px-4 mr-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
-          to="/products/new"
-        >
-          Add new
-        </router-link>
-      </div>
     </div>
-    <div class="h-64 overflow-auto">
-      <ProductsTable />
-    </div>
+    <div class="basis-1/4"></div>
   </div>
+
+
 </template>
 
 <script>
@@ -80,13 +110,19 @@ import CardPageHeader from '../../components/CardPageHeader.vue'
 import EmployeesTable from '../tables/EmployeesTable.vue'
 import EquipmentsTable from '../tables/EquipmentsTable.vue'
 import ProductsTable from '../tables/ProductsTable.vue'
+import EquipmentFilter from '../../components/filters/EquipmentFilter.vue'
+import TestedProductsFilter from '../../components/filters/TestedProductsFilter.vue'
+import TestersFilter from '../../components/filters/TestersFilter.vue'
 
 export default {
   components: {
     CardPageHeader,
     EmployeesTable,
     EquipmentsTable,
-    ProductsTable
+    ProductsTable,
+    EquipmentFilter,
+    TestedProductsFilter,
+    TestersFilter
   },
   mounted() {
     this.$store.commit('cleanLabs')

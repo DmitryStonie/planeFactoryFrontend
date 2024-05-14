@@ -89,7 +89,7 @@ import BrigadesTable from '../tables/BrigadesTable.vue'
 export default {
   components: {
     CardPageHeader,
-    BrigadesTable
+    BrigadesTable,
   },
   mounted() {
     this.$store.commit('cleanAreas')

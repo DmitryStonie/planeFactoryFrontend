@@ -10,7 +10,8 @@
                 id="manufacturer"
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Company"
-              >
+                @change="onCompanySelect()"
+                >
                 <option
                   v-for="option in $store.getters.FilterProps.companies"
                   :value="option.ID"
@@ -78,7 +79,7 @@
                 type="date"
                 id="date"
                 class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                v-model="$store.getters.FilterProps.selected.dateFrom1F"
+                v-model="$store.getters.FilterProps.selected.dateFrom1"
               />
             </div>
 
@@ -88,7 +89,7 @@
                 type="date"
                 id="date"
                 class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                v-model="$store.getters.FilterProps.selected.dateTo1F"
+                v-model="$store.getters.FilterProps.selected.dateTo1"
               />
             </div>
           </div>
@@ -124,7 +125,16 @@ export default {
       this.$store.commit('cleanCategoryF')
       this.$store.commit('cleanDateFrom1F')
       this.$store.commit('cleanDateTo1F')
+    },
+    onCompanySelect() {
+      this.$store.dispatch('getWorkshopsF')
+      this.$store.dispatch('getAreasF')
     }
+  },
+  mounted(){
+    this.$store.dispatch('getCompaniesF')
+    this.$store.dispatch('getWorkshopsF')
+    this.$store.dispatch('getAreasF')
   }
 }
 </script>

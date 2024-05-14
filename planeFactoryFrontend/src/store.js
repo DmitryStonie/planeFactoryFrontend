@@ -796,31 +796,31 @@ const store = createStore({
       state.FilterProps.selected.Category = ""
     },
     cleanCategory1F(state){
-      state.FilterProps.selected.category1 = " "
+      state.FilterProps.selected.category1 = ""
     },
     cleanDateFrom1F(state){
       state.FilterProps.selected.dateFrom1 = ""
     },
     cleanDateTo1F(state){
-      state.FilterProps.selected.dateTo1 = "0001-01-01"
+      state.FilterProps.selected.dateTo1 = ""
     },
     cleanCategory2F(state){
-      state.FilterProps.selected.category2 = " "
+      state.FilterProps.selected.category2 = ""
     },
     cleanDateFrom2F(state){
-      state.FilterProps.selected.dateFrom2 = "0001-01-01"
+      state.FilterProps.selected.dateFrom2 = ""
     },
     cleanDateTo2F(state){
-      state.FilterProps.selected.dateTo2 = "0001-01-01"
+      state.FilterProps.selected.dateTo2 = ""
     },
     cleanCategory3F(state){
-      state.FilterProps.selected.category3 = "asd"
+      state.FilterProps.selected.category3 = ""
     },
     cleanDateFrom3F(state){
-      state.FilterProps.selected.dateFrom3 = "0001-01-01"
+      state.FilterProps.selected.dateFrom3 = ""
     },
     cleanDateTo3F(state){
-      state.FilterProps.selected.dateTo3 = "0001-01-01"
+      state.FilterProps.selected.dateTo3 = ""
     },
     cleanFilter(state){
       state.commit("cleanWorkshopsF")
@@ -1052,66 +1052,66 @@ const store = createStore({
     FilterProps(state){
       return state.FilterProps
     },
-    // selected(state){
-    //   return state.FilterProps.selected
-    // },
-    // workshopsF(state){
-    //   return state.FilterProps.workshops
-    // },
-    // companiesF(state){
-    //   return state.FilterProps.companies
-    // },
-    // areasF(state){
-    //   return state.FilterProps.areas
-    // },
-    // brigadesF(state){
-    //   return state.FilterProps.brigades
-    // },
-    // categoriesF(state){
-    //   return state.FilterProps.categories1
-    // },
-    // CompanyF(state){
-    //   return state.FilterProps.selected.Company
-    // },
-    // WorkshopF(state){
-    //   return state.FilterProps.selected.Workshop
-    // },
-    // AreaF(state){
-    //   return state.FilterProps.selected.Area
-    // },
-    // CategoryF(state){
-    //   return state.FilterProps.selected.Category
-    // },
-    // BrigadeF(state){
-    //   return state.FilterProps.selected.Brigade
-    // },
-    // Category1F(state){
-    //   return state.FilterProps.selected.category1
-    // },
-    // dateFrom1F(state){
-    //   return state.FilterProps.selected.dateFrom
-    // },
-    // dateTo1F(state){
-    //   return state.FilterProps.selected.dateTo
-    // },
-    // Category2F(state){
-    //   return state.FilterProps.selected.category1
-    // },
-    // dateFrom2F(state){
-    //   return state.FilterProps.selected.dateFrom
-    // },
-    // dateTo2F(state){
-    //   return state.FilterProps.selected.dateTo
-    // },
-    // Category3F(state){
-    //   return state.FilterProps.selected.category1
-    // },
-    // dateFrom3F(state){
-    //   return state.FilterProps.selected.dateFrom
-    // },
-    // dateTo3F(state){
-    //   return state.FilterProps.selected.dateTo
-    // },
+    selected(state){
+      return state.FilterProps.selected
+    },
+    workshopsF(state){
+      return state.FilterProps.workshops
+    },
+    companiesF(state){
+      return state.FilterProps.companies
+    },
+    areasF(state){
+      return state.FilterProps.areas
+    },
+    brigadesF(state){
+      return state.FilterProps.brigades
+    },
+    categoriesF(state){
+      return state.FilterProps.categories1
+    },
+    CompanyF(state){
+      return state.FilterProps.selected.Company
+    },
+    WorkshopF(state){
+      return state.FilterProps.selected.Workshop
+    },
+    AreaF(state){
+      return state.FilterProps.selected.Area
+    },
+    CategoryF(state){
+      return state.FilterProps.selected.Category
+    },
+    BrigadeF(state){
+      return state.FilterProps.selected.Brigade
+    },
+    Category1F(state){
+      return state.FilterProps.selected.category1
+    },
+    dateFrom1F(state){
+      return state.FilterProps.selected.dateFrom
+    },
+    dateTo1F(state){
+      return state.FilterProps.selected.dateTo
+    },
+    Category2F(state){
+      return state.FilterProps.selected.category1
+    },
+    dateFrom2F(state){
+      return state.FilterProps.selected.dateFrom
+    },
+    dateTo2F(state){
+      return state.FilterProps.selected.dateTo
+    },
+    Category3F(state){
+      return state.FilterProps.selected.category1
+    },
+    dateFrom3F(state){
+      return state.FilterProps.selected.dateFrom
+    },
+    dateTo3F(state){
+      return state.FilterProps.selected.dateTo
+    },
   },
   actions: {
     async getAntiHailRockets(context) {
@@ -1836,7 +1836,34 @@ const store = createStore({
         context.commit('setCompany', items.company)
         context.commit('setCompany', items.company)
       }
-    }
+    },
+    //filters
+    async getCompaniesF(context) {
+      if(state.FilterProps.selected.Company.ID){
+        let result = await axios.get('http://localhost:8082/companies/' + state.FilterProps.selected.Company.ID)
+        context.commit('setWorkshopsF', result.data.workshops)
+        context.commit('setAreasF', result.data.areas)
+      } else{
+        let result = await axios.get('http://localhost:8082/companies')
+        context.commit('setCompaniesF', result.data.companies)
+      }
+    },
+    async getBrigadesF(context) {
+      let result = await axios.get('http://localhost:8082/brigades')
+      context.commit('setBrigadesF', result.data.brigades)
+    },
+    async getWorkshopsF(context) {
+      let result = await axios.get('http://localhost:8082/workshops')
+      if(result.data.workshops){
+        context.commit('setWorkshopsF', result.data.workshops)
+      }
+    },
+    async getAreasF(context) {
+      let result = await axios.get('http://localhost:8082/areas')
+      if(result.data.areas){
+        context.commit('setAreasF', result.data.areas)
+      }
+    },
   },
   // plugins: [createPersistedState()]
 })

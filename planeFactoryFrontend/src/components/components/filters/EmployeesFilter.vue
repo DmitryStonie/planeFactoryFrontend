@@ -118,8 +118,7 @@ export default {
       this.$store.commit('cleanWorkshopF')
       this.$store.commit('cleanAreaF')
       this.$store.commit('cleanCategoryF')
-      this.$store.commit('cleanDateFrom1F')
-      this.$store.commit('cleanDateTo1F')
+      this.$store.commit('cleanBrigadeF')
     }
   }
 }
