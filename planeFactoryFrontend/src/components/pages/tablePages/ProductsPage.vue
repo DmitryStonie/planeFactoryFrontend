@@ -1,16 +1,28 @@
 <template>
   <HomePageHeader />
-  <ProductsTable />
+  <div class ="flex">
+    <div class="basis-1/4">
+      <FilterComponent />
+    </div>
+    <div class="basis-1/2">
+      <ProductsTable />
+    </div>
+    <div class="basis-1/4">
+      
+    </div>
+  </div>
 </template>
 
 <script>
 import HomePageHeader from '../../components/HomePageHeader.vue'
 import ProductsTable from '../tables/ProductsTable.vue'
+import FilterComponent from '../../components/filters/ProductsFilter.vue'
 
 export default {
   components: {
     HomePageHeader,
-    ProductsTable
+    ProductsTable,
+    FilterComponent
   },
   async mounted() {
     this.$store.commit('setAddP', true)

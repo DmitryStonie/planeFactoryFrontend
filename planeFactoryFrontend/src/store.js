@@ -262,6 +262,78 @@ const store = createStore({
         workshop: false,
         company: false,
       },
+      FilterProps:{
+        workshops: [{
+          ID: Number,
+          Company: Number,
+          Boss: Number,
+          Name: String
+        }],
+        companies: [{
+          ID: Number,
+          Name: String
+        }],
+        areas: [{
+          ID: Number,
+          Workshop: Number,
+          Boss: Number,
+          Name: String
+        }],
+        brigades: [{
+          ID: Number,
+          WorkshopArea: Number,
+          Foreman: Number,
+          Name: String
+        }],
+        categories1: [
+          {value: "all"},
+          {value: "plane"},
+          {value: "hang glider"},
+          {value: "rocket"},
+          {value: "helicopter"},
+          {value: "glider"},
+          {value: "transport plane"},
+          {value: "military plane"},
+          {value: "civil plane"},
+          {value: "military rocket"},
+          {value: "civil rocket"},
+          {value: "anti-hail rocket"},
+        ],
+        selected: {
+          Company: {
+            ID: Number,
+            Name: String
+          },
+          Workshop: {
+            ID: Number,
+            Company: Number,
+            Boss: Number,
+            Name: String
+          },
+          Area: {
+            ID: Number,
+            Workshop: Number,
+            Boss: Number,
+            Name: String
+          },
+          Category: String,
+          Brigade: {
+            ID: Number,
+            WorkshopArea: Number,
+            Foreman: Number,
+            Name: String
+          },
+          category1: String,
+          dateFrom1: String,
+          dateTo1: String,
+          category2: String,
+          dateFrom2: String,
+          dateTo2: String,
+          category3: String,
+          dateFrom3: String,
+          dateTo3: String,
+        },
+      }
     }
   },
   mutations: {
@@ -510,6 +582,72 @@ const store = createStore({
     setAddText(state, payload) {
       state.addProperties.addText = payload
     },
+    //filters
+    setFilterProps(state, payload){
+      state.FilterProps = payload
+    },
+    // setSelected(state, payload){
+    //   state.FilterProps.selected = payload
+    // },
+    // setWorkshopsF(state, payload) {
+    //   state.FilterProps.workshops = payload
+    // },
+    // setCompaniesF(state, payload) {
+    //   state.FilterProps.companies = payload
+    // },
+    // setAreasF(state, payload) {
+    //   state.FilterProps.areas = payload
+    // },
+    // setBrigadesF(state, payload) {
+    //   state.FilterProps.brigades = payload
+    // },
+    // setCategoriesF(state, payload) {
+    //   state.FilterProps.categories = payload
+    //   console.warn(state.FilterProps.categories)
+    // },
+    // setWorkshopF(state, payload) {
+    //   state.FilterProps.selected.Workshop = payload
+    // },
+    // setCompanyF(state, payload) {
+    //   state.FilterProps.selected.Company = payload
+    // },
+    // setAreaF(state, payload) {
+    //   state.FilterProps.selected.Area = payload
+    // },
+    // setCategoryF(state, payload) {
+    //   state.FilterProps.selected.Category = payload
+    //   console.warn(payload)
+    // },
+    // setBrigadeF(state, payload) {
+    //   state.FilterProps.selected.Brigade = payload
+    // },
+    // setCategory1F(state, payload) {
+    //   state.FilterProps.selected.category1 = payload
+    // },
+    // setDateFrom1F(state, payload) {
+    //   state.FilterProps.selected.dateFrom1 = payload
+    // },
+    // setDateTo1F(state, payload) {
+    //   state.FilterProps.selected.dateTo1 = payload
+    // },
+    // setCategory2F(state, payload) {
+    //   state.FilterProps.selected.category2 = payload
+    // },
+    // setDateFrom2F(state, payload) {
+    //   state.FilterProps.selected.dateFrom2 = payload
+    // },
+    // setDateTo2F(state, payload) {
+    //   state.FilterProps.selected.dateTo2 = payload
+    // },
+    // setCategory3F(state, payload) {
+    //   state.FilterProps.selected.category3 = payload
+    // },
+    // setDateFrom3F(state, payload) {
+    //   state.FilterProps.selected.dateFrom3 = payload
+    // },
+    // setDateTo3F(state, payload) {
+    //   state.FilterProps.selected.dateTo3 = payload
+    // },
     //cleaners
     cleanAddProps(state) {
       state.addProperties = {
@@ -563,40 +701,40 @@ const store = createStore({
         company: false,
       }
     },
-    cleanproducts(state) {
+    cleanProducts(state) {
       state.products = [{}]
     },
-    cleanantiHailRockets(state) {
+    cleanAntiHailRockets(state) {
       state.antiHailRockets = [{}]
     },
-    cleancivilPlanes(state) {
+    cleanCivilPlanes(state) {
       state.civilPlanes = [{}]
     },
-    cleancivilRockets(state) {
+    cleanCivilRockets(state) {
       state.civilRockets = [{}]
     },
-    cleangliders(state) {
+    cleanGliders(state) {
       state.gliders = [{}]
     },
-    cleanhangGliders(state) {
+    cleanHangGliders(state) {
       state.hangGliders = [{}]
     },
-    cleanhelicopters(state) {
+    cleanHelicopters(state) {
       state.helicopters = [{}]
     },
-    cleanmilitaryPlanes(state) {
+    cleanMilitaryPlanes(state) {
       state.militaryPlanes = [{}]
     },
-    cleanmilitaryRockets(state) {
+    cleanMilitaryRockets(state) {
       state.militaryRockets = [{}]
     },
-    cleanplanes(state) {
+    cleanPlanes(state) {
       state.planes = [{}]
     },
-    cleanrockets(state) {
+    cleanRockets(state) {
       state.rockets = [{}]
     },
-    cleantransportPlanes(state) {
+    cleanTransportPlanes(state) {
       state.transportPlanes = [{}]
     },
     cleanWorkshops(state){
@@ -629,7 +767,80 @@ const store = createStore({
     cleanCompany(state){
       state.company = [{}]
     },
-   
+    cleanLabEquipment(state){
+      state.labEquipment = [{}]
+    },
+    //filters
+    cleanWorkshopsF(state){
+      state.FilterProps.workshops = [{}]
+    },
+    cleanCompaniesF(state){
+      state.FilterProps.companies = [{}]
+    },
+    cleanAreasF(state){
+      state.FilterProps.areas = [{}]
+    },
+    cleanBrigadesF(state){
+      state.FilterProps.brigades = [{}]
+    },
+    cleanWorkshopF(state){
+      state.FilterProps.selected.Company = {}
+    },
+    cleanCompanyF(state){
+      state.FilterProps.selected.Workshop = {}
+    },
+    cleanAreaF(state){
+      state.FilterProps.selected.Area = {}
+    },
+    cleanCategoryF(state){
+      state.FilterProps.selected.Category = ""
+    },
+    cleanCategory1F(state){
+      state.FilterProps.selected.category1 = " "
+    },
+    cleanDateFrom1F(state){
+      state.FilterProps.selected.dateFrom1 = ""
+    },
+    cleanDateTo1F(state){
+      state.FilterProps.selected.dateTo1 = "0001-01-01"
+    },
+    cleanCategory2F(state){
+      state.FilterProps.selected.category2 = " "
+    },
+    cleanDateFrom2F(state){
+      state.FilterProps.selected.dateFrom2 = "0001-01-01"
+    },
+    cleanDateTo2F(state){
+      state.FilterProps.selected.dateTo2 = "0001-01-01"
+    },
+    cleanCategory3F(state){
+      state.FilterProps.selected.category3 = "asd"
+    },
+    cleanDateFrom3F(state){
+      state.FilterProps.selected.dateFrom3 = "0001-01-01"
+    },
+    cleanDateTo3F(state){
+      state.FilterProps.selected.dateTo3 = "0001-01-01"
+    },
+    cleanFilter(state){
+      state.commit("cleanWorkshopsF")
+      state.commit("cleanCompaniesF")
+      state.commit("cleanAreasF")
+      state.commit("cleanBrigadesF")
+      state.commit("cleanWorkshopF")
+      state.commit("cleanCompanyF")
+      state.commit("cleanAreaF")
+      state.commit("cleanCategoryF")
+      state.commit("cleanCategory1F")
+      state.commit("cleanDateFrom1F")
+      state.commit("cleanDateTo1F")
+      state.commit("cleanCategory2F")
+      state.commit("cleanDateFrom2F")
+      state.commit("cleanDateTo2F")
+      state.commit("cleanCategory3F")
+      state.commit("cleanDateFrom3F")
+      state.commit("cleanDateTo3F")
+    }
   },
   getters: {
     //products
@@ -673,40 +884,40 @@ const store = createStore({
 
     //props
     antiHailP(state) {
-      return state.productProps.antiHail
+      return state.Props.antiHail
     },
     civilPlaneP(state) {
-      return state.productProps.civilPlane
+      return state.Props.civilPlane
     },
     civilRocketP(state) {
-      return state.productProps.civilRocket
+      return state.Props.civilRocket
     },
     gliderP(state) {
-      return state.productProps.glider
+      return state.Props.glider
     },
     hangGliderP(state) {
-      return state.productProps.hangGlider
+      return state.Props.hangGlider
     },
     helicopterP(state) {
-      return state.productProps.helicopter
+      return state.Props.helicopter
     },
     militaryPlaneP(state) {
-      return state.productProps.militaryPlane
+      return state.Props.militaryPlane
     },
     militaryRocketP(state) {
-      return state.productProps.militaryRocket
+      return state.Props.militaryRocket
     },
     planeP(state) {
-      return state.productProps.plane
+      return state.Props.plane
     },
     productP(state) {
-      return state.productProps.product
+      return state.Props.product
     },
     rocketP(state) {
-      return state.productProps.rocket
+      return state.Props.rocket
     },
     transportPlaneP(state) {
-      return state.productProps.transportPlane
+      return state.Props.transportPlane
     },
     areas(state) {
       return state.areas
@@ -791,42 +1002,39 @@ const store = createStore({
     },
     //EmployeeCard
     employeeP(state){
-      return state.employeeProps.employee
+      return state.Props.employee
     },
     engineeringStaffP(state){
-      return state.employeeProps.engineeringStaff
+      return state.Props.engineeringStaff
     },
     workerP(state){
-      return state.employeeProps.worker
+      return state.Props.worker
     },
     testerP(state){
-      return state.employeeProps.tester
+      return state.Props.tester
     },
     assemblerP(state){
-      return state.employeeProps.assembler
+      return state.Props.assembler
     },
     turnerP(state){
-      return state.employeeProps.turner
+      return state.Props.turner
     },
     locksmithP(state){
-      return state.employeeProps.locksmith
+      return state.Props.locksmith
     },
     welderP(state){
-      return state.employeeProps.welder
+      return state.Props.welder
     },
     engineerP(state){
-      return state.employeeProps.engineer
+      return state.Props.engineer
     },
     technologistP(state){
-      return state.employeeProps.technologist
+      return state.Props.technologist
     },
     technicianP(state){
-      return state.employeeProps.technician
+      return state.Props.technician
     },
-    //CompaniesPage
-    companiesPageProps(state){
-      return state.companiesPageProps4
-    },
+    
     bosses(state){
       return state.bosses
     },
@@ -840,6 +1048,70 @@ const store = createStore({
     company(state){
       return state.company
     },
+    //filters
+    FilterProps(state){
+      return state.FilterProps
+    },
+    // selected(state){
+    //   return state.FilterProps.selected
+    // },
+    // workshopsF(state){
+    //   return state.FilterProps.workshops
+    // },
+    // companiesF(state){
+    //   return state.FilterProps.companies
+    // },
+    // areasF(state){
+    //   return state.FilterProps.areas
+    // },
+    // brigadesF(state){
+    //   return state.FilterProps.brigades
+    // },
+    // categoriesF(state){
+    //   return state.FilterProps.categories1
+    // },
+    // CompanyF(state){
+    //   return state.FilterProps.selected.Company
+    // },
+    // WorkshopF(state){
+    //   return state.FilterProps.selected.Workshop
+    // },
+    // AreaF(state){
+    //   return state.FilterProps.selected.Area
+    // },
+    // CategoryF(state){
+    //   return state.FilterProps.selected.Category
+    // },
+    // BrigadeF(state){
+    //   return state.FilterProps.selected.Brigade
+    // },
+    // Category1F(state){
+    //   return state.FilterProps.selected.category1
+    // },
+    // dateFrom1F(state){
+    //   return state.FilterProps.selected.dateFrom
+    // },
+    // dateTo1F(state){
+    //   return state.FilterProps.selected.dateTo
+    // },
+    // Category2F(state){
+    //   return state.FilterProps.selected.category1
+    // },
+    // dateFrom2F(state){
+    //   return state.FilterProps.selected.dateFrom
+    // },
+    // dateTo2F(state){
+    //   return state.FilterProps.selected.dateTo
+    // },
+    // Category3F(state){
+    //   return state.FilterProps.selected.category1
+    // },
+    // dateFrom3F(state){
+    //   return state.FilterProps.selected.dateFrom
+    // },
+    // dateTo3F(state){
+    //   return state.FilterProps.selected.dateTo
+    // },
   },
   actions: {
     async getAntiHailRockets(context) {
@@ -879,7 +1151,7 @@ const store = createStore({
       context.commit('setPlanes', result.data.planes)
     },
     async getProducts(context) {
-      let result = await axios.get('http://localhost:8082/products/')
+      let result = await axios.get('http://localhost:8082/products/' /* payload here*/)
       result.data.products.forEach(item => {
         if (item.ProductionDate) {
           item.ProductionDate = date(item.ProductionDate)
@@ -1012,60 +1284,7 @@ const store = createStore({
     //ProductCard
     async getProduct(context, payload) {
       let result = await axios.get('http://localhost:8082/products/' + payload)
-      let items = result.data
-      items.products.forEach(item => {
-        if (item.ProductionDate) {
-          item.ProductionDate = date(item.ProductionDate)
-        }
-      });
-      if (items.antiHailRockets) {
-        context.commit('setantiHailP', true)
-        context.commit('setAntiHailRockets', items.antiHailRockets)
-      }
-      if (items.civilPlanes) {
-        context.commit('setcivilPlaneP', true)
-        context.commit('setCivilPlanes', items.civilPlanes)
-      }
-      if (items.civilRockets) {
-        context.commit('setcivilRocketP', true)
-        context.commit('setCivilRockets', items.civilRockets)
-      }
-      if (items.gliders) {
-        context.commit('setgliderP', true)
-        context.commit('setGliders', items.gliders)
-      }
-      if (items.hangGliders) {
-        context.commit('sethangGliderP', true)
-        context.commit('setHangGliders', items.hangGliders)
-      }
-      if (items.helicopters) {
-        context.commit('sethelicopterP', true)
-        context.commit('setHelicopters', items.helicopters)
-      }
-      if (items.militaryPlanes) {
-        context.commit('setmilitaryPlaneP', true)
-        context.commit('setMilitaryPlanes', items.militaryPlanes)
-      }
-      if (items.militaryRockets) {
-        context.commit('setmilitaryRocketP', true)
-        context.commit('setMilitaryRockets', items.militaryRockets)
-      }
-      if (items.planes) {
-        context.commit('setplaneP', true)
-        context.commit('setPlanes', items.planes)
-      }
-      if (items.products) {
-        context.commit('setproductP', true)
-        context.commit('setProducts', items.products)
-      }
-      if (items.rockets) {
-        context.commit('setrocketP', true)
-        context.commit('setRockets', items.rockets)
-      }
-      if (items.transportPlanes) {
-        context.commit('settransportPlaneP', true)
-        context.commit('setTransportPlanes', items.transportPlanes)
-      }
+      context.dispatch('parseResponse', result.data)
     },
     async putProduct(state, payload) {
       if (state.getters.antiHailP) {
@@ -1220,117 +1439,7 @@ const store = createStore({
     //CompanyCard
     async getEmployee(context, payload){
       let result = await axios.get('http://localhost:8082/employees/' + payload)
-      let items = result.data
-      console.warn(items)
-      items.employees.forEach(item => {
-        if (item.WorkExperience) {
-          item.WorkExperience = date(item.WorkExperience)
-        }
-        if (item.Birthdate) {
-          item.Birthdate = date(item.Birthdate)
-        }
-      });
-      if (items.employees) {
-        context.commit('setEmployeeP', true)
-        context.commit('setEmployees', items.employees)
-      }
-      if (items.engineeringStaff) {
-        context.commit('setEngineeringStaffP', true)
-        context.commit('setEngineeringStaff', items.engineeringStaff)
-      }
-      if (items.workers) {
-        context.commit('setWorkerP', true)
-        context.commit('setWorkers', items.workers)
-      }
-      if (items.testers) {
-        context.commit('setTesterP', true)
-        context.commit('setTesters', items.testers)
-      }
-      if (items.assemblers) {
-        items.assemblers.forEach(item => {
-          if (item.StartOfWork) {
-            item.StartOfWork = date(item.StartOfWork)
-          }
-          if (item.EndOfWork) {
-            item.EndOfWork = date(item.EndOfWork)
-          }
-        });
-        context.commit('setAssemblerP', true)
-        context.commit('setAssemblers', items.assemblers)
-      }
-      if (items.turners) {
-        items.turners.forEach(item => {
-          if (item.StartOfWork) {
-            item.StartOfWork = date(item.StartOfWork)
-          }
-          if (item.EndOfWork) {
-            item.EndOfWork = date(item.EndOfWork)
-          }
-        });
-        context.commit('setTurnerP', true)
-        context.commit('setTurners', items.turners)
-      }
-      if (items.locksmiths) {
-        items.locksmiths.forEach(item => {
-          if (item.StartOfWork) {
-            item.StartOfWork = date(item.StartOfWork)
-          }
-          if (item.EndOfWork) {
-            item.EndOfWork = date(item.EndOfWork)
-          }
-        });
-        context.commit('setLocksmithP', true)
-        context.commit('setLocksmiths', items.locksmiths)
-      }
-      if (items.welders) {
-        items.welders.forEach(item => {
-          if (item.StartOfWork) {
-            item.StartOfWork = date(item.StartOfWork)
-          }
-          if (item.EndOfWork) {
-            item.EndOfWork = date(item.EndOfWork)
-          }
-        });
-        context.commit('setWelderP', true)
-        context.commit('setWelders', items.welders)
-      }
-      if (items.engineers) {
-        items.engineers.forEach(item => {
-          if (item.StartOfWork) {
-            item.StartOfWork = date(item.StartOfWork)
-          }
-          if (item.EndOfWork) {
-            item.EndOfWork = date(item.EndOfWork)
-          }
-        });
-        context.commit('setEngineerP', true)
-        context.commit('setEngineers', items.engineers)
-      }
-      if (items.technologists) {
-        items.technologists.forEach(item => {
-          if (item.StartOfWork) {
-            item.StartOfWork = date(item.StartOfWork)
-          }
-          if (item.EndOfWork) {
-            item.EndOfWork = date(item.EndOfWork)
-          }
-        });
-        context.commit('setTechnologistP', true)
-        context.commit('setTechnologists', items.technologists)
-      }
-      if (items.technicians) {
-        items.technicians.forEach(item => {
-          if (item.StartOfWork) {
-            item.StartOfWork = date(item.StartOfWork)
-          }
-          if (item.EndOfWork) {
-            item.EndOfWork = date(item.EndOfWork)
-          }
-        });
-        context.commit('setTechnicianP', true)
-        context.commit('setTechnicians', items.technicians)
-      }
-    },
+      context.dispatch('parseResponse', result.data)    },
     async putEmployee(state, payload){
       if (state.getters.employeeP) {
         axios.put('http://localhost:8082/employees/' + payload, state.getters.employees[0])
@@ -1407,28 +1516,8 @@ const store = createStore({
     // //CompanyCard
     async getCompany(context, payload){
       let result = await axios.get('http://localhost:8082/companies/' + payload)
-      let items = result.data
-      if (items.companies) {
-        context.commit('setCompanies', items.companies)
-      }
-      if (items.workshops) {
-        context.commit('setWorkshops', items.workshops)
-      }
-      if (items.areas) {
-        context.commit('setAreas', items.areas)
-      }
-      if (items.labs) {
-        context.commit('setLabs', items.labs)
-      }
-      if (items.bosses) {
-        context.commit('setBosses', items.bosses)
-        console.warn("balls")
-      }
-      if (items.foremen) {
-        context.commit('setForemen', items.foremen)
-      }
-      
-    },
+      console.warn(result.data)
+      context.dispatch('parseResponse', result.data)    },
     async putCompany(state, payload){
       axios.put('http://localhost:8082/companies/' + payload, state.getters.companies[0])
     },
@@ -1442,28 +1531,7 @@ const store = createStore({
     // //WorkshopCard
     async getWorkshop(context, payload){
       let result = await axios.get('http://localhost:8082/workshops/' + payload)
-      let items = result.data
-      if (items.workshops) {
-        context.commit('setWorkshops', items.workshops)
-      }
-      if (items.bosses) {
-        console.warn("balls")
-        context.commit('setBosses', items.bosses)
-        console.warn(items.bosses)
-      }
-      if (items.areas) {
-        context.commit('setAreas', items.areas)
-      }
-      if (items.labs) {
-        context.commit('setLabs', items.labs)
-      }
-      if (items.employees) {
-        context.commit('setEmployees', items.employees)
-      }
-      if (items.foremen) {
-        context.commit('setForemen', items.foremen)
-      }
-    },
+      context.dispatch('parseResponse', result.data)    },
     async putWorkshop(state, payload){
       axios.put('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
     },
@@ -1476,28 +1544,7 @@ const store = createStore({
     //AreaCard
     async getArea(context, payload){
       let result = await axios.get('http://localhost:8082/areas/' + payload)
-      let items = result.data
-      if (items.areas) {
-        context.commit('setAreas', items.areas)
-      }
-      if (items.workshop) {
-        context.commit('setWorkshop', items.workshop)
-      }
-      if (items.workshops) {
-        context.commit('setWorkshops', items.workshops)
-      }
-      if (items.employees) {
-        context.commit('setEmployees', items.employees)
-      }
-      if (items.bosses) {
-        context.commit('setBosses', items.bosses)
-      }
-      if (items.foremen) {
-        context.commit('setForemen', items.foremen)
-      }
-      if (items.brigades) {
-        context.commit('setBrigades', items.brigades)
-      }
+      context.dispatch('parseResponse', result.data)
     },
     async putArea(state, payload){
       axios.put('http://localhost:8082/areas/' + payload, state.getters.areas[0])
@@ -1511,76 +1558,48 @@ const store = createStore({
     // //LabCard
     async getLab(context, payload){
       let result = await axios.get('http://localhost:8082/labs/' + payload)
-      parseResponse(result)
-      let items = result.data
-      
-      if (items.labs) {
-        context.commit('setLabs', items.labs)
-      }
-      if (items.company) {
-        context.commit('setCompany', items.company)
-      }
-      if (items.companies) {
-        context.commit('setCompanies', items.companies)
-      }
-      if (items.employees) {
-        context.commit('setEmployees', items.employees)
-      }
-      if (items.labEquipment) {
-        context.commit('setBosses', items.bosses)
-      }
-      if (items.products) {
-        context.commit('setProducts', items.products)
-      }
+      context.dispatch('parseResponse', result.data)
     },
     async putLab(state, payload){
-      
+      axios.put('http://localhost:8082/labs/' + payload, state.getters.labs[0])
     },
     // async postLab(context){
       
     // },
     async deleteLab(state, payload){
-      
+      axios.delete('http://localhost:8082/labs/' + payload, state.getters.labs[0])
     },
-    // //EmployeeCard
-    // async getEmployee(context, payload){
-
-    // },
-    // async putEmployee(state, payload){
-      
-    // },
-    // async postEmployee(context){
-      
-    // },
-    // async deleteEmployee(state, payload){
-      
-    // },
     // //BrigadeCard
-    // async getBrigade(context, payload){
+    async getBrigade(context, payload){
+      let result = await axios.get('http://localhost:8082/brigades/' + payload)
+      context.dispatch('parseResponse', result.data)
+    },
+    async putBrigade(state, payload){
+      axios.put('http://localhost:8082/labs/' + payload, state.getters.brigades[0])
 
-    // },
-    // async putBrigade(state, payload){
-      
-    // },
+    },
     // async postBrigade(context){
       
     // },
-    // async deleteBrigade(state, payload){
-      
-    // },
-    // //TestCard
-    // async getTest(context, payload){
+    async deleteBrigade(state, payload){
+      axios.delete('http://localhost:8082/labs/' + payload, state.getters.brigades[0])
 
-    // },
-    // async putTest(state, payload){
-      
-    // },
+    },
+    // //TestCard
+    async getTest(context, payload){
+      let result = await axios.get('http://localhost:8082/tests/' + payload)
+      context.dispatch('parseResponse', result.data)
+    },
+    async putTest(state, payload){
+      axios.put('http://localhost:8082/tests/' + payload, state.getters.tests[0])
+    },
     // async postTest(context){
       
     // },
-    // async deleteTest(state, payload){
-      
-    // },
+    async deleteTest(state, payload){
+      axios.delete('http://localhost:8082/tests/' + payload, state.getters.test[0])
+
+    },
     //cleanProps
     cleanAllProductsState(context){
       context.commit('cleanproducts')
@@ -1595,6 +1614,228 @@ const store = createStore({
       context.commit('cleanplanes')
       context.commit('cleanrockets')
       context.commit('cleantransportPlanes')
+    },
+    async parseResponse(context, items){
+      console.warn(items)
+      if(items.antiHailRockets){
+        context.commit('setantiHailP', true)
+        context.commit('setAntiHailRockets', items.antiHailRockets)
+      }
+      if(items.civilPlanes){
+        context.commit('setcivilPlaneP', true)
+        context.commit('setCivilPlanes', items.civilPlanes)
+      }
+      if(items.civilRockets){
+        context.commit('setcivilRocketP', true)
+        context.commit('setCivilRockets', items.civilRockets)
+      }
+      if(items.gliders){
+        context.commit('setgliderP', true)
+        context.commit('setGliders', items.gliders)
+      }
+      if(items.hangGliders){
+        context.commit('sethangGliderP', true)
+        context.commit('setHangGliders', items.hangGliders)
+      }
+      if(items.helicopters){
+        context.commit('sethelicopterP', true)
+        context.commit('setHelicopters', items.helicopters)
+      }
+      if(items.militaryPlanes){
+        context.commit('setmilitaryPlaneP', true)
+        context.commit('setMilitaryPlanes', items.militaryPlanes)
+      }
+      if(items.militaryRockets){
+        context.commit('setmilitaryRocketP', true)
+        context.commit('setMilitaryRockets', items.militaryRockets)
+      }
+      if(items.planes){
+        context.commit('setplaneP', true)
+        context.commit('setPlanes', items.planes)
+      }
+      if(items.rockets){
+        context.commit('setrocketP', true)
+        context.commit('setRockets', items.rockets)
+      }
+      if(items.transportPlanes){
+        context.commit('settransportPlaneP', true)
+        context.commit('setTransportPlanes', items.transportPlanes)
+      }
+      if(items.products){
+        items.products.forEach(item => {
+          if (item.ProductionDate) {
+            item.ProductionDate = date(item.ProductionDate)
+          }
+        });
+        context.commit('setproductP', true)
+        context.commit('setProducts', items.products)
+      }
+      if(items.areas){
+        context.commit('setAreas', items.areas)
+      }
+      if(items.assemblers){
+        items.assemblers.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
+        context.commit('setAssemblerP', true)
+        context.commit('setAssemblers', items.assemblers)
+      }
+      if(items.brigades){
+        context.commit('setBrigades', items.brigades)
+      }
+      if(items.companies){
+        context.commit('setCompanies', items.companies)
+      }
+      if(items.conductedTesting){
+        context.commit('setConductedTesting', items.conductedTesting)
+      }
+      if(items.employees){
+        items.employees.forEach(item => {
+          if (item.Birthdate) {
+            item.Birthdate = date(item.Birthdate)
+          }
+          if (item.WorkExperience) {
+            item.WorkExperience = date(item.WorkExperience)
+          }
+        });
+        context.commit('setEmployeeP', true)
+        context.commit('setEmployees', items.employees)
+      }
+      if(items.engineeringStaff){
+        context.commit('setEngineeringStaffP', true)
+        context.commit('setEngineeringStaff', items.engineeringStaff)
+      }
+      if(items.engineers){
+        items.engineers.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
+        context.commit('setEngineerP', true)
+        context.commit('setEngineers', items.engineers)
+      }
+      if(items.jobs){
+        context.commit('setJobs', items.jobs)
+      }
+      if(items.labEquipment){
+        context.commit('setLabEquipment', items.labEquipment)
+      }
+      if(items.labs){
+        context.commit('setLabs', items.labs)
+      }
+      if(items.locksmiths){
+        items.locksmiths.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
+        context.commit('setLocksmithP', true)
+        context.commit('setLocksmiths', items.locksmiths)
+      }
+      if(items.setTechnicians){
+        items.technicians.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
+        context.commit('setTechnicianP', true)
+        context.commit('setTechnicians', items.technicians)
+      }
+      if(items.technologists){
+        items.technologists.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
+        context.commit('setTechnologistP', true)
+        context.commit('setTechnologists', items.technologists)
+      }
+      if(items.testers){
+        context.commit('setTesterP', true)
+        context.commit('setTesters', items.testers)
+      }
+      if(items.tests){
+        items.tests.forEach(item => {
+          if (item.TimeStart) {
+            item.TimeStart = date(item.TimeStart)
+          }
+          if (item.TimeEnd) {
+            item.TimeEnd = date(item.TimeEnd)
+          }
+        });
+        context.commit('setTests', items.tests)
+      }
+      if(items.turners){
+        items.locksmiths.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
+        context.commit('setTurnerP', true)
+        context.commit('setTurners', items.turners)
+      }
+      if(items.usedInTest){
+        context.commit('setUsedInTest', items.usedInTest)
+      }
+      if(items.usesOfServices){
+        context.commit('setUsesOfServices', items.usesOfServices)
+      }
+      if(items.welders){
+        items.welders.forEach(item => {
+          if (item.StartOfWork) {
+            item.StartOfWork = date(item.StartOfWork)
+          }
+          if (item.EndOfWork) {
+            item.EndOfWork = date(item.EndOfWork)
+          }
+        });
+        context.commit('setWelderP', true)
+        context.commit('setWelders', items.welders)
+      }
+      if(items.workers){
+        context.commit('setWorkerP', true)
+        context.commit('setWorkers', items.workers)
+      }
+      if(items.worksAsMaster){
+        context.commit('setWorksAsMaster', items.worksAsMaster)
+      }
+      if(items.workshops){
+        context.commit('setWorkshops', items.workshops)
+      }
+      //extra stores
+      if(items.bosses){
+        context.commit('setBosses', items.bosses)
+      }
+      if(items.foremen){
+        context.commit('setForemen', items.foremen)
+      }
+      if(items.workshop){
+        context.commit('setWorkshop', items.workshop)
+      }
+      if(items.company){
+        context.commit('setCompany', items.company)
+        context.commit('setCompany', items.company)
+      }
     }
   },
   // plugins: [createPersistedState()]
@@ -1606,237 +1847,5 @@ export default store;
 function date(value) {
   if (value) {
     return moment(String(value)).format('YYYY-MM-DD')
-  }
-}
-
-function parseResponse(context, result){
-  let items = result.data
-  if(items.antiHailRockets){
-    context.commit('setAntiHailRockets', items.antiHailRockets)
-  }
-  if(items.civilPlanes){
-    context.commit('setCivilPlanes', items.civilPlanes)
-  }
-  if(items.civilRockets){
-    context.commit('setCivilRockets', items.civilRockets)
-  }
-  if(items.gliders){
-    context.commit('setGliders', items.gliders)
-  }
-  if(items.hangGliders){
-    context.commit('setHangGliders', items.hangGliders)
-  }
-  if(items.helicopters){
-    context.commit('setHelicopters', items.helicopters)
-  }
-  if(items.militaryPlanes){
-    context.commit('setMilitaryPlanes', items.militaryPlanes)
-  }
-  if(items.militaryRockets){
-    context.commit('setMilitaryRockets', items.militaryRockets)
-  }
-  if(items.planes){
-    context.commit('setPlanes', items.planes)
-  }
-  if(items.rockets){
-    context.commit('setRockets', items.rockets)
-  }
-  if(items.transportPlanes){
-    context.commit('setTransportPlanes', items.transportPlanes)
-  }
-  if(items.products){
-    items.products.forEach(item => {
-      if (item.ProductionDate) {
-        item.ProductionDate = date(item.ProductionDate)
-      }
-    });
-    context.commit('setProducts', items.products)
-  }
-  if(items.areas){
-    context.commit('setAreas', items.areas)
-  }
-  if(items.assemblers){
-    items.assemblers.forEach(item => {
-      if (item.StartOfWork) {
-        item.StartOfWork = date(item.StartOfWork)
-      }
-      if (item.EndOfWork) {
-        item.EndOfWork = date(item.EndOfWork)
-      }
-    });
-    context.commit('setAssemblers', items.assemblers)
-  }
-  if(items.brigades){
-    context.commit('setBrigades', items.brigades)
-  }
-  if(items.companies){
-    context.commit('setCompanies', items.companies)
-  }
-  if(items.conductedTesting){
-    context.commit('setConductedTesting', items.conductedTesting)
-  }
-  if(items.employees){
-    items.employees.forEach(item => {
-      if (item.Birthdate) {
-        item.Birthdate = date(item.Birthdate)
-      }
-      if (item.WorkExperience) {
-        item.WorkExperience = date(item.WorkExperience)
-      }
-    });
-    context.commit('setEmployees', items.employees)
-  }
-  if(items.engineeringStaff){
-    context.commit('setEngineeringStaff', items.engineeringStaff)
-  }
-  if(items.engineers){
-    items.engineers.forEach(item => {
-      if (item.StartOfWork) {
-        item.StartOfWork = date(item.StartOfWork)
-      }
-      if (item.EndOfWork) {
-        item.EndOfWork = date(item.EndOfWork)
-      }
-    });
-    context.commit('setEngineers', items.engineers)
-  }
-  if(items.jobs){
-    context.commit('setJobs', items.jobs)
-  }
-  if(items.labEquipment){
-    context.commit('setLabEquipment', items.labEquipment)
-  }
-  if(items.labs){
-    context.commit('setLabs', items.labs)
-  }
-  if(items.locksmiths){
-    items.locksmiths.forEach(item => {
-      if (item.StartOfWork) {
-        item.StartOfWork = date(item.StartOfWork)
-      }
-      if (item.EndOfWork) {
-        item.EndOfWork = date(item.EndOfWork)
-      }
-    });
-    context.commit('setLocksmiths', items.locksmiths)
-  }
-  if(items.setTechnicians){
-    items.technicians.forEach(item => {
-      if (item.StartOfWork) {
-        item.StartOfWork = date(item.StartOfWork)
-      }
-      if (item.EndOfWork) {
-        item.EndOfWork = date(item.EndOfWork)
-      }
-    });
-    context.commit('setTechnicians', items.technicians)
-  }
-  if(items.technologists){
-    items.technologists.forEach(item => {
-      if (item.StartOfWork) {
-        item.StartOfWork = date(item.StartOfWork)
-      }
-      if (item.EndOfWork) {
-        item.EndOfWork = date(item.EndOfWork)
-      }
-    });
-    context.commit('setTechnologists', items.technologists)
-  }
-  if(items.testers){
-    context.commit('setTesters', items.testers)
-  }
-  if(items.tests){
-    items.tests.forEach(item => {
-      if (item.TimeStart) {
-        item.TimeStart = date(item.TimeStart)
-      }
-      if (item.TimeEnd) {
-        item.TimeEnd = date(item.TimeEnd)
-      }
-    });
-    context.commit('setTests', items.tests)
-  }
-  if(items.turners){
-    items.locksmiths.forEach(item => {
-      if (item.StartOfWork) {
-        item.StartOfWork = date(item.StartOfWork)
-      }
-      if (item.EndOfWork) {
-        item.EndOfWork = date(item.EndOfWork)
-      }
-    });
-    context.commit('setTurners', items.turners)
-  }
-  if(items.usedInTest){
-    context.commit('setUsedInTest', items.usedInTest)
-  }
-  if(items.usesOfServices){
-    context.commit('setUsesOfServices', items.usesOfServices)
-  }
-  if(items.welders){
-    items.welders.forEach(item => {
-      if (item.StartOfWork) {
-        item.StartOfWork = date(item.StartOfWork)
-      }
-      if (item.EndOfWork) {
-        item.EndOfWork = date(item.EndOfWork)
-      }
-    });
-    context.commit('setWelders', items.welders)
-  }
-  if(items.workers){
-    context.commit('setWorkers', items.workers)
-  }
-  if(items.worksAsMaster){
-    context.commit('setWorksAsMaster', items.worksAsMaster)
-  }
-  if(items.workshops){
-    context.commit('setWorkshops', items.workshops)
-  }
-  //extra stores
-  if(items.bosses){
-    context.commit('setBosses', items.bosses)
-  }
-  if(items.){
-    context.commit('', items.)
-  }
-  if(items.){
-    context.commit('', items.)
-  }
-  if(items.){
-    context.commit('', items.)
-  }
-  if(items.){
-    context.commit('', items.)
-  }
-  if(items.){
-    context.commit('', items.)
-  }
-  if(items.){
-    context.commit('', items.)
-  }
-
-
-
-
-
-
-  if (items.labs) {
-    context.commit('setLabs', items.labs)
-  }
-  if (items.company) {
-    context.commit('setCompany', items.company)
-  }
-  if (items.companies) {
-    context.commit('setCompanies', items.companies)
-  }
-  if (items.employees) {
-    context.commit('setEmployees', items.employees)
-  }
-  if (items.labEquipment) {
-    context.commit('setBosses', items.bosses)
-  }
-  if (items.products) {
-    context.commit('setProducts', items.products)
   }
 }

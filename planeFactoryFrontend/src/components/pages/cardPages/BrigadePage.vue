@@ -6,6 +6,8 @@
 <script>
 import CardPageHeader from '../../components/CardPageHeader.vue'
 
+
+
 export default {
   components: {
     CardPageHeader

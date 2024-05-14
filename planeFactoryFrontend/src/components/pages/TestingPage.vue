@@ -203,9 +203,32 @@ select:focus ~ label {
       </form>
     </div>
   </div>
+  <div class="flex w-1/4">
+    <!-- <ProductsFilter />
+    <EmployeesFilter /> -->
+    <EquipmentFilter />
+    <TestedProductsFilter />
+    <TestersFilter />
+
+
+  </div>
 </template>
 
 <script>
 
+// import EmployeesFilter from '../components/filters/EmployeesFilter.vue'
+import EquipmentFilter from '../components/filters/EquipmentFilter.vue'
+// import ProductsFilter from '../components/filters/ProductsFilter.vue'
+import TestedProductsFilter from '../components/filters/TestedProductsFilter.vue'
+import TestersFilter from '../components/filters/TestersFilter.vue'
 
+export default{
+  components:{
+    //EmployeesFilter,
+    EquipmentFilter,
+    //ProductsFilter,
+    TestedProductsFilter,
+    TestersFilter
+  }
+}
 </script>

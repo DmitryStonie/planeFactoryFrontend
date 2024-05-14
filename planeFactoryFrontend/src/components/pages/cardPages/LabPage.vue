@@ -91,7 +91,7 @@ export default {
   mounted() {
     this.$store.commit('cleanLabs')
     this.$store.commit('cleanEmployees')
-    this.$store.commit('cleanEquipments')
+    this.$store.commit('cleanLabEquipment')
     this.$store.commit('cleanProducts')
     this.$store.commit('cleanCompanies')
     this.$store.commit('cleanCompany')
