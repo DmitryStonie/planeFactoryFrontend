@@ -11,7 +11,7 @@
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Company"
                 @change="onCompanySelect()"
-                >
+              >
                 <option
                   v-for="option in $store.getters.FilterProps.companies"
                   :value="option"
@@ -68,7 +68,7 @@
               >
                 <option
                   v-for="option in $store.getters.FilterProps.categories1"
-                  :value="option"
+                  :value="option.value"
                   :key="option.value"
                 >
                   {{ option.value }}
@@ -128,41 +128,51 @@ export default {
       this.$store.commit('cleanCategoryF')
       this.$store.commit('cleanDateFrom1F')
       this.$store.commit('cleanDateTo1F')
+      this.$store.dispatch('getCompaniesF')
+      this.$store.dispatch('getWorkshopsF')
+      this.$store.dispatch('getAreasF')
     },
-    search(){
-      this.$store.dispatch('getProducts', this.$store.getters.FilterProps.selected)
+    search() {
+      this.$store.dispatch('getProducts', {
+        company: this.$store.getters.FilterProps.selected.Company.ID,
+        workshop: this.$store.getters.FilterProps.selected.Workshop.ID,
+        area: this.$store.getters.FilterProps.selected.Area.ID,
+        category: this.$store.getters.FilterProps.selected.Category,
+        datefrom: this.$store.getters.FilterProps.selected.dateFrom1,
+        dateto: this.$store.getters.FilterProps.selected.dateTo1
+      })
     },
     onCompanySelect() {
       this.$store.dispatch('getCompaniesF')
     },
-    selectCompany(){
-      if(this.$store.getters.FilterProps.selected.Company.ID == 0){
-        this.$store.getters.FilterProps.companies.forEach(item => {
+    selectCompany() {
+      if (this.$store.getters.FilterProps.selected.Company.ID == 0) {
+        this.$store.getters.FilterProps.companies.forEach((item) => {
           if (item.ID == this.$store.getters.FilterProps.selected.Workshop.Company) {
             this.$store.getters.FilterProps.selected.Company = item
           }
-        });
+        })
       }
     },
-    selectWorkshop(){
-      if(this.$store.getters.FilterProps.selected.Workshop.ID == 0){
-        this.$store.getters.FilterProps.workshops.forEach(item => {
+    selectWorkshop() {
+      if (this.$store.getters.FilterProps.selected.Workshop.ID == 0) {
+        this.$store.getters.FilterProps.workshops.forEach((item) => {
           if (item.ID == this.$store.getters.FilterProps.selected.Area.Workshop) {
             this.$store.getters.FilterProps.selected.Workshop = item
           }
-        });
+        })
       }
     },
     onWorkshopSelect() {
       this.selectCompany()
       this.$store.dispatch('getWorkshopsF')
     },
-    onAreaSelect(){
+    onAreaSelect() {
       this.selectWorkshop()
       this.selectCompany()
     }
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch('getCompaniesF')
     this.$store.dispatch('getWorkshopsF')
     this.$store.dispatch('getAreasF')

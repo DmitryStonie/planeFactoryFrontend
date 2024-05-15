@@ -299,39 +299,52 @@ const store = createStore({
           {value: "civil rocket"},
           {value: "anti-hail rocket"},
         ],
+        categories2 :[
+          {value: "all"},
+          {value: "worker"},
+          {value: "engineering staff"},
+          {value: "tester"},
+          {value: "engineer"},
+          {value: "technologist"},
+          {value: "technician"},
+          {value: "assembler"},
+          {value: "turner"},
+          {value: "locksmith"},
+          {value: "welder"},
+        ],
         selected: {
           Company: {
             ID: 0,
-            Name: String
+            Name: ""
           },
           Workshop: {
             ID: 0,
-            Company: Number,
-            Boss: Number,
-            Name: String
+            Company: 0,
+            Boss: 0,
+            Name: ""
           },
           Area: {
             ID: 0,
-            Workshop: Number,
-            Boss: Number,
-            Name: String
+            Workshop: 0,
+            Boss: 0,
+            Name: ""
           },
-          Category: String,
+          Category: "",
           Brigade: {
             ID: 0,
-            WorkshopArea: Number,
-            Foreman: Number,
-            Name: String
+            WorkshopArea: 0,
+            Foreman: 0,
+            Name: ""
           },
-          category1: String,
-          dateFrom1: String,
-          dateTo1: String,
-          category2: String,
-          dateFrom2: String,
-          dateTo2: String,
-          category3: String,
-          dateFrom3: String,
-          dateTo3: String,
+          category1: "",
+          dateFrom1: "",
+          dateTo1: "",
+          category2: "",
+          dateFrom2: "",
+          dateTo2: "",
+          category3: "",
+          dateFrom3: "",
+          dateTo3: "",
         },
       }
     }
@@ -784,18 +797,42 @@ const store = createStore({
       state.FilterProps.brigades = [{}]
     },
     cleanWorkshopF(state){
-      state.FilterProps.selected.Workshop = {}
+      state.FilterProps.selected.Workshop = {
+        ID: 0,
+        Company: 0,
+        Boss: 0,
+        Name: ""
+      }
     },
     cleanCompanyF(state){
       state.FilterProps.selected.Company = {
-        ID:0, name: " "
-        }
+        ID:0, 
+        name: " "
+      }
     },
     cleanAreaF(state){
-      state.FilterProps.selected.Area = {}
+      state.FilterProps.selected.Area = {
+        ID: 0,
+        Workshop: 0,
+        Boss: 0,
+        Name: ""
+      }
     },
     cleanCategoryF(state){
-      state.FilterProps.selected.Category = ""
+      state.FilterProps.selected.Category = {
+        ID: 0,
+        WorkshopArea: 0,
+        Foreman: 0,
+        Name: ""
+      }
+    },
+    cleanBrigadeF(state){
+      state.FilterProps.selected.Brigade = {
+        ID: 0,
+        WorkshopArea: 0,
+        Foreman: 0,
+        Name: ""
+      }
     },
     cleanCategory1F(state){
       state.FilterProps.selected.category1 = ""
@@ -1153,13 +1190,13 @@ const store = createStore({
       context.commit('setPlanes', result.data.planes)
     },
     async getProducts(context, payload) {
-      let result = await axios.get('http://localhost:8082/products/',  payload)
-      result.data.products.forEach(item => {
-        if (item.ProductionDate) {
-          item.ProductionDate = date(item.ProductionDate)
-        }
-      });
-      console.warn(result.data.products)
+      let result = await axios.get('http://localhost:8082/products', {params:  payload})
+      console.warn(result.data)
+      // result.data.products.forEach(item => {
+      //   if (item.ProductionDate) {
+      //     item.ProductionDate = date(item.ProductionDate)
+      //   }
+      // });
       context.commit('setProducts', result.data.products)
     },
     async getRockets(context) {
@@ -1846,34 +1883,38 @@ const store = createStore({
         let result = await axios.get('http://localhost:8082/companies/' + state.FilterProps.selected.Company.ID)
         store.commit('setWorkshopsF', result.data.workshops)
         store.commit('setAreasF', result.data.areas)
+        store.commit('setBrigadesF', result.data.brigades)
       } else{
         let result = await axios.get('http://localhost:8082/companies')
         store.commit('setCompaniesF', result.data.companies)
+      }
+    },
+    async getWorkshopsF({context, state}) {
+      if(state.FilterProps.selected.Workshop.ID != 0){
+        let result = await axios.get('http://localhost:8082/workshops/' + state.FilterProps.selected.Workshop.ID)
+        store.commit('setAreasF', result.data.areas)
+        store.commit('setBrigadesF', result.data.brigades)
+      } else{
+        let result = await axios.get('http://localhost:8082/workshops')
+        store.commit('setWorkshopsF', result.data.workshops)
+      }
+    },
+    async getAreasF({context, state}) {
+      if(state.FilterProps.selected.Area.ID != 0){
+        let result = await axios.get('http://localhost:8082/areas/'  + state.FilterProps.selected.Workshop.ID)
+        store.commit('setBrigadesF', result.data.brigades)
+      }else{
+        let result = await axios.get('http://localhost:8082/areas')
+        store.commit('setAreasF', result.data.areas)
       }
     },
     async getBrigadesF(context) {
       let result = await axios.get('http://localhost:8082/brigades')
       context.commit('setBrigadesF', result.data.brigades)
     },
-    async getWorkshopsF({context, state}) {
-      if(state.FilterProps.selected.Workshop.ID != 0){
-        let result = await axios.get('http://localhost:8082/workshops/' + state.FilterProps.selected.Workshop.ID)
-        store.commit('setAreasF', result.data.areas)
-      } else{
-        let result = await axios.get('http://localhost:8082/workshops')
-        store.commit('setWorkshopsF', result.data.workshops)
-        store.commit('setAreasF', result.data.areas)
-      }
-    },
-    async getAreasF(context) {
-      let result = await axios.get('http://localhost:8082/areas')
-      if(result.data.areas){
-        context.commit('setAreasF', result.data.areas)
-      }
-    },
   },
-  // plugins: [createPersistedState()]
 })
+  // plugins: [createPersistedState()]
 
 
 export default store;

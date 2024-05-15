@@ -28,7 +28,14 @@ export default {
     this.$store.commit('setAddP', true)
     this.$store.commit('setAddLink', '/products/new')
     this.$store.commit('setAddText', 'Add new')
-    this.$store.dispatch('getProducts')
+    this.$store.dispatch('getProducts', {params: {
+        company: this.$store.getters.FilterProps.selected.Company.ID,
+        workshop: this.$store.getters.FilterProps.selected.Workshop.ID,
+        area: this.$store.getters.FilterProps.selected.Area.ID,
+        category: this.$store.getters.FilterProps.selected.Category,
+        datefrom: this.$store.getters.FilterProps.selected.dateFrom1,
+        dateto: this.$store.getters.FilterProps.selected.dateTo1,
+      }})
     
   },
   unmounted() {

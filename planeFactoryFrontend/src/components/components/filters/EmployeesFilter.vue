@@ -10,10 +10,11 @@
                 id="manufacturer"
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Company"
+                @change="onCompanySelect()"
               >
                 <option
                   v-for="option in $store.getters.FilterProps.companies"
-                  :value="option.ID"
+                  :value="option"
                   :key="option.ID"
                 >
                   {{ option.Name }}
@@ -26,10 +27,11 @@
                 id="manufacturer"
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Workshop"
+                @change="onWorkshopSelect()"
               >
                 <option
                   v-for="option in $store.getters.FilterProps.workshops"
-                  :value="option.ID"
+                  :value="option"
                   :key="option.ID"
                 >
                   {{ option.Name }}
@@ -45,10 +47,11 @@
                 id="manufacturer"
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Area"
+                @change="onAreaSelect()"
               >
                 <option
                   v-for="option in $store.getters.FilterProps.areas"
-                  :value="option.ID"
+                  :value="option"
                   :key="option.ID"
                 >
                   {{ option.Name }}
@@ -64,7 +67,7 @@
                 v-model="$store.getters.FilterProps.selected.Category"
               >
                 <option
-                  v-for="option in $store.getters.FilterProps.categories1"
+                  v-for="option in $store.getters.FilterProps.categories2"
                   :value="option.value"
                   :key="option.value"
                 >
@@ -79,10 +82,11 @@
                 id="manufacturer"
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Brigade"
+                @change="onBrigadeSelect()"
               >
                 <option
                   v-for="option in $store.getters.FilterProps.brigades"
-                  :value="option.value"
+                  :value="option"
                   :key="option.value"
                 ></option>
               </select>
@@ -99,6 +103,7 @@
             </button>
             <button
               type="button"
+              @click="search"
               class="rounded-lg bg-[#007bff] px-8 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring"
             >
               Search
@@ -119,7 +124,70 @@ export default {
       this.$store.commit('cleanAreaF')
       this.$store.commit('cleanCategoryF')
       this.$store.commit('cleanBrigadeF')
+      this.$store.dispatch('getCompaniesF')
+      this.$store.dispatch('getWorkshopsF')
+      this.$store.dispatch('getAreasF')
+      this.$store.dispatch('getBrigadesF')
+    },
+    search() {
+      this.$store.dispatch('getEmployeesF', {
+        company: this.$store.getters.FilterProps.selected.Company.ID,
+        workshop: this.$store.getters.FilterProps.selected.Workshop.ID,
+        area: this.$store.getters.FilterProps.selected.Area.ID,
+        category: this.$store.getters.FilterProps.selected.Category,
+        brigade: this.$store.getters.FilterProps.selected.Brigade.ID,
+      })
+    },
+    selectCompany() {
+      if (this.$store.getters.FilterProps.selected.Company.ID == 0) {
+        this.$store.getters.FilterProps.companies.forEach((item) => {
+          if (item.ID == this.$store.getters.FilterProps.selected.Workshop.Company) {
+            this.$store.getters.FilterProps.selected.Company = item
+          }
+        })
+      }
+    },
+    selectWorkshop() {
+      if (this.$store.getters.FilterProps.selected.Workshop.ID == 0) {
+        this.$store.getters.FilterProps.workshops.forEach((item) => {
+          if (item.ID == this.$store.getters.FilterProps.selected.Area.Workshop) {
+            this.$store.getters.FilterProps.selected.Workshop = item
+          }
+        })
+      }
+    },
+    selectArea() {
+      if (this.$store.getters.FilterProps.selected.Area.ID == 0) {
+        this.$store.getters.FilterProps.areas.forEach((item) => {
+          if (item.ID == this.$store.getters.FilterProps.selected.Brigade.WorkshopArea) {
+            this.$store.getters.FilterProps.selected.Area = item
+          }
+        })
+      }
+    },
+    onCompanySelect() {
+      this.$store.dispatch('getCompaniesF')
+    },
+    onWorkshopSelect() {
+      this.selectCompany()
+      this.$store.dispatch('getWorkshopsF')
+    },
+    onAreaSelect() {
+      this.selectWorkshop()
+      this.selectCompany()
+      this.$store.dispatch('getAreasF')
+    },
+    onBrigadesSelect() {
+      this.selectArea()
+      this.selectWorkshop()
+      this.selectCompany()
     }
+  },
+  mounted() {
+    this.$store.dispatch('getCompaniesF')
+    this.$store.dispatch('getWorkshopsF')
+    this.$store.dispatch('getAreasF')
+    this.$store.dispatch('getBrigadesF')
   }
 }
 </script>
