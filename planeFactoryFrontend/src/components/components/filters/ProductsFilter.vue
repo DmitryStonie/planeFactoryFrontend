@@ -14,7 +14,7 @@
                 >
                 <option
                   v-for="option in $store.getters.FilterProps.companies"
-                  :value="option.ID"
+                  :value="option"
                   :key="option.ID"
                 >
                   {{ option.Name }}
@@ -27,10 +27,11 @@
                 id="manufacturer"
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Workshop"
+                @change="onWorkshopSelect()"
               >
                 <option
                   v-for="option in $store.getters.FilterProps.workshops"
-                  :value="option.ID"
+                  :value="option"
                   :key="option.ID"
                 >
                   {{ option.Name }}
@@ -46,10 +47,11 @@
                 id="manufacturer"
                 class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 v-model="$store.getters.FilterProps.selected.Area"
+                @change="onAreaSelect()"
               >
                 <option
                   v-for="option in $store.getters.FilterProps.areas"
-                  :value="option.ID"
+                  :value="option"
                   :key="option.ID"
                 >
                   {{ option.Name }}
@@ -66,7 +68,7 @@
               >
                 <option
                   v-for="option in $store.getters.FilterProps.categories1"
-                  :value="option.value"
+                  :value="option"
                   :key="option.value"
                 >
                   {{ option.value }}
@@ -104,6 +106,7 @@
             </button>
             <button
               type="button"
+              @click="search"
               class="rounded-lg bg-[#007bff] px-8 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring"
             >
               Search
@@ -126,9 +129,37 @@ export default {
       this.$store.commit('cleanDateFrom1F')
       this.$store.commit('cleanDateTo1F')
     },
+    search(){
+      this.$store.dispatch('getProducts', this.$store.getters.FilterProps.selected)
+    },
     onCompanySelect() {
+      this.$store.dispatch('getCompaniesF')
+    },
+    selectCompany(){
+      if(this.$store.getters.FilterProps.selected.Company.ID == 0){
+        this.$store.getters.FilterProps.companies.forEach(item => {
+          if (item.ID == this.$store.getters.FilterProps.selected.Workshop.Company) {
+            this.$store.getters.FilterProps.selected.Company = item
+          }
+        });
+      }
+    },
+    selectWorkshop(){
+      if(this.$store.getters.FilterProps.selected.Workshop.ID == 0){
+        this.$store.getters.FilterProps.workshops.forEach(item => {
+          if (item.ID == this.$store.getters.FilterProps.selected.Area.Workshop) {
+            this.$store.getters.FilterProps.selected.Workshop = item
+          }
+        });
+      }
+    },
+    onWorkshopSelect() {
+      this.selectCompany()
       this.$store.dispatch('getWorkshopsF')
-      this.$store.dispatch('getAreasF')
+    },
+    onAreaSelect(){
+      this.selectWorkshop()
+      this.selectCompany()
     }
   },
   mounted(){

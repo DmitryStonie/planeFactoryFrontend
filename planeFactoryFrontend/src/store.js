@@ -301,24 +301,24 @@ const store = createStore({
         ],
         selected: {
           Company: {
-            ID: Number,
+            ID: 0,
             Name: String
           },
           Workshop: {
-            ID: Number,
+            ID: 0,
             Company: Number,
             Boss: Number,
             Name: String
           },
           Area: {
-            ID: Number,
+            ID: 0,
             Workshop: Number,
             Boss: Number,
             Name: String
           },
           Category: String,
           Brigade: {
-            ID: Number,
+            ID: 0,
             WorkshopArea: Number,
             Foreman: Number,
             Name: String
@@ -586,68 +586,68 @@ const store = createStore({
     setFilterProps(state, payload){
       state.FilterProps = payload
     },
-    // setSelected(state, payload){
-    //   state.FilterProps.selected = payload
-    // },
-    // setWorkshopsF(state, payload) {
-    //   state.FilterProps.workshops = payload
-    // },
-    // setCompaniesF(state, payload) {
-    //   state.FilterProps.companies = payload
-    // },
-    // setAreasF(state, payload) {
-    //   state.FilterProps.areas = payload
-    // },
-    // setBrigadesF(state, payload) {
-    //   state.FilterProps.brigades = payload
-    // },
-    // setCategoriesF(state, payload) {
-    //   state.FilterProps.categories = payload
-    //   console.warn(state.FilterProps.categories)
-    // },
-    // setWorkshopF(state, payload) {
-    //   state.FilterProps.selected.Workshop = payload
-    // },
-    // setCompanyF(state, payload) {
-    //   state.FilterProps.selected.Company = payload
-    // },
-    // setAreaF(state, payload) {
-    //   state.FilterProps.selected.Area = payload
-    // },
-    // setCategoryF(state, payload) {
-    //   state.FilterProps.selected.Category = payload
-    //   console.warn(payload)
-    // },
-    // setBrigadeF(state, payload) {
-    //   state.FilterProps.selected.Brigade = payload
-    // },
-    // setCategory1F(state, payload) {
-    //   state.FilterProps.selected.category1 = payload
-    // },
-    // setDateFrom1F(state, payload) {
-    //   state.FilterProps.selected.dateFrom1 = payload
-    // },
-    // setDateTo1F(state, payload) {
-    //   state.FilterProps.selected.dateTo1 = payload
-    // },
-    // setCategory2F(state, payload) {
-    //   state.FilterProps.selected.category2 = payload
-    // },
-    // setDateFrom2F(state, payload) {
-    //   state.FilterProps.selected.dateFrom2 = payload
-    // },
-    // setDateTo2F(state, payload) {
-    //   state.FilterProps.selected.dateTo2 = payload
-    // },
-    // setCategory3F(state, payload) {
-    //   state.FilterProps.selected.category3 = payload
-    // },
-    // setDateFrom3F(state, payload) {
-    //   state.FilterProps.selected.dateFrom3 = payload
-    // },
-    // setDateTo3F(state, payload) {
-    //   state.FilterProps.selected.dateTo3 = payload
-    // },
+    setSelected(state, payload){
+      state.FilterProps.selected = payload
+    },
+    setWorkshopsF(state, payload) {
+      state.FilterProps.workshops = payload
+    },
+    setCompaniesF(state, payload) {
+      state.FilterProps.companies = payload
+    },
+    setAreasF(state, payload) {
+      state.FilterProps.areas = payload
+    },
+    setBrigadesF(state, payload) {
+      state.FilterProps.brigades = payload
+    },
+    setCategoriesF(state, payload) {
+      state.FilterProps.categories = payload
+      console.warn(state.FilterProps.categories)
+    },
+    setWorkshopF(state, payload) {
+      state.FilterProps.selected.Workshop = payload
+    },
+    setCompanyF(state, payload) {
+      state.FilterProps.selected.Company = payload
+    },
+    setAreaF(state, payload) {
+      state.FilterProps.selected.Area = payload
+    },
+    setCategoryF(state, payload) {
+      state.FilterProps.selected.Category = payload
+      console.warn(payload)
+    },
+    setBrigadeF(state, payload) {
+      state.FilterProps.selected.Brigade = payload
+    },
+    setCategory1F(state, payload) {
+      state.FilterProps.selected.category1 = payload
+    },
+    setDateFrom1F(state, payload) {
+      state.FilterProps.selected.dateFrom1 = payload
+    },
+    setDateTo1F(state, payload) {
+      state.FilterProps.selected.dateTo1 = payload
+    },
+    setCategory2F(state, payload) {
+      state.FilterProps.selected.category2 = payload
+    },
+    setDateFrom2F(state, payload) {
+      state.FilterProps.selected.dateFrom2 = payload
+    },
+    setDateTo2F(state, payload) {
+      state.FilterProps.selected.dateTo2 = payload
+    },
+    setCategory3F(state, payload) {
+      state.FilterProps.selected.category3 = payload
+    },
+    setDateFrom3F(state, payload) {
+      state.FilterProps.selected.dateFrom3 = payload
+    },
+    setDateTo3F(state, payload) {
+      state.FilterProps.selected.dateTo3 = payload
+    },
     //cleaners
     cleanAddProps(state) {
       state.addProperties = {
@@ -784,10 +784,12 @@ const store = createStore({
       state.FilterProps.brigades = [{}]
     },
     cleanWorkshopF(state){
-      state.FilterProps.selected.Company = {}
+      state.FilterProps.selected.Workshop = {}
     },
     cleanCompanyF(state){
-      state.FilterProps.selected.Workshop = {}
+      state.FilterProps.selected.Company = {
+        ID:0, name: " "
+        }
     },
     cleanAreaF(state){
       state.FilterProps.selected.Area = {}
@@ -1150,13 +1152,14 @@ const store = createStore({
       let result = await axios.get('http://localhost:8082/planes/')
       context.commit('setPlanes', result.data.planes)
     },
-    async getProducts(context) {
-      let result = await axios.get('http://localhost:8082/products/' /* payload here*/)
+    async getProducts(context, payload) {
+      let result = await axios.get('http://localhost:8082/products/',  payload)
       result.data.products.forEach(item => {
         if (item.ProductionDate) {
           item.ProductionDate = date(item.ProductionDate)
         }
       });
+      console.warn(result.data.products)
       context.commit('setProducts', result.data.products)
     },
     async getRockets(context) {
@@ -1184,7 +1187,7 @@ const store = createStore({
       let result = await axios.get('http://localhost:8082/brigades')
       context.commit('setBrigades', result.data.brigades)
     },
-    async getCompanies(context) {
+    async getCompanies(context, payload) {
       let result = await axios.get('http://localhost:8082/companies')
       context.commit('setCompanies', result.data.companies)
     },
@@ -1838,24 +1841,28 @@ const store = createStore({
       }
     },
     //filters
-    async getCompaniesF(context) {
-      if(state.FilterProps.selected.Company.ID){
+    async getCompaniesF({context, state}) {
+      if(state.FilterProps.selected.Company.ID != 0){
         let result = await axios.get('http://localhost:8082/companies/' + state.FilterProps.selected.Company.ID)
-        context.commit('setWorkshopsF', result.data.workshops)
-        context.commit('setAreasF', result.data.areas)
+        store.commit('setWorkshopsF', result.data.workshops)
+        store.commit('setAreasF', result.data.areas)
       } else{
         let result = await axios.get('http://localhost:8082/companies')
-        context.commit('setCompaniesF', result.data.companies)
+        store.commit('setCompaniesF', result.data.companies)
       }
     },
     async getBrigadesF(context) {
       let result = await axios.get('http://localhost:8082/brigades')
       context.commit('setBrigadesF', result.data.brigades)
     },
-    async getWorkshopsF(context) {
-      let result = await axios.get('http://localhost:8082/workshops')
-      if(result.data.workshops){
-        context.commit('setWorkshopsF', result.data.workshops)
+    async getWorkshopsF({context, state}) {
+      if(state.FilterProps.selected.Workshop.ID != 0){
+        let result = await axios.get('http://localhost:8082/workshops/' + state.FilterProps.selected.Workshop.ID)
+        store.commit('setAreasF', result.data.areas)
+      } else{
+        let result = await axios.get('http://localhost:8082/workshops')
+        store.commit('setWorkshopsF', result.data.workshops)
+        store.commit('setAreasF', result.data.areas)
       }
     },
     async getAreasF(context) {
