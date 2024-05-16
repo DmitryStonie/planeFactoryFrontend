@@ -13,6 +13,54 @@
     <AntiHailRocketInfo v-if="$store.getters.antiHailP" />
     <HelicopterInfo v-if="$store.getters.helicopterP" />
     <GliderInfo v-if="$store.getters.gliderP" />
+
+
+    <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8  mb-4">
+      <h1 class="text-2xl font-bold mb-4 ml-4">Jobs</h1>
+      <div class="flex max-lg:ml-auto space-x-3">
+        <router-link
+          class="px-4 mr-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+          to="/jobs/new"
+        >
+          Add new
+        </router-link>
+      </div>
+    </div>
+    <div class="h-32 overflow-auto">
+      <JobsTable />
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8  mb-4">
+      <h1 class="text-2xl font-bold mb-4 ml-4">Brigades involved</h1>
+      <div class="flex max-lg:ml-auto space-x-3">
+        <router-link
+          class="px-4 mr-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+          to="/brigades/new"
+        >
+          Add new
+        </router-link>
+      </div>
+    </div>
+    <div class="h-32 overflow-auto">
+      <BrigadesTable />
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8  mb-4">
+      <h1 class="text-2xl font-bold mb-4 ml-4">Tested by Labs</h1>
+      <div class="flex max-lg:ml-auto space-x-3">
+        <router-link
+          class="px-4 mr-4 py-2 text-sm rounded-full font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]"
+          to="/labs/new"
+        >
+          Add new
+        </router-link>
+      </div>
+    </div>
+    <div class="h-32 overflow-auto">
+      <LabsTable />
+    </div>
+
+
+
+
     <div class="flex">
       <button
       @click="saveData"
@@ -48,6 +96,9 @@ import ProductInfo from '../productInfo/ProductInfo.vue'
 import RocketInfo from '../productInfo/RocketInfo.vue'
 import TransportPlaneInfo from '../productInfo/TransportPlaneInfo.vue'
 import CardPageHeader from '../../components/CardPageHeader.vue'
+import JobsTable from '../tables/JobsTable.vue'
+import BrigadesTable from '../tables/BrigadesTable.vue'
+import LabsTable from '../tables/LabsTable.vue'
 
 export default {
   components: {
@@ -63,7 +114,10 @@ export default {
     ProductInfo,
     RocketInfo,
     TransportPlaneInfo,
-    CardPageHeader
+    CardPageHeader,
+    JobsTable,
+    BrigadesTable,
+    LabsTable
   },
 
   methods: {

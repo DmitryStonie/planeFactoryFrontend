@@ -1192,11 +1192,11 @@ const store = createStore({
     async getProducts(context, payload) {
       let result = await axios.get('http://localhost:8082/products', {params:  payload})
       console.warn(result.data)
-      // result.data.products.forEach(item => {
-      //   if (item.ProductionDate) {
-      //     item.ProductionDate = date(item.ProductionDate)
-      //   }
-      // });
+      result.data.products.forEach(item => {
+        if (item.ProductionDate) {
+          item.ProductionDate = date(item.ProductionDate)
+        }
+      });
       context.commit('setProducts', result.data.products)
     },
     async getRockets(context) {
@@ -1232,8 +1232,9 @@ const store = createStore({
       let result = await axios.get('http://localhost:8082/conducted-testing')
       context.commit('setConductedTesting', result.data.conductedTesting)
     },
-    async getEmployees(context) {
-      let result = await axios.get('http://localhost:8082/employees')
+    async getEmployees(context, payload) {
+      let result = await axios.get('http://localhost:8082/employees', {params:  payload})
+      if(result.data.employees){
       result.data.employees.forEach(item => {
         if (item.Birthdate) {
           item.Birthdate = date(item.Birthdate)
@@ -1242,6 +1243,7 @@ const store = createStore({
           item.WorkExperience = date(item.WorkExperience)
         }
       });
+    }
       context.commit('setEmployees', result.data.employees)
     },
     async getEngineeringStaff(context) {

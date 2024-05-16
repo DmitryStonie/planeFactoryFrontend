@@ -130,7 +130,7 @@ export default {
       this.$store.dispatch('getBrigadesF')
     },
     search() {
-      this.$store.dispatch('getEmployeesF', {
+      this.$store.dispatch('getEmployees', {
         company: this.$store.getters.FilterProps.selected.Company.ID,
         workshop: this.$store.getters.FilterProps.selected.Workshop.ID,
         area: this.$store.getters.FilterProps.selected.Area.ID,
