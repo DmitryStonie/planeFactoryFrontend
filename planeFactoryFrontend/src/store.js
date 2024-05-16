@@ -506,7 +506,7 @@ const store = createStore({
       state.Props.transportPlane = payload
     },
     setproductP(state, payload) {
-      state.Props.product = payload
+      state.Props.products = payload
     },
     //other 23
     setAreasP(state, payload){
@@ -682,7 +682,7 @@ const store = createStore({
         planes: false,
         rockets: false,
         transportPlanes: false,
-        products: false,
+        product: false,
         //other 23
         areas: false,
         assemblers: false,
@@ -715,86 +715,86 @@ const store = createStore({
       }
     },
     cleanProducts(state) {
-      state.products = [{}]
+      state.products = []
     },
     cleanAntiHailRockets(state) {
-      state.antiHailRockets = [{}]
+      state.antiHailRockets = []
     },
     cleanCivilPlanes(state) {
-      state.civilPlanes = [{}]
+      state.civilPlanes = []
     },
     cleanCivilRockets(state) {
-      state.civilRockets = [{}]
+      state.civilRockets = []
     },
     cleanGliders(state) {
-      state.gliders = [{}]
+      state.gliders = []
     },
     cleanHangGliders(state) {
-      state.hangGliders = [{}]
+      state.hangGliders = []
     },
     cleanHelicopters(state) {
-      state.helicopters = [{}]
+      state.helicopters = []
     },
     cleanMilitaryPlanes(state) {
-      state.militaryPlanes = [{}]
+      state.militaryPlanes = []
     },
     cleanMilitaryRockets(state) {
-      state.militaryRockets = [{}]
+      state.militaryRockets = []
     },
     cleanPlanes(state) {
-      state.planes = [{}]
+      state.planes = []
     },
     cleanRockets(state) {
-      state.rockets = [{}]
+      state.rockets = []
     },
     cleanTransportPlanes(state) {
-      state.transportPlanes = [{}]
+      state.transportPlanes = []
     },
     cleanWorkshops(state){
-      state.workshops = [{}]
+      state.workshops = []
     },
     cleanAreas(state){
-      state.areas = [{}]
+      state.areas = []
     },
     cleanLabs(state){
-      state.labs = [{}]
+      state.labs = []
     },
     cleanCompanies(state){
-      state.companies = [{}]
+      state.companies = []
     },
     cleanBosses(state){
-      state.bosses = [{}]
+      state.bosses = []
     },
     cleanEmployees(state){
-      state.employees = [{}]
+      state.employees = []
     },
     cleanWorkshop(state){
-      state.workshop = [{}]
+      state.workshop = []
     },
     cleanForemen(state){
-      state.workshop = [{}]
+      state.workshop = []
     },
     cleanBrigades(state){
-      state.workshop = [{}]
+      state.workshop = []
     },
     cleanCompany(state){
-      state.company = [{}]
+      state.company = []
     },
     cleanLabEquipment(state){
-      state.labEquipment = [{}]
+      state.labEquipment = []
     },
     //filters
     cleanWorkshopsF(state){
-      state.FilterProps.workshops = [{}]
+      state.FilterProps.workshops = []
     },
     cleanCompaniesF(state){
-      state.FilterProps.companies = [{}]
+      state.FilterProps.companies = []
     },
     cleanAreasF(state){
-      state.FilterProps.areas = [{}]
+      state.FilterProps.areas = []
     },
     cleanBrigadesF(state){
-      state.FilterProps.brigades = [{}]
+      state.FilterProps.brigades = []
     },
     cleanWorkshopF(state){
       state.FilterProps.selected.Workshop = {
@@ -922,41 +922,8 @@ const store = createStore({
     //other 23
 
     //props
-    antiHailP(state) {
-      return state.Props.antiHail
-    },
-    civilPlaneP(state) {
-      return state.Props.civilPlane
-    },
-    civilRocketP(state) {
-      return state.Props.civilRocket
-    },
-    gliderP(state) {
-      return state.Props.glider
-    },
-    hangGliderP(state) {
-      return state.Props.hangGlider
-    },
-    helicopterP(state) {
-      return state.Props.helicopter
-    },
-    militaryPlaneP(state) {
-      return state.Props.militaryPlane
-    },
-    militaryRocketP(state) {
-      return state.Props.militaryRocket
-    },
-    planeP(state) {
-      return state.Props.plane
-    },
-    productP(state) {
-      return state.Props.product
-    },
-    rocketP(state) {
-      return state.Props.rocket
-    },
-    transportPlaneP(state) {
-      return state.Props.transportPlane
+    Props(state){
+      return state.Props
     },
     areas(state) {
       return state.areas
@@ -1191,13 +1158,16 @@ const store = createStore({
     },
     async getProducts(context, payload) {
       let result = await axios.get('http://localhost:8082/products', {params:  payload})
-      console.warn(result.data)
-      result.data.products.forEach(item => {
-        if (item.ProductionDate) {
-          item.ProductionDate = date(item.ProductionDate)
-        }
-      });
-      context.commit('setProducts', result.data.products)
+      if(result.data.products){
+        result.data.products.forEach(item => {
+          if (item.ProductionDate) {
+            item.ProductionDate = date(item.ProductionDate)
+          }
+        });
+        context.commit('setProducts', result.data.products)
+      } else{
+        context.commit('cleanProducts')
+      }
     },
     async getRockets(context) {
       let result = await axios.get('http://localhost:8082/rockets')
@@ -1563,9 +1533,9 @@ const store = createStore({
     async putCompany(state, payload){
       axios.put('http://localhost:8082/companies/' + payload, state.getters.companies[0])
     },
-    // async postCompany(context){
-
-    // },
+    async postCompany(context, payload){
+      axios.post('http://localhost:8082/companies/', payload)
+    },
     // async deleteCompany(state, payload){
     //         //not works
     //         axios.delete('http://localhost:8082/companies/' + payload, state.getters.companies[0])
@@ -1642,21 +1612,7 @@ const store = createStore({
       axios.delete('http://localhost:8082/tests/' + payload, state.getters.test[0])
 
     },
-    //cleanProps
-    cleanAllProductsState(context){
-      context.commit('cleanproducts')
-      context.commit('cleanantiHailRockets')
-      context.commit('cleancivilPlanes')
-      context.commit('cleancivilRockets')
-      context.commit('cleangliders')
-      context.commit('cleanhangGliders')
-      context.commit('cleanhelicopters')
-      context.commit('cleanmilitaryPlanes')
-      context.commit('cleanmilitaryRockets')
-      context.commit('cleanplanes')
-      context.commit('cleanrockets')
-      context.commit('cleantransportPlanes')
-    },
+
     async parseResponse(context, items){
       console.warn(items)
       if(items.antiHailRockets){

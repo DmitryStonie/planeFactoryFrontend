@@ -25,6 +25,7 @@ export default {
     this.$store.commit('setAddP', true)
     this.$store.commit('setAddLink', '/areas/new')
     this.$store.commit('setAddText', 'Add new')
+    this.$store.commit('cleanBrigades')
     this.$store.dispatch('getAreas')
   },
   unmounted() {

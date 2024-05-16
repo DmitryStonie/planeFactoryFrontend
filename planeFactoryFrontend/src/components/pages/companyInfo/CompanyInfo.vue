@@ -15,4 +15,10 @@
   
 </template>
 
-<script></script>
+<script>
+export default{
+  mounted(){
+    console.warn(this.$store.companies)
+  }
+}
+</script>

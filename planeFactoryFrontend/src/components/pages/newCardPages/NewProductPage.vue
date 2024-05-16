@@ -1,19 +1,19 @@
 <template>
     <CardPageHeader />
   <div class="mx-auto max-w-3xl px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
-    <ProductNew v-if="$store.getters.productP" />
+    <ProductNew v-if="$store.getters.Props.products" />
     <SelectCategory />
-    <PlaneInfo v-if="$store.getters.planeP" />
-    <TransportPlaneInfo v-if="$store.getters.transportPlaneP" />
-    <MilitaryPlaneInfo v-if="$store.getters.militaryPlaneP" />
-    <CivilPlaneInfo v-if="$store.getters.civilPlaneP" />
-    <HangGliderInfo v-if="$store.getters.hangGliderP" />
-    <RocketInfo v-if="$store.getters.rocketP" />
-    <MilitaryRocketInfo v-if="$store.getters.militaryRocketP" />
-    <CivilRocketInfo v-if="$store.getters.civilRocketP" />
-    <AntiHailRocketInfo v-if="$store.getters.antiHailP" />
-    <HelicopterInfo v-if="$store.getters.helicopterP" />
-    <GliderInfo v-if="$store.getters.gliderP" />
+    <PlaneInfo v-if="$store.getters.Props.plane" />
+    <TransportPlaneInfo v-if="$store.getters.Props.transportPlane" />
+    <MilitaryPlaneInfo v-if="$store.getters.Props.militaryPlane" />
+    <CivilPlaneInfo v-if="$store.getters.Props.civilPlane" />
+    <HangGliderInfo v-if="$store.getters.Props.hangGlider" />
+    <RocketInfo v-if="$store.getters.Props.rocket" />
+    <MilitaryRocketInfo v-if="$store.getters.Props.militaryRocket" />
+    <CivilRocketInfo v-if="$store.getters.Props.civilRocket" />
+    <AntiHailRocketInfo v-if="$store.getters.Props.antiHail" />
+    <HelicopterInfo v-if="$store.getters.Props.helicopter" />
+    <GliderInfo v-if="$store.getters.Props.glider" />
     <div class="flex">
       <button
       @click="saveData"
@@ -62,15 +62,17 @@ export default {
   },
 
   async mounted() {
-    this.$store.dispatch('cleanAllProductsState')
     this.$store.commit('cleanProps')
+    this.$store.commit('cleanProducts')
     this.$store.commit('setproductP', true)
+    console.warn(this.$store.getters.Props.product)
   },
   unmounted() {
     this.$store.commit('cleanProps')
   },
   methods: {
     async saveData(){
+      this.$store.commit('setproductP', true)
       if(!this.$store.getters.antiHailP){
         this.$store.commit('cleanantiHailRockets')
       }
@@ -107,8 +109,8 @@ export default {
       if(!this.$store.getters.transportPlaneP){
         this.$store.commit('cleantransportPlanes')
       }
-      this.$store.dispatch('postProduct')
-      this.$router.go(-1)
+      //this.$store.dispatch('postProduct')
+      //this.$router.go(-1)
     }
   }
 }
