@@ -42,12 +42,17 @@ export default {
       }
     }
   },
-  mounted() {
-    this.$store.commit('cleanCompanies')
-  },
   methods: {
     async saveData() {
-      this.$store.dispatch('postCompany', this.company)
+      let result = await this.$store.dispatch('postCompany', this.company)
+      console.warn(result.data)
+      if(result.data.status == "OK"){
+        this.$store.getters.companies[0] = result.data.companies[0]
+        this.$router.push('/companies/' + result.data.companies[0].ID)
+      } else{
+        this.$router.go(-1)
+        alarm("Не удалось создать компанию")
+      }
     }
   }
 }

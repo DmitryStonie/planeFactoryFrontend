@@ -20,6 +20,7 @@ export default {
   },
   unmounted() {
     this.$store.commit('cleanAddProps')
+    this.$store.commit('cleanCompanies')
   },
 }
 </script>

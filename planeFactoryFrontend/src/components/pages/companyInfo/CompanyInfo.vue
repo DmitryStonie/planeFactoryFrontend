@@ -16,9 +16,4 @@
 </template>
 
 <script>
-export default{
-  mounted(){
-    console.warn(this.$store.companies)
-  }
-}
 </script>

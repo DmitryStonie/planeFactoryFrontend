@@ -262,7 +262,7 @@ const store = createStore({
         workshop: false,
         company: false,
       },
-      FilterProps:{
+      FilterProps: {
         workshops: [{
           ID: Number,
           Company: Number,
@@ -286,31 +286,31 @@ const store = createStore({
           Name: String
         }],
         categories1: [
-          {value: "all"},
-          {value: "plane"},
-          {value: "hang glider"},
-          {value: "rocket"},
-          {value: "helicopter"},
-          {value: "glider"},
-          {value: "transport plane"},
-          {value: "military plane"},
-          {value: "civil plane"},
-          {value: "military rocket"},
-          {value: "civil rocket"},
-          {value: "anti-hail rocket"},
+          { value: "all" },
+          { value: "plane" },
+          { value: "hang glider" },
+          { value: "rocket" },
+          { value: "helicopter" },
+          { value: "glider" },
+          { value: "transport plane" },
+          { value: "military plane" },
+          { value: "civil plane" },
+          { value: "military rocket" },
+          { value: "civil rocket" },
+          { value: "anti-hail rocket" },
         ],
-        categories2 :[
-          {value: "all"},
-          {value: "worker"},
-          {value: "engineering staff"},
-          {value: "tester"},
-          {value: "engineer"},
-          {value: "technologist"},
-          {value: "technician"},
-          {value: "assembler"},
-          {value: "turner"},
-          {value: "locksmith"},
-          {value: "welder"},
+        categories2: [
+          { value: "all" },
+          { value: "worker" },
+          { value: "engineering staff" },
+          { value: "tester" },
+          { value: "engineer" },
+          { value: "technologist" },
+          { value: "technician" },
+          { value: "assembler" },
+          { value: "turner" },
+          { value: "locksmith" },
+          { value: "welder" },
         ],
         selected: {
           Company: {
@@ -464,10 +464,10 @@ const store = createStore({
     setForemen(state, payload) {
       state.foremen = payload
     },
-    setWorkshop(state, payload){
+    setWorkshop(state, payload) {
       state.workshop = payload
     },
-    setCompany(state, payload){
+    setCompany(state, payload) {
       state.company = payload
     },
     //set Props
@@ -509,80 +509,80 @@ const store = createStore({
       state.Props.products = payload
     },
     //other 23
-    setAreasP(state, payload){
+    setAreasP(state, payload) {
       state.Props.areas = payload
     },
-    setAssemblerP(state, payload){
+    setAssemblerP(state, payload) {
       state.Props.assembler = payload
     },
-    setBrigadesP(state, payload){
+    setBrigadesP(state, payload) {
       state.Props.brigades = payload
     },
-    setCompaniesP(state, payload){
+    setCompaniesP(state, payload) {
       state.Props.companies = payload
     },
-    setConductedTestingP(state, payload){
+    setConductedTestingP(state, payload) {
       state.Props.conductedTesting = payload
     },
-    setEmployeeP(state, payload){
+    setEmployeeP(state, payload) {
       state.Props.employee = payload
     },
-    setEngineeringStaffP(state, payload){
+    setEngineeringStaffP(state, payload) {
       state.Props.engineeringStaff = payload
     },
-    setEngineerP(state, payload){
+    setEngineerP(state, payload) {
       state.Props.engineer = payload
     },
-    setJobsP(state, payload){
+    setJobsP(state, payload) {
       state.Props.jobs = payload
     },
-    setLabEquipmentP(state, payload){
+    setLabEquipmentP(state, payload) {
       state.Props.labEquipment = payload
     },
-    setLabsP(state, payload){
+    setLabsP(state, payload) {
       state.Props.labs = payload
     },
-    setLocksmithP(state, payload){
+    setLocksmithP(state, payload) {
       state.Props.locksmith = payload
     },
-    setTechnicianP(state, payload){
+    setTechnicianP(state, payload) {
       state.Props.technician = payload
     },
-    setTechnologistP(state, payload){
+    setTechnologistP(state, payload) {
       state.Props.technologist = payload
     },
-    setTesterP(state, payload){
+    setTesterP(state, payload) {
       state.Props.tester = payload
     },
-    setTestsP(state, payload){
+    setTestsP(state, payload) {
       state.Props.tests = payload
     },
-    setTurnerP(state, payload){
+    setTurnerP(state, payload) {
       state.Props.turner = payload
     },
-    setUsedInTestP(state, payload){
+    setUsedInTestP(state, payload) {
       state.Props.usedInTest = payload
     },
-    setUsesOfServicesP(state, payload){
+    setUsesOfServicesP(state, payload) {
       state.Props.usesOfServices = payload
     },
-    setWelderP(state, payload){
+    setWelderP(state, payload) {
       state.Props.welder = payload
     },
-    setWorkerP(state, payload){
+    setWorkerP(state, payload) {
       state.Props.worker = payload
     },
     //extra entities
-    setBossP(state, payload){
+    setBossP(state, payload) {
       state.Props.bosses = payload
     },
-    setForemenP(state, payload){
+    setForemenP(state, payload) {
       state.Props.foremen = payload
     },
-    setWorkshopP(state, payload){
+    setWorkshopP(state, payload) {
       state.Props.workshop = payload
     },
-    setCompanyP(state, payload){
+    setCompanyP(state, payload) {
       state.Props.company = payload
     },
     //add new button
@@ -596,10 +596,10 @@ const store = createStore({
       state.addProperties.addText = payload
     },
     //filters
-    setFilterProps(state, payload){
+    setFilterProps(state, payload) {
       state.FilterProps = payload
     },
-    setSelected(state, payload){
+    setSelected(state, payload) {
       state.FilterProps.selected = payload
     },
     setWorkshopsF(state, payload) {
@@ -750,53 +750,53 @@ const store = createStore({
     cleanTransportPlanes(state) {
       state.transportPlanes = []
     },
-    cleanWorkshops(state){
+    cleanWorkshops(state) {
       state.workshops = []
     },
-    cleanAreas(state){
+    cleanAreas(state) {
       state.areas = []
     },
-    cleanLabs(state){
+    cleanLabs(state) {
       state.labs = []
     },
-    cleanCompanies(state){
+    cleanCompanies(state) {
       state.companies = []
     },
-    cleanBosses(state){
+    cleanBosses(state) {
       state.bosses = []
     },
-    cleanEmployees(state){
+    cleanEmployees(state) {
       state.employees = []
     },
-    cleanWorkshop(state){
+    cleanWorkshop(state) {
       state.workshop = []
     },
-    cleanForemen(state){
+    cleanForemen(state) {
       state.workshop = []
     },
-    cleanBrigades(state){
+    cleanBrigades(state) {
       state.workshop = []
     },
-    cleanCompany(state){
+    cleanCompany(state) {
       state.company = []
     },
-    cleanLabEquipment(state){
+    cleanLabEquipment(state) {
       state.labEquipment = []
     },
     //filters
-    cleanWorkshopsF(state){
+    cleanWorkshopsF(state) {
       state.FilterProps.workshops = []
     },
-    cleanCompaniesF(state){
+    cleanCompaniesF(state) {
       state.FilterProps.companies = []
     },
-    cleanAreasF(state){
+    cleanAreasF(state) {
       state.FilterProps.areas = []
     },
-    cleanBrigadesF(state){
+    cleanBrigadesF(state) {
       state.FilterProps.brigades = []
     },
-    cleanWorkshopF(state){
+    cleanWorkshopF(state) {
       state.FilterProps.selected.Workshop = {
         ID: 0,
         Company: 0,
@@ -804,13 +804,13 @@ const store = createStore({
         Name: ""
       }
     },
-    cleanCompanyF(state){
+    cleanCompanyF(state) {
       state.FilterProps.selected.Company = {
-        ID:0, 
+        ID: 0,
         name: " "
       }
     },
-    cleanAreaF(state){
+    cleanAreaF(state) {
       state.FilterProps.selected.Area = {
         ID: 0,
         Workshop: 0,
@@ -818,7 +818,7 @@ const store = createStore({
         Name: ""
       }
     },
-    cleanCategoryF(state){
+    cleanCategoryF(state) {
       state.FilterProps.selected.Category = {
         ID: 0,
         WorkshopArea: 0,
@@ -826,7 +826,7 @@ const store = createStore({
         Name: ""
       }
     },
-    cleanBrigadeF(state){
+    cleanBrigadeF(state) {
       state.FilterProps.selected.Brigade = {
         ID: 0,
         WorkshopArea: 0,
@@ -834,34 +834,34 @@ const store = createStore({
         Name: ""
       }
     },
-    cleanCategory1F(state){
+    cleanCategory1F(state) {
       state.FilterProps.selected.category1 = ""
     },
-    cleanDateFrom1F(state){
+    cleanDateFrom1F(state) {
       state.FilterProps.selected.dateFrom1 = ""
     },
-    cleanDateTo1F(state){
+    cleanDateTo1F(state) {
       state.FilterProps.selected.dateTo1 = ""
     },
-    cleanCategory2F(state){
+    cleanCategory2F(state) {
       state.FilterProps.selected.category2 = ""
     },
-    cleanDateFrom2F(state){
+    cleanDateFrom2F(state) {
       state.FilterProps.selected.dateFrom2 = ""
     },
-    cleanDateTo2F(state){
+    cleanDateTo2F(state) {
       state.FilterProps.selected.dateTo2 = ""
     },
-    cleanCategory3F(state){
+    cleanCategory3F(state) {
       state.FilterProps.selected.category3 = ""
     },
-    cleanDateFrom3F(state){
+    cleanDateFrom3F(state) {
       state.FilterProps.selected.dateFrom3 = ""
     },
-    cleanDateTo3F(state){
+    cleanDateTo3F(state) {
       state.FilterProps.selected.dateTo3 = ""
     },
-    cleanFilter(state){
+    cleanFilter(state) {
       state.commit("cleanWorkshopsF")
       state.commit("cleanCompaniesF")
       state.commit("cleanAreasF")
@@ -922,7 +922,7 @@ const store = createStore({
     //other 23
 
     //props
-    Props(state){
+    Props(state) {
       return state.Props
     },
     areas(state) {
@@ -1007,115 +1007,115 @@ const store = createStore({
       return state.addProperties.addText
     },
     //EmployeeCard
-    employeeP(state){
+    employeeP(state) {
       return state.Props.employee
     },
-    engineeringStaffP(state){
+    engineeringStaffP(state) {
       return state.Props.engineeringStaff
     },
-    workerP(state){
+    workerP(state) {
       return state.Props.worker
     },
-    testerP(state){
+    testerP(state) {
       return state.Props.tester
     },
-    assemblerP(state){
+    assemblerP(state) {
       return state.Props.assembler
     },
-    turnerP(state){
+    turnerP(state) {
       return state.Props.turner
     },
-    locksmithP(state){
+    locksmithP(state) {
       return state.Props.locksmith
     },
-    welderP(state){
+    welderP(state) {
       return state.Props.welder
     },
-    engineerP(state){
+    engineerP(state) {
       return state.Props.engineer
     },
-    technologistP(state){
+    technologistP(state) {
       return state.Props.technologist
     },
-    technicianP(state){
+    technicianP(state) {
       return state.Props.technician
     },
-    
-    bosses(state){
+
+    bosses(state) {
       return state.bosses
     },
-    foremen(state){
+    foremen(state) {
       return state.foremen
     },
     //AreaPage
-    workshop(state){
+    workshop(state) {
       return state.workshop
     },
-    company(state){
+    company(state) {
       return state.company
     },
     //filters
-    FilterProps(state){
+    FilterProps(state) {
       return state.FilterProps
     },
-    selected(state){
+    selected(state) {
       return state.FilterProps.selected
     },
-    workshopsF(state){
+    workshopsF(state) {
       return state.FilterProps.workshops
     },
-    companiesF(state){
+    companiesF(state) {
       return state.FilterProps.companies
     },
-    areasF(state){
+    areasF(state) {
       return state.FilterProps.areas
     },
-    brigadesF(state){
+    brigadesF(state) {
       return state.FilterProps.brigades
     },
-    categoriesF(state){
+    categoriesF(state) {
       return state.FilterProps.categories1
     },
-    CompanyF(state){
+    CompanyF(state) {
       return state.FilterProps.selected.Company
     },
-    WorkshopF(state){
+    WorkshopF(state) {
       return state.FilterProps.selected.Workshop
     },
-    AreaF(state){
+    AreaF(state) {
       return state.FilterProps.selected.Area
     },
-    CategoryF(state){
+    CategoryF(state) {
       return state.FilterProps.selected.Category
     },
-    BrigadeF(state){
+    BrigadeF(state) {
       return state.FilterProps.selected.Brigade
     },
-    Category1F(state){
+    Category1F(state) {
       return state.FilterProps.selected.category1
     },
-    dateFrom1F(state){
+    dateFrom1F(state) {
       return state.FilterProps.selected.dateFrom
     },
-    dateTo1F(state){
+    dateTo1F(state) {
       return state.FilterProps.selected.dateTo
     },
-    Category2F(state){
+    Category2F(state) {
       return state.FilterProps.selected.category1
     },
-    dateFrom2F(state){
+    dateFrom2F(state) {
       return state.FilterProps.selected.dateFrom
     },
-    dateTo2F(state){
+    dateTo2F(state) {
       return state.FilterProps.selected.dateTo
     },
-    Category3F(state){
+    Category3F(state) {
       return state.FilterProps.selected.category1
     },
-    dateFrom3F(state){
+    dateFrom3F(state) {
       return state.FilterProps.selected.dateFrom
     },
-    dateTo3F(state){
+    dateTo3F(state) {
       return state.FilterProps.selected.dateTo
     },
   },
@@ -1157,15 +1157,15 @@ const store = createStore({
       context.commit('setPlanes', result.data.planes)
     },
     async getProducts(context, payload) {
-      let result = await axios.get('http://localhost:8082/products', {params:  payload})
-      if(result.data.products){
+      let result = await axios.get('http://localhost:8082/products', { params: payload })
+      if (result.data.products) {
         result.data.products.forEach(item => {
           if (item.ProductionDate) {
             item.ProductionDate = date(item.ProductionDate)
           }
         });
         context.commit('setProducts', result.data.products)
-      } else{
+      } else {
         context.commit('cleanProducts')
       }
     },
@@ -1179,10 +1179,10 @@ const store = createStore({
     },
     async getAreas(context) {
       let result = await axios.get('http://localhost:8082/areas')
-      if(result.data.areas){
+      if (result.data.areas) {
         context.commit('setAreas', result.data.areas)
       }
-      if(result.data.foremen){
+      if (result.data.foremen) {
         context.commit('setForemen', result.data.foremen)
       }
     },
@@ -1203,17 +1203,17 @@ const store = createStore({
       context.commit('setConductedTesting', result.data.conductedTesting)
     },
     async getEmployees(context, payload) {
-      let result = await axios.get('http://localhost:8082/employees', {params:  payload})
-      if(result.data.employees){
-      result.data.employees.forEach(item => {
-        if (item.Birthdate) {
-          item.Birthdate = date(item.Birthdate)
-        }
-        if (item.WorkExperience) {
-          item.WorkExperience = date(item.WorkExperience)
-        }
-      });
-    }
+      let result = await axios.get('http://localhost:8082/employees', { params: payload })
+      if (result.data.employees) {
+        result.data.employees.forEach(item => {
+          if (item.Birthdate) {
+            item.Birthdate = date(item.Birthdate)
+          }
+          if (item.WorkExperience) {
+            item.WorkExperience = date(item.WorkExperience)
+          }
+        });
+      }
       context.commit('setEmployees', result.data.employees)
     },
     async getEngineeringStaff(context) {
@@ -1286,10 +1286,10 @@ const store = createStore({
     },
     async getWorkshops(context) {
       let result = await axios.get('http://localhost:8082/workshops')
-      if(result.data.workshops){
+      if (result.data.workshops) {
         context.commit('setWorkshops', result.data.workshops)
       }
-      if(result.data.bosses){
+      if (result.data.bosses) {
         context.commit('setBosses', result.data.bosses)
       }
     },
@@ -1340,7 +1340,7 @@ const store = createStore({
       if (context.getters.productP) {
         let result = await axios.post('http://localhost:8082/products/', context.getters.products[0])
         context.commit('setProducts', result.data.products[0])
-      } else{
+      } else {
         return
       }
       if (context.getters.planeP) {
@@ -1449,10 +1449,11 @@ const store = createStore({
       }
     },
     //CompanyCard
-    async getEmployee(context, payload){
+    async getEmployee(context, payload) {
       let result = await axios.get('http://localhost:8082/employees/' + payload)
-      context.dispatch('parseResponse', result.data)    },
-    async putEmployee(state, payload){
+      context.dispatch('parseResponse', result.data)
+    },
+    async putEmployee(state, payload) {
       if (state.getters.employeeP) {
         axios.put('http://localhost:8082/employees/' + payload, state.getters.employees[0])
       }
@@ -1488,9 +1489,9 @@ const store = createStore({
       }
     },
     // async postEmployee(context){
-      
+
     // },
-    async deleteEmployee(state, payload){
+    async deleteEmployee(state, payload) {
       if (state.getters.assemblerP) {
         axios.delete('http://localhost:8082/assemblers/' + payload, state.getters.assemblers[0])
       }
@@ -1526,140 +1527,142 @@ const store = createStore({
       }
     },
     // //CompanyCard
-    async getCompany(context, payload){
+    async getCompany(context, payload) {
       let result = await axios.get('http://localhost:8082/companies/' + payload)
-      console.warn(result.data)
-      context.dispatch('parseResponse', result.data)    },
-    async putCompany(state, payload){
+      context.dispatch('parseResponse', result.data)
+    },
+    async putCompany(state, payload) {
       axios.put('http://localhost:8082/companies/' + payload, state.getters.companies[0])
     },
-    async postCompany(context, payload){
-      axios.post('http://localhost:8082/companies/', payload)
+    async postCompany(context, payload) {
+      let result = await axios.post('http://localhost:8082/companies/', payload)
+      return result
     },
-    // async deleteCompany(state, payload){
-    //         //not works
-    //         axios.delete('http://localhost:8082/companies/' + payload, state.getters.companies[0])
-    // },
+    async deleteCompany(state, payload) {
+      let result = await axios.delete('http://localhost:8082/companies/' + payload)
+      return result
+    },
     // //WorkshopCard
-    async getWorkshop(context, payload){
+    async getWorkshop(context, payload) {
       let result = await axios.get('http://localhost:8082/workshops/' + payload)
-      context.dispatch('parseResponse', result.data)    },
-    async putWorkshop(state, payload){
+      context.dispatch('parseResponse', result.data)
+    },
+    async putWorkshop(state, payload) {
       axios.put('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
     },
     // async postWorkshop(context){
-      
+
     // },
-    async deleteWorkshop(state, payload){
+    async deleteWorkshop(state, payload) {
       axios.delete('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
     },
     //AreaCard
-    async getArea(context, payload){
+    async getArea(context, payload) {
       let result = await axios.get('http://localhost:8082/areas/' + payload)
       context.dispatch('parseResponse', result.data)
     },
-    async putArea(state, payload){
+    async putArea(state, payload) {
       axios.put('http://localhost:8082/areas/' + payload, state.getters.areas[0])
     },
     // async postArea(context){
-      
+
     // },
-    async deleteArea(state, payload){
+    async deleteArea(state, payload) {
       axios.delete('http://localhost:8082/areas/' + payload, state.getters.areas[0])
     },
     // //LabCard
-    async getLab(context, {id, payload}){
+    async getLab(context, { id, payload }) {
       let result = await axios.get('http://localhost:8082/labs/' + id, payload)
       context.dispatch('parseResponse', result.data)
     },
-    async putLab(state, payload){
+    async putLab(state, payload) {
       axios.put('http://localhost:8082/labs/' + payload, state.getters.labs[0])
     },
     // async postLab(context){
-      
+
     // },
-    async deleteLab(state, payload){
+    async deleteLab(state, payload) {
       axios.delete('http://localhost:8082/labs/' + payload, state.getters.labs[0])
     },
     // //BrigadeCard
-    async getBrigade(context, payload){
+    async getBrigade(context, payload) {
       let result = await axios.get('http://localhost:8082/brigades/' + payload)
       context.dispatch('parseResponse', result.data)
     },
-    async putBrigade(state, payload){
+    async putBrigade(state, payload) {
       axios.put('http://localhost:8082/labs/' + payload, state.getters.brigades[0])
 
     },
     // async postBrigade(context){
-      
+
     // },
-    async deleteBrigade(state, payload){
+    async deleteBrigade(state, payload) {
       axios.delete('http://localhost:8082/labs/' + payload, state.getters.brigades[0])
 
     },
     // //TestCard
-    async getTest(context, payload){
+    async getTest(context, payload) {
       let result = await axios.get('http://localhost:8082/tests/' + payload)
       context.dispatch('parseResponse', result.data)
     },
-    async putTest(state, payload){
+    async putTest(state, payload) {
       axios.put('http://localhost:8082/tests/' + payload, state.getters.tests[0])
     },
     // async postTest(context){
-      
+
     // },
-    async deleteTest(state, payload){
+    async deleteTest(state, payload) {
       axios.delete('http://localhost:8082/tests/' + payload, state.getters.test[0])
 
     },
 
-    async parseResponse(context, items){
+    async parseResponse(context, items) {
       console.warn(items)
-      if(items.antiHailRockets){
+      if (items.antiHailRockets) {
         context.commit('setantiHailP', true)
         context.commit('setAntiHailRockets', items.antiHailRockets)
       }
-      if(items.civilPlanes){
+      if (items.civilPlanes) {
         context.commit('setcivilPlaneP', true)
         context.commit('setCivilPlanes', items.civilPlanes)
       }
-      if(items.civilRockets){
+      if (items.civilRockets) {
         context.commit('setcivilRocketP', true)
         context.commit('setCivilRockets', items.civilRockets)
       }
-      if(items.gliders){
+      if (items.gliders) {
         context.commit('setgliderP', true)
         context.commit('setGliders', items.gliders)
       }
-      if(items.hangGliders){
+      if (items.hangGliders) {
         context.commit('sethangGliderP', true)
         context.commit('setHangGliders', items.hangGliders)
       }
-      if(items.helicopters){
+      if (items.helicopters) {
         context.commit('sethelicopterP', true)
         context.commit('setHelicopters', items.helicopters)
       }
-      if(items.militaryPlanes){
+      if (items.militaryPlanes) {
         context.commit('setmilitaryPlaneP', true)
         context.commit('setMilitaryPlanes', items.militaryPlanes)
       }
-      if(items.militaryRockets){
+      if (items.militaryRockets) {
         context.commit('setmilitaryRocketP', true)
         context.commit('setMilitaryRockets', items.militaryRockets)
       }
-      if(items.planes){
+      if (items.planes) {
         context.commit('setplaneP', true)
         context.commit('setPlanes', items.planes)
       }
-      if(items.rockets){
+      if (items.rockets) {
         context.commit('setrocketP', true)
         context.commit('setRockets', items.rockets)
       }
-      if(items.transportPlanes){
+      if (items.transportPlanes) {
         context.commit('settransportPlaneP', true)
         context.commit('setTransportPlanes', items.transportPlanes)
       }
-      if(items.products){
+      if (items.products) {
         items.products.forEach(item => {
           if (item.ProductionDate) {
             item.ProductionDate = date(item.ProductionDate)
@@ -1668,10 +1671,10 @@ const store = createStore({
         context.commit('setproductP', true)
         context.commit('setProducts', items.products)
       }
-      if(items.areas){
+      if (items.areas) {
         context.commit('setAreas', items.areas)
       }
-      if(items.assemblers){
+      if (items.assemblers) {
         items.assemblers.forEach(item => {
           if (item.StartOfWork) {
             item.StartOfWork = date(item.StartOfWork)
@@ -1683,16 +1686,16 @@ const store = createStore({
         context.commit('setAssemblerP', true)
         context.commit('setAssemblers', items.assemblers)
       }
-      if(items.brigades){
+      if (items.brigades) {
         context.commit('setBrigades', items.brigades)
       }
-      if(items.companies){
+      if (items.companies) {
         context.commit('setCompanies', items.companies)
       }
-      if(items.conductedTesting){
+      if (items.conductedTesting) {
         context.commit('setConductedTesting', items.conductedTesting)
       }
-      if(items.employees){
+      if (items.employees) {
         items.employees.forEach(item => {
           if (item.Birthdate) {
             item.Birthdate = date(item.Birthdate)
@@ -1704,11 +1707,11 @@ const store = createStore({
         context.commit('setEmployeeP', true)
         context.commit('setEmployees', items.employees)
       }
-      if(items.engineeringStaff){
+      if (items.engineeringStaff) {
         context.commit('setEngineeringStaffP', true)
         context.commit('setEngineeringStaff', items.engineeringStaff)
       }
-      if(items.engineers){
+      if (items.engineers) {
         items.engineers.forEach(item => {
           if (item.StartOfWork) {
             item.StartOfWork = date(item.StartOfWork)
@@ -1720,16 +1723,16 @@ const store = createStore({
         context.commit('setEngineerP', true)
         context.commit('setEngineers', items.engineers)
       }
-      if(items.jobs){
+      if (items.jobs) {
         context.commit('setJobs', items.jobs)
       }
-      if(items.labEquipment){
+      if (items.labEquipment) {
         context.commit('setLabEquipment', items.labEquipment)
       }
-      if(items.labs){
+      if (items.labs) {
         context.commit('setLabs', items.labs)
       }
-      if(items.locksmiths){
+      if (items.locksmiths) {
         items.locksmiths.forEach(item => {
           if (item.StartOfWork) {
             item.StartOfWork = date(item.StartOfWork)
@@ -1741,7 +1744,7 @@ const store = createStore({
         context.commit('setLocksmithP', true)
         context.commit('setLocksmiths', items.locksmiths)
       }
-      if(items.setTechnicians){
+      if (items.setTechnicians) {
         items.technicians.forEach(item => {
           if (item.StartOfWork) {
             item.StartOfWork = date(item.StartOfWork)
@@ -1753,7 +1756,7 @@ const store = createStore({
         context.commit('setTechnicianP', true)
         context.commit('setTechnicians', items.technicians)
       }
-      if(items.technologists){
+      if (items.technologists) {
         items.technologists.forEach(item => {
           if (item.StartOfWork) {
             item.StartOfWork = date(item.StartOfWork)
@@ -1765,11 +1768,11 @@ const store = createStore({
         context.commit('setTechnologistP', true)
         context.commit('setTechnologists', items.technologists)
       }
-      if(items.testers){
+      if (items.testers) {
         context.commit('setTesterP', true)
         context.commit('setTesters', items.testers)
       }
-      if(items.tests){
+      if (items.tests) {
         items.tests.forEach(item => {
           if (item.TimeStart) {
             item.TimeStart = date(item.TimeStart)
@@ -1780,7 +1783,7 @@ const store = createStore({
         });
         context.commit('setTests', items.tests)
       }
-      if(items.turners){
+      if (items.turners) {
         items.locksmiths.forEach(item => {
           if (item.StartOfWork) {
             item.StartOfWork = date(item.StartOfWork)
@@ -1792,13 +1795,13 @@ const store = createStore({
         context.commit('setTurnerP', true)
         context.commit('setTurners', items.turners)
       }
-      if(items.usedInTest){
+      if (items.usedInTest) {
         context.commit('setUsedInTest', items.usedInTest)
       }
-      if(items.usesOfServices){
+      if (items.usesOfServices) {
         context.commit('setUsesOfServices', items.usesOfServices)
       }
-      if(items.welders){
+      if (items.welders) {
         items.welders.forEach(item => {
           if (item.StartOfWork) {
             item.StartOfWork = date(item.StartOfWork)
@@ -1810,58 +1813,58 @@ const store = createStore({
         context.commit('setWelderP', true)
         context.commit('setWelders', items.welders)
       }
-      if(items.workers){
+      if (items.workers) {
         context.commit('setWorkerP', true)
         context.commit('setWorkers', items.workers)
       }
-      if(items.worksAsMaster){
+      if (items.worksAsMaster) {
         context.commit('setWorksAsMaster', items.worksAsMaster)
       }
-      if(items.workshops){
+      if (items.workshops) {
         context.commit('setWorkshops', items.workshops)
       }
       //extra stores
-      if(items.bosses){
+      if (items.bosses) {
         context.commit('setBosses', items.bosses)
       }
-      if(items.foremen){
+      if (items.foremen) {
         context.commit('setForemen', items.foremen)
       }
-      if(items.workshop){
+      if (items.workshop) {
         context.commit('setWorkshop', items.workshop)
       }
-      if(items.company){
+      if (items.company) {
         context.commit('setCompany', items.company)
         context.commit('setCompany', items.company)
       }
     },
     //filters
-    async getCompaniesF({context, state}) {
-      if(state.FilterProps.selected.Company.ID != 0){
+    async getCompaniesF({ context, state }) {
+      if (state.FilterProps.selected.Company.ID != 0) {
         let result = await axios.get('http://localhost:8082/companies/' + state.FilterProps.selected.Company.ID)
         store.commit('setWorkshopsF', result.data.workshops)
         store.commit('setAreasF', result.data.areas)
         store.commit('setBrigadesF', result.data.brigades)
-      } else{
+      } else {
         let result = await axios.get('http://localhost:8082/companies')
         store.commit('setCompaniesF', result.data.companies)
       }
     },
-    async getWorkshopsF({context, state}) {
-      if(state.FilterProps.selected.Workshop.ID != 0){
+    async getWorkshopsF({ context, state }) {
+      if (state.FilterProps.selected.Workshop.ID != 0) {
         let result = await axios.get('http://localhost:8082/workshops/' + state.FilterProps.selected.Workshop.ID)
         store.commit('setAreasF', result.data.areas)
         store.commit('setBrigadesF', result.data.brigades)
-      } else{
+      } else {
         let result = await axios.get('http://localhost:8082/workshops')
         store.commit('setWorkshopsF', result.data.workshops)
       }
     },
-    async getAreasF({context, state}) {
-      if(state.FilterProps.selected.Area.ID != 0){
-        let result = await axios.get('http://localhost:8082/areas/'  + state.FilterProps.selected.Workshop.ID)
+    async getAreasF({ context, state }) {
+      if (state.FilterProps.selected.Area.ID != 0) {
+        let result = await axios.get('http://localhost:8082/areas/' + state.FilterProps.selected.Workshop.ID)
         store.commit('setBrigadesF', result.data.brigades)
-      }else{
+      } else {
         let result = await axios.get('http://localhost:8082/areas')
         store.commit('setAreasF', result.data.areas)
       }
@@ -1870,9 +1873,15 @@ const store = createStore({
       let result = await axios.get('http://localhost:8082/brigades')
       context.commit('setBrigadesF', result.data.brigades)
     },
+    //Bosses
+    async getBosses(context) {
+      let result = await axios.get('http://localhost:8082/engineering-staff')
+      console.warn(result.data)
+      context.commit('setEngineeringStaff', result.data.engineeringStaff)
+    },
   },
 })
-  // plugins: [createPersistedState()]
+// plugins: [createPersistedState()]
 
 
 export default store;
