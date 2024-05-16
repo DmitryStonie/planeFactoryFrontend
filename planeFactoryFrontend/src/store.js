@@ -1263,7 +1263,7 @@ const store = createStore({
       context.commit('setLabEquipment', result.data.labEquipment)
     },
     async getLabs(context) {
-      let result = await axios.get('http://localhost:8082/labs')
+      let result = await axios.get('http://localhost:8082/labs',)
       context.commit('setLabs', result.data.labs)
     },
     async getLocksmiths(context) {
@@ -1598,8 +1598,8 @@ const store = createStore({
       axios.delete('http://localhost:8082/areas/' + payload, state.getters.areas[0])
     },
     // //LabCard
-    async getLab(context, payload){
-      let result = await axios.get('http://localhost:8082/labs/' + payload)
+    async getLab(context, {id, payload}){
+      let result = await axios.get('http://localhost:8082/labs/' + id, payload)
       context.dispatch('parseResponse', result.data)
     },
     async putLab(state, payload){

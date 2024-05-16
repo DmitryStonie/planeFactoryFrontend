@@ -131,7 +131,7 @@ export default {
     this.$store.commit('cleanProducts')
     this.$store.commit('cleanCompanies')
     this.$store.commit('cleanCompany')
-    this.$store.dispatch('getLab', this.$route.params.id)
+    this.$store.dispatch('getLab', {id: this.$route.params.id})
   }
 }
 </script>
