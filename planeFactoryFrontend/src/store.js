@@ -9,133 +9,133 @@ const store = createStore({
       //products
       antiHailRockets: [{
         ID: Number,
-        Reagent: String
+        Reagent: String("")
       }],
       civilPlanes: [{
         ID: Number,
-        Capacity: Number
+        Capacity: Number(0)
       }],
       civilRockets: [{
         ID: Number,
-        Guidance: String
+        Guidance: String("")
       }],
       gliders: [{
         ID: Number,
-        Capacity: Number
+        Capacity: Number(0)
       }],
       hangGliders: [{
         ID: Number,
-        SailclothMaterial: String
+        SailclothMaterial: String("")
       }],
       helicopters: [{
         ID: Number,
-        Propellers: Number
+        Propellers: Number(0)
       }],
       militaryPlanes: [{
         ID: Number,
-        Type: String
+        Type: String("")
       }],
       militaryRockets: [{
         ID: Number,
-        Type: String,
-        Guidance: String,
-        WarheadWeight: Number
+        Type: String(""),
+        Guidance: String(""),
+        WarheadWeight: Number(0)
       }],
       planes: [{
         ID: Number,
-        Engines: Number
+        Engines: Number(0)
       }],
       rockets: [{
         ID: Number,
-        Engines: Number,
-        Propellant: String,
-        Range: Number,
-        Weight: Number
+        Engines: Number(0),
+        Propellant: String(""),
+        Range: Number(0),
+        Weight: Number(0)
       }],
       transportPlanes: [{
         ID: Number,
-        CarryingWeight: String
+        CarryingWeight: String("")
       }],
       products: [{
         ID: Number,
-        Name: String,
+        Name: String(""),
         Workshop: Number,
-        ProductionDate: String,
-        Description: String
+        ProductionDate: String(""),
+        Description: String("")
       }],
       //other 23 entities
       areas: [{
         ID: Number,
         Workshop: Number,
         Boss: Number,
-        Name: String
+        Name: String("")
       }],
       assemblers: [{
         ID: Number,
-        StartOfWork: String,
-        EndOfWork: String
+        StartOfWork: String(""),
+        EndOfWork: String("")
       }],
       brigades: [{
         ID: Number,
         WorkshopArea: Number,
         Foreman: Number,
-        Name: String
+        Name: String("")
       }],
       companies: [{
         ID: Number,
-        Name: String
+        Name: String("")
       }],
       conductedTesting: [{
         Test: Number,
-        Tester: String
+        Tester: String("")
       }],
       employees: [{
         ID: Number,
-        Name: String,
-        Birthdate: String,
-        WorkExperience: String,
-        Salary: Number
+        Name: String(""),
+        Birthdate: String(""),
+        WorkExperience: String(""),
+        Salary: Number(0)
       }],
       engineeringStaff: [{
         ID: Number,
       }],
       engineers: [{
         ID: Number,
-        StartOfWork: String,
-        EndOfWork: String,
+        StartOfWork: String(""),
+        EndOfWork: String(""),
       }],
       jobs: [{
         ID: Number,
-        Product: String,
-        Brigade: String,
-        Status: String,
-        Order: Number
+        Product: String(""),
+        Brigade: String(""),
+        Status: String(""),
+        Order: Number(0)
       }],
       labEquipment: [{
         ID: Number,
         Lab: Number,
-        Name: String
+        Name: String("")
       }],
       labs: [{
         ID: Number,
         Company: Number,
-        Name: String
+        Name: String("")
       }],
       locksmiths: [{
         ID: Number,
         Category: Number,
-        StartOfWork: String,
-        EndOfWork: String,
+        StartOfWork: String(""),
+        EndOfWork: String(""),
       }],
       technicians: [{
         ID: Number,
-        StartOfWork: String,
-        EndOfWork: String,
+        StartOfWork: String(""),
+        EndOfWork: String(""),
       }],
       technologists: [{
         ID: Number,
-        StartOfWork: String,
-        EndOfWork: String,
+        StartOfWork: String(""),
+        EndOfWork: String(""),
       }],
       testers: [{
         ID: Number,
@@ -145,16 +145,16 @@ const store = createStore({
         ID: Number,
         Product: Number,
         Lab: Number,
-        TimeStart: String,
-        TimeEnd: String,
-        Name: String,
-        Description: String
+        TimeStart: String(""),
+        TimeEnd: String(""),
+        Name: String(""),
+        Description: String("")
       }],
       turners: [{
         ID: Number,
-        Category: Number,
-        StartOfWork: String,
-        EndOfWork: String,
+        Category: Number(0),
+        StartOfWork: String(""),
+        EndOfWork: String(""),
       }],
       usedInTest: [{
         Equipment: Number,
@@ -166,14 +166,14 @@ const store = createStore({
       }],
       welders: [{
         ID: Number,
-        Category: Number,
-        StartOfWork: String,
-        EndOfWork: String,
+        Category: Number(0),
+        StartOfWork: String(""),
+        EndOfWork: String(""),
       }],
       workers: [{
         ID: Number,
         Brigade: Number,
-        Name: String
+        Name: String("")
       }],
       worksAsMaster: [{
         EngineeringStaff: Number,
@@ -183,39 +183,39 @@ const store = createStore({
         ID: Number,
         Company: Number,
         Boss: Number,
-        Name: String
+        Name: String("")
       }],
       //extra entities
       bosses: [{
         ID: Number,
-        Name: String,
-        Birthdate: String,
-        WorkExperience: String,
-        Salary: Number
+        Name: String(""),
+        Birthdate: String(""),
+        WorkExperience: String(""),
+        Salary: Number(0)
       }],
       foremen: [{
         ID: Number,
-        Name: String,
-        Birthdate: String,
-        WorkExperience: String,
-        Salary: Number
+        Name: String(""),
+        Birthdate: String(""),
+        WorkExperience: String(""),
+        Salary: Number(0)
       }],
       workshop: [{
         ID: Number,
         Company: Number,
         Boss: Number,
-        Name: String
+        Name: String("")
       }],
       company: [{
         ID: Number,
-        Name: String
+        Name: String("")
       }],
       //UI elements state
       //Add new button
       addProperties: [{
         addP: Boolean,
-        addLink: String,
-        addText: String
+        addLink: String(""),
+        addText: String("")
       }],
       //
       Props: {
@@ -267,23 +267,23 @@ const store = createStore({
           ID: Number,
           Company: Number,
           Boss: Number,
-          Name: String
+          Name: String("")
         }],
         companies: [{
           ID: Number,
-          Name: String
+          Name: String("")
         }],
         areas: [{
           ID: Number,
           Workshop: Number,
           Boss: Number,
-          Name: String
+          Name: String("")
         }],
         brigades: [{
           ID: Number,
           WorkshopArea: Number,
           Foreman: Number,
-          Name: String
+          Name: String("")
         }],
         categories1: [
           { value: "all" },
@@ -387,38 +387,38 @@ const store = createStore({
     setProducts(state, payload) {
       state.products = payload
     },
-    setProductProps(state, payload){
-      if(payload.antiHailRockets){
+    setProductProps(state, payload) {
+      if (payload.antiHailRockets) {
         state.Props.antiHailRockets = true
       }
-      if(payload.civilPlanes){
+      if (payload.civilPlanes) {
         state.Props.civilPlanes = true
       }
-      if(payload.civilRockets){
+      if (payload.civilRockets) {
         state.Props.civilRockets = true
       }
-      if(payload.gliders){
+      if (payload.gliders) {
         state.Props.gliders = true
       }
-      if(payload.hangGliders){
+      if (payload.hangGliders) {
         state.Props.hangGliders = true
       }
-      if(payload.helicopters){
+      if (payload.helicopters) {
         state.Props.helicopters = true
       }
-      if(payload.militaryPlanes){
+      if (payload.militaryPlanes) {
         state.Props.militaryPlanes = true
       }
-      if(payload.militaryRockets){
+      if (payload.militaryRockets) {
         state.Props.militaryRockets = true
       }
-      if(payload.planes){
+      if (payload.planes) {
         state.Props.planes = true
       }
-      if(payload.rockets){
+      if (payload.rockets) {
         state.Props.rockets = true
       }
-      if(payload.products){
+      if (payload.products) {
         state.Props.products = true
       }
     },
@@ -560,7 +560,7 @@ const store = createStore({
       state.Props.conductedTesting = payload
     },
     setEmployeeP(state, payload) {
-      state.Props.employee = payload
+      state.Props.employees = payload
     },
     setEngineeringStaffP(state, payload) {
       state.Props.engineeringStaff = payload
@@ -750,7 +750,7 @@ const store = createStore({
       }
     },
     cleanProducts(state) {
-      state.products = [{Name:""}]
+      state.products = [{ Name: "" }]
     },
     cleanAntiHailRockets(state) {
       state.antiHailRockets = []
@@ -786,31 +786,39 @@ const store = createStore({
       state.transportPlanes = []
     },
     cleanWorkshops(state) {
-      state.workshops = [{Name:""}]
+      state.workshops = [{ Name: "" }]
+    },
+    cleanWorkers(state) {
+      state.workers = [{ Name: "" }]
     },
     cleanAreas(state) {
-      state.areas = [{Workshop:""}]
+      state.areas = [{ Workshop: "" }]
     },
     cleanLabs(state) {
-      state.labs = [{Name:""}]
+      state.labs = [{ Name: "" }]
     },
     cleanCompanies(state) {
-      state.companies = [{Name:""}]
+      state.companies = [{ Name: "" }]
     },
     cleanBosses(state) {
-      state.bosses = [{Name:""}]
+      state.bosses = [{ Name: "" }]
     },
     cleanEmployees(state) {
-      state.employees = []
+      state.employees = [{
+        Name: String(""),
+        Birthdate: String(""),
+        WorkExperience: String(""),
+        Salary: Number(0)
+      }]
     },
     cleanWorkshop(state) {
-      state.workshop = [{Name:""}]
+      state.workshop = [{ Name: "" }]
     },
     cleanForemen(state) {
       state.workshop = []
     },
     cleanBrigades(state) {
-      state.brigades = []
+      state.brigades = [{ Name: "" }]
     },
     cleanCompany(state) {
       state.company = []
@@ -823,7 +831,7 @@ const store = createStore({
     },
     //filters
     cleanWorkshopsF(state) {
-      state.FilterProps.workshops = [{Name:""}]
+      state.FilterProps.workshops = [{ Name: "" }]
     },
     cleanCompaniesF(state) {
       state.FilterProps.companies = []
@@ -1046,7 +1054,7 @@ const store = createStore({
     },
     //EmployeeCard
     employeeP(state) {
-      return state.Props.employee
+      return state.Props.employees
     },
     engineeringStaffP(state) {
       return state.Props.engineeringStaff
@@ -1528,9 +1536,110 @@ const store = createStore({
         axios.put('http://localhost:8082/technicians/' + payload, state.getters.technicians[0])
       }
     },
-    // async postEmployee(context){
-
-    // },
+    async postEmployee(state){
+      let result
+      if (state.getters.employeeP) {
+        if(state.getters.employees[0].Birthdate == ""){
+          state.getters.employees[0].Birthdate = "0001-01-01"
+        }
+        if(state.getters.employees[0].WorkExperience == ""){
+          state.getters.employees[0].WorkExperience = "0001-01-01"
+        }
+        result = await axios.post('http://localhost:8082/employees/', state.getters.employees[0])
+        if(result.data.employees){
+          state.getters.employees[0] = result.data.employees[0]
+          if(state.getters.workerP){
+            state.getters.workers[0].ID = state.getters.employees[0].ID
+            console.warn(state.getters.workers[0])
+            if(state.getters.workers[0].Brigade == 0){
+              state.getters.workers[0] = Number
+            }
+            console.warn(state.getters.workers[0])
+          }
+          if(state.getters.engineeringStaffP){
+            state.getters.engineeringStaff[0].ID = state.getters.employees[0].ID
+          }
+          if(state.getters.testerP){
+            state.getters.testers[0].ID = state.getters.employees[0].ID
+          }
+        } 
+      }
+      if (state.getters.engineeringStaffP) {
+        axios.post('http://localhost:8082/engineering-staff/', state.getters.engineeringStaff[0])
+      }
+      if (state.getters.workerP) {
+        console.warn("TRY TO ADD WORKER")
+        console.warn(state.getters.workers[0])
+        axios.post('http://localhost:8082/workers/', state.getters.workers[0])
+      }
+      if (state.getters.testerP) {
+        axios.post('http://localhost:8082/testers/', state.getters.testers[0])
+      }
+      if (state.getters.assemblerP) {
+        if(state.getters.assemblers[0].StartOfWork == ""){
+          state.getters.assemblers[0].StartOfWork = "0001-01-01"
+        }
+        if(state.getters.assemblers[0].EndOfWork == ""){
+          state.getters.assemblers[0].EndOfWork = "0001-01-01"
+        }
+        axios.post('http://localhost:8082/assemblers/', state.getters.assemblers[0])
+      }
+      if (state.getters.turnerP) {
+        if(state.getters.turners[0].StartOfWork == ""){
+          state.getters.turners[0].StartOfWork = "0001-01-01"
+        }
+        if(state.getters.turners[0].EndOfWork == ""){
+          state.getters.turners[0].EndOfWork = "0001-01-01"
+        }
+        axios.post('http://localhost:8082/turners/', state.getters.turners[0])
+      }
+      if (state.getters.locksmithP) {
+        if(state.getters.locksmiths[0].StartOfWork == ""){
+          state.getters.locksmiths[0].StartOfWork = "0001-01-01"
+        }
+        if(state.getters.locksmiths[0].EndOfWork == ""){
+          state.getters.locksmiths[0].EndOfWork = "0001-01-01"
+        }
+        axios.post('http://localhost:8082/locksmiths/', state.getters.locksmiths[0])
+      }
+      if (state.getters.welderP) {
+        if(state.getters.welders[0].StartOfWork == ""){
+          state.getters.welders[0].StartOfWork = "0001-01-01"
+        }
+        if(state.getters.welders[0].EndOfWork == ""){
+          state.getters.welders[0].EndOfWork = "0001-01-01"
+        }
+        axios.post('http://localhost:8082/welders/', state.getters.welders[0])
+      }
+      if (state.getters.engineerP) {
+        if(state.getters.engineers[0].StartOfWork == ""){
+          state.getters.engineers[0].StartOfWork = "0001-01-01"
+        }
+        if(state.getters.engineers[0].EndOfWork == ""){
+          state.getters.engineers[0].EndOfWork = "0001-01-01"
+        }
+        axios.post('http://localhost:8082/engineers/', state.getters.engineers[0])
+      }
+      if (state.getters.technologistP) {
+        if(state.getters.technologists[0].StartOfWork == ""){
+          state.getters.technologists[0].StartOfWork = "0001-01-01"
+        }
+        if(state.getters.technologists[0].EndOfWork == ""){
+          state.getters.technologists[0].EndOfWork = "0001-01-01"
+        }
+        axios.post('http://localhost:8082/technologists/', state.getters.technologists[0])
+      }
+      if (state.getters.technicianP) {
+        if(state.getters.technicians[0].StartOfWork == ""){
+          state.getters.technicians[0].StartOfWork = "0001-01-01"
+        }
+        if(state.getters.technicians[0].EndOfWork == ""){
+          state.getters.technicians[0].EndOfWork = "0001-01-01"
+        }
+        axios.post('http://localhost:8082/technicians/', state.getters.technicians[0])
+      }
+      return result
+    },
     async deleteEmployee(state, payload) {
       if (state.getters.assemblerP) {
         axios.delete('http://localhost:8082/assemblers/' + payload, state.getters.assemblers[0])
@@ -1592,7 +1701,7 @@ const store = createStore({
     async putWorkshop(state, payload) {
       axios.put('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
     },
-    async postWorkshop(context, payload){
+    async postWorkshop(context, payload) {
       let result = await axios.post('http://localhost:8082/workshops/', payload)
       return result
     },
@@ -1608,7 +1717,7 @@ const store = createStore({
     async putArea(state, payload) {
       axios.put('http://localhost:8082/areas/' + payload, state.getters.areas[0])
     },
-    async postArea(context, payload){
+    async postArea(context, payload) {
       let result = await axios.post('http://localhost:8082/areas/', payload)
       return result
     },
@@ -1624,7 +1733,7 @@ const store = createStore({
     async putLab(state, payload) {
       axios.put('http://localhost:8082/labs/' + payload, state.getters.labs[0])
     },
-    async postLab(context, payload){
+    async postLab(context, payload) {
       let result = await axios.post('http://localhost:8082/labs/', payload)
       return result
     },
@@ -1923,8 +2032,6 @@ const store = createStore({
     },
   },
 })
-// plugins: [createPersistedState()]
-
 
 export default store;
 

@@ -36,11 +36,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     //otherPages
-    {
-        name: 'TestingPage',
-        component: TestingPage,
-        path: '/'
-    },
+    // {
+    //     name: 'TestingPage',
+    //     component: TestingPage,
+    //     path: '/'
+    // },
     {
         name: 'HomePage',
         component: HomePage,
