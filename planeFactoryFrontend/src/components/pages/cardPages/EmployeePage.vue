@@ -70,12 +70,17 @@ export default {
       this.$router.go(-1)
     }
   },
-  mounted() {
+  async mounted() {
     this.$store.commit('cleanEmployees')
-    this.$store.dispatch('getEmployee', this.$route.params.id)
+    this.$store.commit('cleanProps')
+    this.$store.commit('cleanWorkers')
+    let result = await this.$store.dispatch('getEmployee', this.$route.params.id)
+    this.$store.commit('setEmployeeProps', result.data)
+    console.warn(result.data)
+
   },
   unmounted() {
-    this.$store.commit('cleanEmployeeProps')
+    this.$store.commit('cleanProps')
   },
 }
 </script>

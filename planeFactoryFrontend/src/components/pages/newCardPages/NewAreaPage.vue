@@ -107,6 +107,9 @@ export default {
     this.$store.dispatch('getWorkshopsF')
     this.$store.dispatch('getEngineeringStaff')
   },
+  unmounted(){
+    this.$store.commit('cleanProps')
+  },  
   methods: {
     selectCompany() {
       if (this.$store.getters.FilterProps.selected.Company.ID == 0) {

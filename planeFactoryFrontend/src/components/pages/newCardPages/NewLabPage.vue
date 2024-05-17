@@ -61,6 +61,9 @@ export default {
   mounted() {
     this.$store.dispatch('getCompanies')
   },
+  unmounted(){
+    this.$store.commit('cleanProps')
+  },
   methods: {
     async saveData() {
       let result = await this.$store.dispatch('postLab', this.lab)

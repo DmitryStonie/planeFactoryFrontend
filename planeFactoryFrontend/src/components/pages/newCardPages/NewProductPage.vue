@@ -109,8 +109,8 @@ export default {
       if(!this.$store.getters.transportPlaneP){
         this.$store.commit('cleantransportPlanes')
       }
-      //this.$store.dispatch('postProduct')
-      //this.$router.go(-1)
+      this.$store.dispatch('postProduct')
+      this.$router.push('/products/' + this.$store.getters.products[0].ID)
     }
   }
 }

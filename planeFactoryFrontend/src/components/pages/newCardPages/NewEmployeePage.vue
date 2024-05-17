@@ -66,6 +66,9 @@ export default {
     this.$store.commit('cleanProps')
     this.$store.commit('setEmployeeP', true)
   },
+  unmounted(){
+    this.$store.commit('cleanProps')
+  },
   methods: {
     async saveData() {
       let result = await this.$store.dispatch('postEmployee')

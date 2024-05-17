@@ -422,6 +422,41 @@ const store = createStore({
         state.Props.products = true
       }
     },
+    setEmployeeProps(state, payload){
+      if (payload.employees) {
+        state.Props.employees = true
+      }
+      if (payload.workers) {
+        state.Props.workers = true
+      }
+      if (payload.testers) {
+        state.Props.testers = true
+      }
+      if (payload.engineeringStaff) {
+        state.Props.engineeringStaff = true
+      }
+      if (payload.assemblers) {
+        state.Props.assemblers = true
+      }
+      if (payload.engineers) {
+        state.Props.engineers = true
+      }
+      if (payload.locksmiths) {
+        state.Props.locksmiths = true
+      }
+      if (payload.technicians) {
+        state.Props.technicians = true
+      }
+      if (payload.technologists) {
+        state.Props.technologists = true
+      }
+      if (payload.turners) {
+        state.Props.turners = true
+      }
+      if (payload.welders) {
+        state.Props.welders = true
+      }
+    },
     //other 23
     setAreas(state, payload) {
       state.areas = payload
@@ -1500,6 +1535,7 @@ const store = createStore({
     async getEmployee(context, payload) {
       let result = await axios.get('http://localhost:8082/employees/' + payload)
       context.dispatch('parseResponse', result.data)
+      return result
     },
     async putEmployee(state, payload) {
       if (state.getters.employeeP) {
@@ -1746,16 +1782,16 @@ const store = createStore({
       let result = await axios.get('http://localhost:8082/brigades/' + payload)
       context.dispatch('parseResponse', result.data)
     },
-    async putBrigade(state, payload) {
-      axios.put('http://localhost:8082/labs/' + payload, state.getters.brigades[0])
-
+    async putBrigade(state, {id, payload}) {
+      axios.put('http://localhost:8082/brigades/' + id, payload)
     },
-    // async postBrigade(context){
-
-    // },
+    async postBrigade(context, payload){
+      let result = await axios.post('http://localhost:8082/brigades/', payload)
+      return result
+    },
     async deleteBrigade(state, payload) {
-      axios.delete('http://localhost:8082/labs/' + payload, state.getters.brigades[0])
-
+      let result = await axios.delete('http://localhost:8082/brigades/' + payload)
+      return result
     },
     // //TestCard
     async getTest(context, payload) {
@@ -1765,12 +1801,13 @@ const store = createStore({
     async putTest(state, payload) {
       axios.put('http://localhost:8082/tests/' + payload, state.getters.tests[0])
     },
-    // async postTest(context){
-
-    // },
+    async postTest(context, payload){
+      let result = axios.post('http://localhost:8082/tests/', payload)
+      return result
+    },
     async deleteTest(state, payload) {
-      axios.delete('http://localhost:8082/tests/' + payload, state.getters.test[0])
-
+      let result = axios.delete('http://localhost:8082/tests/' + payload)
+      return result
     },
 
     async parseResponse(context, items) {
