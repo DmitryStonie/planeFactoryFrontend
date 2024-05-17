@@ -387,6 +387,41 @@ const store = createStore({
     setProducts(state, payload) {
       state.products = payload
     },
+    setProductProps(state, payload){
+      if(payload.antiHailRockets){
+        state.Props.antiHailRockets = true
+      }
+      if(payload.civilPlanes){
+        state.Props.civilPlanes = true
+      }
+      if(payload.civilRockets){
+        state.Props.civilRockets = true
+      }
+      if(payload.gliders){
+        state.Props.gliders = true
+      }
+      if(payload.hangGliders){
+        state.Props.hangGliders = true
+      }
+      if(payload.helicopters){
+        state.Props.helicopters = true
+      }
+      if(payload.militaryPlanes){
+        state.Props.militaryPlanes = true
+      }
+      if(payload.militaryRockets){
+        state.Props.militaryRockets = true
+      }
+      if(payload.planes){
+        state.Props.planes = true
+      }
+      if(payload.rockets){
+        state.Props.rockets = true
+      }
+      if(payload.products){
+        state.Props.products = true
+      }
+    },
     //other 23
     setAreas(state, payload) {
       state.areas = payload
@@ -715,7 +750,7 @@ const store = createStore({
       }
     },
     cleanProducts(state) {
-      state.products = []
+      state.products = [{Name:""}]
     },
     cleanAntiHailRockets(state) {
       state.antiHailRockets = []
@@ -751,31 +786,31 @@ const store = createStore({
       state.transportPlanes = []
     },
     cleanWorkshops(state) {
-      state.workshops = []
+      state.workshops = [{Name:""}]
     },
     cleanAreas(state) {
-      state.areas = []
+      state.areas = [{Workshop:""}]
     },
     cleanLabs(state) {
-      state.labs = []
+      state.labs = [{Name:""}]
     },
     cleanCompanies(state) {
-      state.companies = []
+      state.companies = [{Name:""}]
     },
     cleanBosses(state) {
-      state.bosses = []
+      state.bosses = [{Name:""}]
     },
     cleanEmployees(state) {
       state.employees = []
     },
     cleanWorkshop(state) {
-      state.workshop = []
+      state.workshop = [{Name:""}]
     },
     cleanForemen(state) {
       state.workshop = []
     },
     cleanBrigades(state) {
-      state.workshop = []
+      state.brigades = []
     },
     cleanCompany(state) {
       state.company = []
@@ -783,9 +818,12 @@ const store = createStore({
     cleanLabEquipment(state) {
       state.labEquipment = []
     },
+    cleanJobs(state) {
+      state.jobs = []
+    },
     //filters
     cleanWorkshopsF(state) {
-      state.FilterProps.workshops = []
+      state.FilterProps.workshops = [{Name:""}]
     },
     cleanCompaniesF(state) {
       state.FilterProps.companies = []
@@ -1218,7 +1256,8 @@ const store = createStore({
     },
     async getEngineeringStaff(context) {
       let result = await axios.get('http://localhost:8082/engineering-staff')
-      context.commit('setEngineeringStaff', result.data.engineeringStaff)
+      context.commit('setEmployees', result.data.engineeringStaff)
+      //context.commit('setEngineeringStaff', result.data.engineeringStaff)
     },
     async getEngineers(context) {
       let result = await axios.get('http://localhost:8082/engineers')
@@ -1297,6 +1336,7 @@ const store = createStore({
     async getProduct(context, payload) {
       let result = await axios.get('http://localhost:8082/products/' + payload)
       context.dispatch('parseResponse', result.data)
+      return result
     },
     async putProduct(state, payload) {
       if (state.getters.antiHailP) {
@@ -1545,16 +1585,20 @@ const store = createStore({
     // //WorkshopCard
     async getWorkshop(context, payload) {
       let result = await axios.get('http://localhost:8082/workshops/' + payload)
+      console.warn("Here")
+      console.warn(result.data)
       context.dispatch('parseResponse', result.data)
     },
     async putWorkshop(state, payload) {
       axios.put('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
     },
-    // async postWorkshop(context){
-
-    // },
-    async deleteWorkshop(state, payload) {
-      axios.delete('http://localhost:8082/workshops/' + payload, state.getters.workshops[0])
+    async postWorkshop(context, payload){
+      let result = await axios.post('http://localhost:8082/workshops/', payload)
+      return result
+    },
+    async deleteWorkshop(state, id) {
+      let result = await axios.delete('http://localhost:8082/workshops/' + id)
+      return result
     },
     //AreaCard
     async getArea(context, payload) {
@@ -1564,11 +1608,13 @@ const store = createStore({
     async putArea(state, payload) {
       axios.put('http://localhost:8082/areas/' + payload, state.getters.areas[0])
     },
-    // async postArea(context){
-
-    // },
+    async postArea(context, payload){
+      let result = await axios.post('http://localhost:8082/areas/', payload)
+      return result
+    },
     async deleteArea(state, payload) {
-      axios.delete('http://localhost:8082/areas/' + payload, state.getters.areas[0])
+      let result = await axios.delete('http://localhost:8082/areas/' + payload, state.getters.areas[0])
+      return result
     },
     // //LabCard
     async getLab(context, { id, payload }) {
@@ -1578,11 +1624,13 @@ const store = createStore({
     async putLab(state, payload) {
       axios.put('http://localhost:8082/labs/' + payload, state.getters.labs[0])
     },
-    // async postLab(context){
-
-    // },
+    async postLab(context, payload){
+      let result = await axios.post('http://localhost:8082/labs/', payload)
+      return result
+    },
     async deleteLab(state, payload) {
-      axios.delete('http://localhost:8082/labs/' + payload, state.getters.labs[0])
+      let result = axios.delete('http://localhost:8082/labs/' + payload)
+      return result
     },
     // //BrigadeCard
     async getBrigade(context, payload) {
@@ -1872,12 +1920,6 @@ const store = createStore({
     async getBrigadesF(context) {
       let result = await axios.get('http://localhost:8082/brigades')
       context.commit('setBrigadesF', result.data.brigades)
-    },
-    //Bosses
-    async getBosses(context) {
-      let result = await axios.get('http://localhost:8082/engineering-staff')
-      console.warn(result.data)
-      context.commit('setEngineeringStaff', result.data.engineeringStaff)
     },
   },
 })

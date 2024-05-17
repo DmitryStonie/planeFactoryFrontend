@@ -1,18 +1,18 @@
 <template>
   <CardPageHeader />
   <div class="mx-auto max-w-3xl px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
-    <ProductInfo v-if="$store.getters.productP" />
-    <PlaneInfo v-if="$store.getters.planeP" />
-    <TransportPlaneInfo v-if="$store.getters.transportPlaneP" />
-    <MilitaryPlaneInfo v-if="$store.getters.militaryPlaneP" />
-    <CivilPlaneInfo v-if="$store.getters.civilPlaneP" />
-    <HangGliderInfo v-if="$store.getters.hangGliderP" />
-    <RocketInfo v-if="$store.getters.rocketP" />
-    <MilitaryRocketInfo v-if="$store.getters.militaryRocketP" />
-    <CivilRocketInfo v-if="$store.getters.civilRocketP" />
-    <AntiHailRocketInfo v-if="$store.getters.antiHailP" />
-    <HelicopterInfo v-if="$store.getters.helicopterP" />
-    <GliderInfo v-if="$store.getters.gliderP" />
+    <ProductInfo v-if="$store.getters.Props.products" />
+    <PlaneInfo v-if="$store.getters.Props.planes" />
+    <TransportPlaneInfo v-if="$store.getters.Props.transportPlanes" />
+    <MilitaryPlaneInfo v-if="$store.getters.Props.militaryPlanes" />
+    <CivilPlaneInfo v-if="$store.getters.Props.civilPlanes" />
+    <HangGliderInfo v-if="$store.getters.Props.hangGliders" />
+    <RocketInfo v-if="$store.getters.Props.rockets" />
+    <MilitaryRocketInfo v-if="$store.getters.Props.militaryRockets" />
+    <CivilRocketInfo v-if="$store.getters.Props.civilRockets" />
+    <AntiHailRocketInfo v-if="$store.getters.Props.antiHailRockets" />
+    <HelicopterInfo v-if="$store.getters.Props.helicopters" />
+    <GliderInfo v-if="$store.getters.Props.gliders" />
 
 
     <div class="flex flex-wrap items-center justify-between gap-5 w-full mt-8  mb-4">
@@ -132,7 +132,11 @@ export default {
   async mounted() {
     this.$store.commit('cleanProducts')
     this.$store.commit('cleanWorkshops')
-    this.$store.dispatch('getProduct', this.$route.params.id)
+    this.$store.commit('cleanLabs')
+    this.$store.commit('cleanBrigades')
+    this.$store.commit('cleanJobs')
+    let result = await this.$store.dispatch('getProduct', this.$route.params.id)
+    this.$store.commit('setProductProps', result.data)
     this.$store.dispatch('getWorkshops')
   },
   unmounted() {

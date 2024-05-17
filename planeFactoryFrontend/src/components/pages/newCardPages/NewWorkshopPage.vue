@@ -77,11 +77,19 @@ export default {
   mounted() {
     this.$store.commit('cleanBosses')
     this.$store.dispatch('getCompanies')
-    this.$store.dispatch('getBosses')
+    this.$store.dispatch('getEngineeringStaff')
   },
   methods: {
     async saveData() {
-      this.$store.dispatch('postWorkshop', this.workshop)
+      let result = await this.$store.dispatch('postWorkshop', this.workshop)
+      console.warn(result.data)
+      if(result.data.status == "OK"){
+        this.$store.commit('setWorkshops', result.data.workshops)
+        this.$router.push('/workshops/' + this.$store.getters.workshops[0].ID)
+        console.warn(this.$store.getters.workshops)
+      } else{
+        alarm("Не удалось создать компанию")
+      }
     }
   }
 }

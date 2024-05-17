@@ -21,7 +21,7 @@
         onclick="this.setAttribute('value', this.value);"
         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
       >
-        <option>{{ $store.getters.workshop[0].Name }}</option>
+        <option>{{ selectWorkshop($store.getters.areas[0].Workshop) }}</option>
         <option v-for="option in $store.getters.workshops" :value="option.ID" :key="option.ID">
           {{ option.Name }}
         </option>
@@ -109,6 +109,22 @@ export default {
     this.$store.commit('cleanBosses')
     this.$store.commit('cleanForemen')
     this.$store.commit('cleanBrigades')
+  },
+  methods:{
+    selectWorkshop(id) {
+      this.$store.getters.workshops.forEach((item) => {
+          if (item.ID == id) {
+            return item.Name
+          }
+        })
+    },
+    async saveData() {
+      this.$store.dispatch('putArea', this.$route.params.id)
+    },
+    async deleteData(){
+      await this.$store.dispatch('deleteArea', this.$route.params.id)
+      this.$router.go(-1)
+    }
   }
 }
 </script>

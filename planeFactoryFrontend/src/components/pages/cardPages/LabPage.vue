@@ -30,6 +30,24 @@
         >Company</label
       >
     </div>
+    <div class="flex py-8">
+      <button
+      @click="saveData"
+        id="button"
+        type="button"
+        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] hover:shadow-lg focus:outline-none"
+      >
+        Save
+      </button>
+      <button
+      @click="deleteData"
+        id="button"
+        type="button"
+        class="w-1/2 ml-5 mr-5 px-6 py-3 mt-3 text-lg text-white transition-all duration-300 ease-linear rounded-lg shadow outline-none bg-[#007bff] hover:bg-transparent hover:text-[#007bff] focus:outline-none"
+      >
+        Delete
+      </button>
+    </div>
   </div>
 
   
@@ -101,7 +119,7 @@
     </div>
     <div class="basis-1/4"></div>
   </div>
-
+  
 
 </template>
 
@@ -132,6 +150,16 @@ export default {
     this.$store.commit('cleanCompanies')
     this.$store.commit('cleanCompany')
     this.$store.dispatch('getLab', {id: this.$route.params.id})
+  },
+  methods: {
+    async saveData() {
+      this.$store.dispatch('putLab', this.$route.params.id)
+    },
+    async deleteData(){
+      this.$store.commit('cleanLabs')
+      await this.$store.dispatch('deleteLab', this.$route.params.id)
+      this.$router.go(-1)
+    }
   }
 }
 </script>
