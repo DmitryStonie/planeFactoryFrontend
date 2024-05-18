@@ -86,7 +86,7 @@
               >
                 <option
                   v-for="option in $store.getters.FilterProps.brigades"
-                  :value="option"
+                  :value="option.Name"
                   :key="option.value"
                 ></option>
               </select>

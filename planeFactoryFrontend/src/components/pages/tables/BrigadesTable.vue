@@ -35,7 +35,7 @@
   export default {
     methods: {
       getBoss(id) {
-        const found = this.$store.getters.workers.find((element) => element.ID == id)
+        const found = this.$store.getters.workerE.find((element) => element.ID == id)
         if (found) {
           return found.Name
         }
