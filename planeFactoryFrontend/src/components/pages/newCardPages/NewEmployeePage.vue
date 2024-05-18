@@ -65,6 +65,7 @@ export default {
     this.$store.commit('cleanWorkers')
     this.$store.commit('cleanProps')
     this.$store.commit('setEmployeeP', true)
+    this.$store.dispatch('getBrigades')
   },
   unmounted(){
     this.$store.commit('cleanProps')

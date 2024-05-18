@@ -200,6 +200,13 @@ const store = createStore({
         WorkExperience: String(""),
         Salary: Number(0)
       }],
+      workerE: [{
+        ID: Number,
+        Name: String(""),
+        Birthdate: String(""),
+        WorkExperience: String(""),
+        Salary: Number(0)
+      }],
       workshop: [{
         ID: Number,
         Company: Number,
@@ -731,6 +738,9 @@ const store = createStore({
     setDateTo3F(state, payload) {
       state.FilterProps.selected.dateTo3 = payload
     },
+    setworkerE(state, payload){
+      state.workerE = payload
+    },
     //cleaners
     cleanAddProps(state) {
       state.addProperties = {
@@ -960,6 +970,9 @@ const store = createStore({
       state.commit("cleanCategory3F")
       state.commit("cleanDateFrom3F")
       state.commit("cleanDateTo3F")
+    },
+    cleanworkerE(state){
+      state.workerE = []
     }
   },
   getters: {
@@ -1127,6 +1140,9 @@ const store = createStore({
     },
     foremen(state) {
       return state.foremen
+    },
+    workerE(state){
+      return state.workerE
     },
     //AreaPage
     workshop(state) {
@@ -1360,7 +1376,7 @@ const store = createStore({
     },
     async getWorkers(context) {
       let result = await axios.get('http://localhost:8082/workers')
-      context.commit('setWorkers', result.data.workers)
+      context.commit('setworkerE', result.data.employees)
     },
     async getWorksAsMaster(context) {
       let result = await axios.get('http://localhost:8082/works-as-master')
@@ -1601,15 +1617,17 @@ const store = createStore({
         } 
       }
       if (state.getters.engineeringStaffP) {
-        axios.post('http://localhost:8082/engineering-staff/', state.getters.engineeringStaff[0])
+        let result = await axios.post('http://localhost:8082/engineering-staff/', state.getters.engineeringStaff[0])
+        state.getters.engineeringStaff = result.data.engineeringStaff
       }
       if (state.getters.workerP) {
-        console.warn("TRY TO ADD WORKER")
-        console.warn(state.getters.workers[0])
-        axios.post('http://localhost:8082/workers/', state.getters.workers[0])
+        let result = await axios.post('http://localhost:8082/workers/', state.getters.workers[0])
+        console.warn(result.data)
+        state.getters.workers[0] = result.data.workers[0]
       }
       if (state.getters.testerP) {
-        axios.post('http://localhost:8082/testers/', state.getters.testers[0])
+        let result = await axios.post('http://localhost:8082/testers/', state.getters.testers[0])
+        state.getters.testers = result.data.testers
       }
       if (state.getters.assemblerP) {
         if(state.getters.assemblers[0].StartOfWork == ""){
@@ -1618,6 +1636,7 @@ const store = createStore({
         if(state.getters.assemblers[0].EndOfWork == ""){
           state.getters.assemblers[0].EndOfWork = "0001-01-01"
         }
+        state.getters.assemblers[0].ID = state.getters.workers[0].ID
         axios.post('http://localhost:8082/assemblers/', state.getters.assemblers[0])
       }
       if (state.getters.turnerP) {
@@ -1627,6 +1646,7 @@ const store = createStore({
         if(state.getters.turners[0].EndOfWork == ""){
           state.getters.turners[0].EndOfWork = "0001-01-01"
         }
+        state.getters.turners[0].ID = state.getters.workers[0].ID
         axios.post('http://localhost:8082/turners/', state.getters.turners[0])
       }
       if (state.getters.locksmithP) {
@@ -1636,6 +1656,7 @@ const store = createStore({
         if(state.getters.locksmiths[0].EndOfWork == ""){
           state.getters.locksmiths[0].EndOfWork = "0001-01-01"
         }
+        state.getters.locksmiths[0].ID = state.getters.workers[0].ID
         axios.post('http://localhost:8082/locksmiths/', state.getters.locksmiths[0])
       }
       if (state.getters.welderP) {
@@ -1645,6 +1666,7 @@ const store = createStore({
         if(state.getters.welders[0].EndOfWork == ""){
           state.getters.welders[0].EndOfWork = "0001-01-01"
         }
+        state.getters.welders[0].ID = state.getters.workers[0].ID
         axios.post('http://localhost:8082/welders/', state.getters.welders[0])
       }
       if (state.getters.engineerP) {
@@ -1654,6 +1676,7 @@ const store = createStore({
         if(state.getters.engineers[0].EndOfWork == ""){
           state.getters.engineers[0].EndOfWork = "0001-01-01"
         }
+        state.getters.engineers[0].ID = state.getters.EngineeringStaff[0].ID
         axios.post('http://localhost:8082/engineers/', state.getters.engineers[0])
       }
       if (state.getters.technologistP) {
@@ -1663,6 +1686,7 @@ const store = createStore({
         if(state.getters.technologists[0].EndOfWork == ""){
           state.getters.technologists[0].EndOfWork = "0001-01-01"
         }
+        state.getters.technologists[0].ID = state.getters.EngineeringStaff[0].ID
         axios.post('http://localhost:8082/technologists/', state.getters.technologists[0])
       }
       if (state.getters.technicianP) {
@@ -1672,6 +1696,7 @@ const store = createStore({
         if(state.getters.technicians[0].EndOfWork == ""){
           state.getters.technicians[0].EndOfWork = "0001-01-01"
         }
+        state.getters.technicians[0].ID = state.getters.EngineeringStaff[0].ID
         axios.post('http://localhost:8082/technicians/', state.getters.technicians[0])
       }
       return result

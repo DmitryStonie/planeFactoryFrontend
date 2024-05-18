@@ -5,8 +5,9 @@
         <thead>
           <tr class="bg-blue-gray-100 text-gray-700">
             <th class="py-3 px-4 text-left">Id</th>
+            <th class="py-3 px-4 text-left">Name</th>
             <th class="py-3 px-4 text-left min-w-full">Foreman</th>
-            <th class="py-3 px-4 text-left">Workshop</th>
+            <th class="py-3 px-4 text-left">Workshop Area</th>
             <th class="py-3 px-3 text-left">Action</th>
           </tr>
         </thead>
@@ -17,8 +18,9 @@
             class="border-b border-blue-gray-200"
           >
             <td class="py-3 px-4">{{ item.ID }}</td>
+            <td class="py-3 px-4">{{ item.Name }}</td>
             <td class="py-3 px-4">{{ getBoss(item.Foreman) }}</td>
-            <td class="py-3 px-4">{{ getWorkshopName(item.Workshop) }}</td>
+            <td class="py-3 px-4">{{ getWorkshopAreaName(item.WorkshopArea) }}</td>
             <td class="py-3 px-4">
               <router-link :to="'/brigades/' + item.ID">Edit</router-link>
             </td>
@@ -33,14 +35,14 @@
   export default {
     methods: {
       getBoss(id) {
-        const found = this.$store.getters.foremen.find((element) => element.ID == id)
+        const found = this.$store.getters.workers.find((element) => element.ID == id)
         if (found) {
           return found.Name
         }
         return ''
       },
-      getWorkshopName(id) {
-        const found = this.$store.getters.workshops.find((element) => element.ID == id)
+      getWorkshopAreaName(id) {
+        const found = this.$store.getters.areas.find((element) => element.ID == id)
         if (found) {
           return found.Name
         }

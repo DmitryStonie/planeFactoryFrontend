@@ -36,7 +36,8 @@
         onclick="this.setAttribute('value', this.value);"
         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
       >
-        <option v-for="option in $store.getters.employees" :value="option.ID" :key="option.ID">
+        <option>{{ getBoss($store.getters.brigades[0].Foreman) }}</option>
+        <option v-for="option in $store.getters.workerE" :value="option.ID" :key="option.ID">
           {{ option.Name }}
         </option>
       </select>
@@ -92,14 +93,21 @@ export default {
     async saveData() {
       this.$store.dispatch('putBrigade', {
         id: this.$route.params.id,
-        payload: this.getters.brigades[0]
+        payload: this.$store.getters.brigades[0]
       })
     },
     async deleteData() {
       this.$store.commit('cleanBrigades')
       await this.$store.dispatch('deleteBrigade', this.$route.params.id)
       this.$router.go(-1)
-    }
+    },
+    getBoss(id) {
+        const found = this.$store.getters.workers.find((element) => element.ID == id)
+        if (found) {
+          return found.Name
+        }
+        return ''
+      },
   }
 }
 </script>

@@ -17,6 +17,8 @@ export default {
     this.$store.commit('setAddLink', "/brigades/new")
     this.$store.commit('setAddText', "Add new")
     this.$store.dispatch('getBrigades')
+    this.$store.dispatch('getAreas')
+    this.$store.dispatch('getWorkers')
   },
   unmounted(){
     this.$store.commit('cleanAddProps')
