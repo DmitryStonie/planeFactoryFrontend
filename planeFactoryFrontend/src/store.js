@@ -1351,12 +1351,12 @@ const store = createStore({
       context.commit('setTechnologists', result.data.technologists)
     },
     async getTesters(context) {
-      let result = await axios.get('http://localhost:8082/tests')
+      let result = await axios.get('http://localhost:8082/testers')
       context.commit('setTesters', result.data.testers)
     },
     async getTests(context) {
-      let result = await axios.get('http://localhost:8082/testers')
-      context.commit('setTests', result.data.tests)
+      let result = await axios.get('http://localhost:8082/tests')
+      context.dispatch('parseResponse', result.data)
     },
     async getTurners(context) {
       let result = await axios.get('http://localhost:8082/turners')
@@ -1827,6 +1827,13 @@ const store = createStore({
       axios.put('http://localhost:8082/tests/' + payload, state.getters.tests[0])
     },
     async postTest(context, payload){
+      if(payload.TimeStart == ""){
+        payload.TimeStart = "0001-01-01"
+      }
+      if(payload.TimeEnd == ""){
+        payload.TimeEnd = "0001-01-01"
+      }
+      console.warn(payload)
       let result = axios.post('http://localhost:8082/tests/', payload)
       return result
     },
