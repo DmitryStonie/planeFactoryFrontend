@@ -6,7 +6,7 @@
           <tr class="bg-blue-gray-100 text-gray-700">
             <th class="py-3 px-4 text-left">Id</th>
             <th class="py-3 px-3 text-left">Name</th>
-            <th class="py-3 px-4 text-left min-w-full">Product</th>
+            <th class="py-3 px-4 text-left min-w-full">Product ID</th>
             <th class="py-3 px-4 text-left">Lab</th>
             <th class="py-3 px-4 text-left">Time start</th>
             <th class="py-3 px-3 text-left">Time end</th>
@@ -26,7 +26,7 @@
             <td class="py-3 px-4">{{ item.TimeStart }}</td>
             <td class="py-3 px-4">{{ item.TimeEnd }}</td>
             <td class="py-3 px-4">
-              <router-link :to="'/areas/' + item.ID">Edit</router-link>
+              <router-link :to="'/tests/' + item.ID">Edit</router-link>
             </td>
           </tr>
         </tbody>

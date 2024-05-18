@@ -27,7 +27,7 @@
     </form>
 
     <div class="relative z-0 w-full mb-5">
-      <input v-model="this.test.Product" list="product" class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"/>
+      <input type="number" v-model="this.test.Product" list="product" class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"/>
       <datalist id="product">
         <option v-for="option in $store.getters.products" :value="option.ID" :key="option.ID">
           {{ option.ID }}
