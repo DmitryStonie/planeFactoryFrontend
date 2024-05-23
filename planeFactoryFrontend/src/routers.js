@@ -19,6 +19,8 @@ import EquipmentPage from './components/pages/cardPages/EquipmentPage.vue'
 import ProductPage from './components/pages/cardPages/ProductPage.vue'
 import TestPage from './components/pages/cardPages/TestPage.vue'
 import WorkshopPage from './components/pages/cardPages/WorkshopPage.vue'
+import JobPage from './components/pages/cardPages/JobPage.vue'
+
 //cardPages
 import NewAreaPage from './components/pages/newCardPages/NewAreaPage.vue'
 import NewBrigadePage from './components/pages/newCardPages/NewBrigadePage.vue'
@@ -29,18 +31,19 @@ import NewEquipmentPage from './components/pages/newCardPages/NewEquipmentPage.v
 import NewProductPage from './components/pages/newCardPages/NewProductPage.vue'
 import NewTestPage from './components/pages/newCardPages/NewTestPage.vue'
 import NewWorkshopPage from './components/pages/newCardPages/NewWorkshopPage.vue'
-//test
+import NewJobPage from './components/pages/newCardPages/NewJobPage.vue'
 import TestingPage from './components/pages/TestingPage.vue'
+
 
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     //otherPages
-    // {
-    //     name: 'TestingPage',
-    //     component: TestingPage,
-    //     path: '/'
-    // },
+    {
+        name: 'TestingPage',
+        component: TestingPage,
+        path: '/'
+    },
     {
         name: 'HomePage',
         component: HomePage,
@@ -133,6 +136,11 @@ const routes = [
         component: WorkshopPage,
         path: '/workshops/:id'
     },
+    {
+        name: 'JobPage',
+        component: JobPage,
+        path: '/jobs/:id'
+    },
     //newCardPages
     {
         name: 'NewAreaPage',
@@ -178,6 +186,11 @@ const routes = [
         name: 'NewWorkshopPage',
         component: NewWorkshopPage,
         path: '/workshops/new'
+    },
+    {
+        name: 'NewJobPage',
+        component: NewJobPage,
+        path: '/jobs/new'
     },
 ];
 
