@@ -1396,6 +1396,7 @@ const store = createStore({
     //ProductCard
     async getProduct(context, payload) {
       let result = await axios.get('http://localhost:8082/products/' + payload)
+      console.warn(result.data)
       context.dispatch('parseResponse', result.data)
       return result
     },
@@ -1845,13 +1846,14 @@ const store = createStore({
     },
     // //JobCard
     async getJob(context, payload) {
-      let result = await axios.get('http://localhost:8082/workshops/' + payload)
-      return result
+      let result = await axios.get('http://localhost:8082/jobs/' + payload)
+      context.dispatch('parseResponse', result.data)
     },
     async putJob(state, payload) {
       axios.put('http://localhost:8082/jobs/' + payload, state.getters.jobs[0])
     },
     async postJob(context, payload) {
+      console.warn(payload)
       let result = await axios.post('http://localhost:8082/jobs/', payload)
       return result
     },

@@ -122,7 +122,7 @@ export default {
         Description: String(''),
         Product: String(''),
         Brigade: String(''),
-        Status: Boolean,
+        Status: false,
         Order: Number(0)
       }
     }
@@ -133,7 +133,12 @@ export default {
   },
   methods: {
     async saveData() {
-      let result = await this.$store.dispatch('postJob', this.test)
+      if(this.job.Status == "true"){
+        this.job.Status = true
+      }else if(this.job.Status == "false"){
+        this.job.Status = false
+      }
+      let result = await this.$store.dispatch('postJob', this.job)
       if (result.data.status == 'OK') {
         this.$store.commit('setJobs', result.data.jobs)
         this.$router.push('/jobs/' + this.$store.getters.jobs[0].ID)
